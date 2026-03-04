@@ -1,0 +1,12 @@
+[init]
+	defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = byejeon
+	email = mu03019@naver.com
+[credential]
+	helper = "!f() { /home/.vscode-server/bin/072586267e68ece9a47aa43f8c108e0dcbf44622/node /tmp/vscode-remote-containers-857bafb0-b0d6-450d-9d22-f662ddcfccfe.js git-credential-helper $*; }; f"

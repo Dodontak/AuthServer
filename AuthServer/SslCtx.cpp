@@ -1,0 +1,20 @@
+#include "SslCtx.h"
+#include "Utils.h"
+
+SslCtx::SslCtx(const char* crt, const char* key)
+{
+	const SSL_METHOD*	method = TLS_server_method();
+	_ctx = SSL_CTX_new(method);
+	if (!_ctx)
+		handle_error("SSL_CTX_new error", 1);
+    if (SSL_CTX_use_certificate_file(_ctx, crt, SSL_FILETYPE_PEM) <= 0)
+    	handle_error("SSL_CTX_use_certificate_file error", 1);
+
+    if (SSL_CTX_use_PrivateKey_file(_ctx, key, SSL_FILETYPE_PEM) <= 0)
+    	handle_error("SSL_CTX_use_PrivateKey_file error", 1);
+}
+
+SslCtx::~SslCtx()
+{
+	SSL_CTX_free(_ctx);
+}

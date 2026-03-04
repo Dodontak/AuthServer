@@ -1,0 +1,33 @@
+syntax = "proto3";
+package Protocol;
+
+// 1. 회원가입 요청
+message C_SignUp {
+  string email = 1;
+  string password = 2;
+  string nickname = 3;
+}
+
+message S_SignUp {
+  bool success = 1;
+}
+
+// 2. 이메일 인증 요청
+message C_VerifyEmail {
+  string email = 1;
+  string verification_code = 2;
+}
+
+message S_VerifyEmail {
+  bool success = 1;
+}
+
+// 3. 로그인 요청
+message C_Login {
+  string email = 1;
+  string password = 2;
+}
+
+message S_Login {
+  bool success = 1;
+}

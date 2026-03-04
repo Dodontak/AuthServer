@@ -1,0 +1,26 @@
+#include "Utils.h"
+
+void handle_error(const char* err_str, int rtn)
+{
+	cerr << err_str << endl;
+	exit(rtn);
+}
+
+void SocketUtil::MakeSocketNonblock(int sock)
+{
+	int flags = fcntl(sock, F_GETFL, 0);
+	if (flags == -1)
+		handle_error("fcntl F_GETFL error", 1);
+	if (fcntl(sock, F_SETFL, flags | O_NONBLOCK) == -1)
+		handle_error("fcntl NONBLOCK error", 1);
+}
+
+int	SocketUtil::CreateSocket()
+{
+	return socket(AF_INET, SOCK_STREAM, 0);
+}
+
+void	SocketUtil::CloseSocket(int socket)
+{
+	close(socket);
+}
