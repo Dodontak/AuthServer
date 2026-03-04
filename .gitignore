@@ -46,3 +46,7 @@ server.key
 .viminfo
 .vscode-server/
 .lesshst
+.bash_history
+.cache/
+.ssh/
+.gitconfig
