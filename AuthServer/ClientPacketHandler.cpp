@@ -1,25 +1,25 @@
 #include "ClientPacketHandler.h"
+#include <iostream>
 
-Protocol::C_SignUp	ClientPacketHandler::HandeSignUpPacket(BYTE* buffer, int len)
+std::function<bool(std::function<void()>&, PacketSessionRef, BYTE*, int32)> GPacketHandler[UINT16_MAX];
+
+
+bool Handle_INVALID(std::function<void()>& outFunc, PacketSessionRef session, BYTE* buffer, int32 len)
 {
-	struct PacketHeader*	header = reinterpret_cast<struct PacketHeader*>(buffer);
-	Protocol::C_SignUp	pkt;
-	pkt.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader));
-	return pkt;
+	return false;
 }
 
-Protocol::C_VerifyEmail	ClientPacketHandler::HandeVerifyEmailPacket(BYTE* buffer, int len)
+void Handle_C_SIGNUP(PacketSessionRef session, Protocol::C_SIGNUP pkt)
 {
-	struct PacketHeader*	header = reinterpret_cast<struct PacketHeader*>(buffer);
-	Protocol::C_VerifyEmail	pkt;
-	pkt.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader));
-	return pkt;
+	std::cout << "Handle_C_SIGNUP!" << std::endl;
 }
 
-Protocol::C_Login	ClientPacketHandler::HandeLoginPacket(BYTE* buffer, int len)
+void Handle_C_VERIFY_EMAIL(PacketSessionRef session, Protocol::C_VERIFY_EMAIL pkt)
 {
-	struct PacketHeader*	header = reinterpret_cast<struct PacketHeader*>(buffer);
-	Protocol::C_Login	pkt;
-	pkt.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader));
-	return pkt;
+	std::cout << "Handle_C_VERIFY_EMAIL!" << std::endl;
+}
+
+void Handle_C_LOGIN(PacketSessionRef session, Protocol::C_LOGIN pkt)
+{
+	std::cout << "Handle_C_LOGIN!" << std::endl;
 }

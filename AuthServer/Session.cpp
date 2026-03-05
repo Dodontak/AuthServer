@@ -155,6 +155,8 @@ void	Session::ProcessRead()
 	} while (SSL_has_pending(ssl));
 	//TODO 읽은내용 Protobuf로 역직렬화 해서 메세지 구조체 만들고, 잡큐에 넣기.
 	int	processLen = OnRead(_readBuffer.ReadPos(), _readBuffer.DataSize());
+	_readBuffer.OnRead(processLen);
+	_readBuffer.Clean();
 }
 
 void	Session::ProcessWrite()
@@ -224,7 +226,6 @@ PacketSession::~PacketSession() {}
 int	PacketSession::OnRead(BYTE* buffer, int len)
 {
 	int	processLen = 0;
-
 	while (true)
 	{
 		int	dataSize = len - processLen;

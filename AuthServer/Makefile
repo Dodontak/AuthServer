@@ -4,6 +4,8 @@ SRC = CAuthSession.cpp \
 	ClientPacketHandler.cpp \
 	CoreGlobal.cpp \
 	CoreTLS.cpp \
+	DBConnection.cpp \
+	DBConnectionPool.cpp \
 	EpollCore.cpp \
 	EpollEvent.cpp \
 	EpollObject.cpp \

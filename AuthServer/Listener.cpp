@@ -4,6 +4,7 @@
 #include "Utils.h"
 #include "EpollEvent.h"
 #include "Session.h"
+#include "CAuthSession.h"
 #include <cstring> // memset
 #include <sys/socket.h> // socket
 #include <netinet/in.h>
@@ -48,7 +49,7 @@ void	Listener::Accept()
 		handle_error("accept error", 1);
 	}
 
-	SessionRef		session = make_shared<Session>(clientSocket, client_addr, _service);
+	SessionRef		session = make_shared<CAuthSession>(clientSocket, client_addr, _service);
 	EpollEvent*		epollEvent = new EpollEvent(session, EventType::Read);
 	SslObjectRef	sslObject = make_shared<SslObject>(_service->GetCtx(), clientSocket);
 	session->SetSslObject(sslObject);

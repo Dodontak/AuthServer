@@ -2,32 +2,32 @@ syntax = "proto3";
 package Protocol;
 
 // 1. 회원가입 요청
-message C_SignUp {
+message C_SIGNUP {
   string email = 1;
   string password = 2;
   string nickname = 3;
 }
 
-message S_SignUp {
+message S_SIGNUP {
   bool success = 1;
 }
 
 // 2. 이메일 인증 요청
-message C_VerifyEmail {
+message C_VERIFY_EMAIL {
   string email = 1;
   string verification_code = 2;
 }
 
-message S_VerifyEmail {
+message S_VERIFY_EMAIL {
   bool success = 1;
 }
 
 // 3. 로그인 요청
-message C_Login {
+message C_LOGIN {
   string email = 1;
   string password = 2;
 }
 
-message S_Login {
+message S_LOGIN {
   bool success = 1;
 }
