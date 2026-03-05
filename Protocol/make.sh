@@ -1,3 +1,4 @@
 protoc --cpp_out=. Protocol.proto
 
 cp Protocol.pb.cc Protocol.pb.h ../AuthServer
+cp Protocol.pb.cc Protocol.pb.h ../DummyClient

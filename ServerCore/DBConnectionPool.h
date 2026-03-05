@@ -4,6 +4,7 @@
 #include "DBConnection.h"
 #include <vector>
 #include <mutex>
+#include <string>
 
 class DBConnectionPool
 {

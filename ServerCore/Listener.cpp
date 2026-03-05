@@ -48,7 +48,7 @@ void	Listener::Accept()
 		handle_error("accept error", 1);
 	}
 
-	SessionRef		session = make_shared<Session>(clientSocket, client_addr, _service);
+	SessionRef		session = _service->MakeSession(clientSocket, client_addr, _service);
 	EpollEvent*		epollEvent = new EpollEvent(session, EventType::Read);
 	SslObjectRef	sslObject = make_shared<SslObject>(_service->GetCtx(), clientSocket);
 	session->SetSslObject(sslObject);

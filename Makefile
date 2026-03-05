@@ -1,6 +1,6 @@
 #======= AuthServer ========#
 AUTH_SERVER_DIR = AuthServer
-AUTH_SERVER_EXE = $(AUTH_SERVER_DIR)/AuthServer.exe
+AUTH_SERVER_EXE = test
 AUTH_SERVER_SRC_FILE = AuthServer.cpp \
 	CAuthSession.cpp \
 	ClientPacketHandler.cpp \
@@ -13,6 +13,16 @@ AUTH_SERVER_OBJ = $(addprefix $(AUTH_SERVER_OBJ_DIR)/, $(AUTH_SERVER_OBJ_FILE))
 #======= AuthServer ========#
 
 #======= DummyCient ========#
+CLIENT_DIR = DummyClient
+CLIENT_EXE = client
+CLIENT_SRC_FILE = DummyClient.cpp \
+	Protocol.pb.cc \
+	ServerPacketHandler.cpp
+CLIENT_SRC = $(addprefix $(CLIENT_DIR)/, $(CLIENT_SRC_FILE))
+CLIENT_OBJ_DIR = $(CLIENT_DIR)/ObjectFiles
+CLIENT_OBJ_FILE = $(CLIENT_SRC_FILE:.cpp=.o)
+CLIENT_OBJ_FILE := $(CLIENT_OBJ_FILE:.cc=.o)
+CLIENT_OBJ = $(addprefix $(CLIENT_OBJ_DIR)/, $(CLIENT_OBJ_FILE))
 #======= DummyCient ========#
 
 #======= ServerCore ========#
@@ -49,7 +59,10 @@ CXX = g++
 CXXFLAGS = #-Wall -Werror -Wextra
 LDLIBS = -lhiredis -lpq -lprotobuf -lssl -lcrypto
 
-all : $(AUTH_SERVER_EXE)
+all : auth cli
+
+#======= AuthServer ========#
+auth : $(AUTH_SERVER_EXE)
 
 $(AUTH_SERVER_EXE) : $(AUTH_SERVER_OBJ_DIR) $(SERVER_CORE_LIB) $(AUTH_SERVER_OBJ)
 	$(CXX) $(CXXFLAGS) $(AUTH_SERVER_OBJ) $(SERVER_CORE_LIB) $(LDLIBS) -o $(AUTH_SERVER_EXE)
@@ -62,7 +75,26 @@ $(AUTH_SERVER_OBJ_DIR)/%.o : $(AUTH_SERVER_DIR)/%.cpp
 
 $(AUTH_SERVER_OBJ_DIR)/%.o : $(AUTH_SERVER_DIR)/%.cc
 	$(CXX) $(CXXFLAGS) $(SERVER_CORE_INC) -o $@ -c $<
+#======= AuthServer ========#
 
+
+#======= DummyCient ========#
+cli : $(CLIENT_EXE)
+
+$(CLIENT_EXE) : $(CLIENT_OBJ_DIR) $(CLIENT_OBJ) $(SERVER_CORE_LIB)
+	$(CXX) $(CXXFLAGS) $(CLIENT_OBJ) $(SERVER_CORE_LIB) $(LDLIBS) -o $(CLIENT_EXE)
+
+$(CLIENT_OBJ_DIR) :
+	mkdir -p $@
+
+$(CLIENT_OBJ_DIR)/%.o : $(CLIENT_DIR)/%.cpp
+	$(CXX) $(CXXFLAGS) $(SERVER_CORE_INC) -o $@ -c $<
+
+$(CLIENT_OBJ_DIR)/%.o : $(CLIENT_DIR)/%.cc
+	$(CXX) $(CXXFLAGS) $(SERVER_CORE_INC) -o $@ -c $<
+#======= DummyCient ========#
+
+#======= ServerCore ========#
 $(SERVER_CORE_LIB) : $(SERVER_CORE_OBJ_DIR) $(SERVER_CORE_OBJ)
 	ar rcs $@ $(SERVER_CORE_OBJ)
 
@@ -70,13 +102,14 @@ $(SERVER_CORE_OBJ_DIR) :
 	mkdir -p $@
 
 $(SERVER_CORE_OBJ_DIR)/%.o : $(SERVER_CORE_DIR)/%.cpp
-	$(CXX) $(CXXFLAGS) -o $@ -c $<
+	$(CXX) $(CXXFLAGS) $(AUTH_SERVER_INC) -o $@ -c $<
+#======= ServerCore ========#
 
 clean :
-	rm -rf $(AUTH_SERVER_OBJ_DIR) $(SERVER_CORE_OBJ_DIR)
+	rm -rf $(AUTH_SERVER_OBJ_DIR) $(CLIENT_OBJ_DIR) $(SERVER_CORE_OBJ_DIR)
 
 fclean : clean
-	rm -rf $(AUTH_SERVER_EXE) $(SERVER_CORE_LIB)
+	rm -rf $(AUTH_SERVER_EXE) $(CLIENT_EXE) $(SERVER_CORE_LIB)
 
 re : fclean all
 

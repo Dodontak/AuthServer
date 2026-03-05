@@ -12,7 +12,6 @@ DBConnection::~DBConnection()
 	PQfinish(_connection);
 }
 
-
 PGresult*	DBConnection::ExecuteSQL(const char* sql)
 {
 	return PQexec(_connection, sql);

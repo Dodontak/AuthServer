@@ -5,12 +5,21 @@
 #include <signal.h>
 #include <memory>
 
+/*====================
+       Service
+====================*/
 
-Service::Service(std::string ip, int port, const char* certFile, const char* keyFile)
-	: _addr(ip, port)
+Service::Service(std::string ip, int port, const char* certFile, const char* keyFile, SessionFactory factory)
+	: _addr(ip, port), _sessionFactory(factory)
 {
 	_ctx = make_shared<SslCtx>(certFile, keyFile);
 }
+
+SessionRef	Service::MakeSession(int clinetSocket, struct sockaddr_in addr, ServiceRef service)
+{
+	return _sessionFactory(clinetSocket, addr, service);
+}
+
 
 SSL_CTX*	Service::GetCtx()
 {
