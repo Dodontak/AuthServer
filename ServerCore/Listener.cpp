@@ -39,7 +39,7 @@ Listener::~Listener()
 void	Listener::Accept()
 {
 	struct sockaddr_in	client_addr;
-	socklen_t			sock_len = sizeof(socklen_t);
+	socklen_t			sock_len = sizeof(struct sockaddr_in);
 	int	clientSocket = accept(_listenSocket, (struct sockaddr*)&client_addr, &sock_len);
 	if (clientSocket == -1)
 	{
@@ -47,13 +47,12 @@ void	Listener::Accept()
 			return;
 		handle_error("accept error", 1);
 	}
+	SocketUtil::MakeSocketNonblock(clientSocket);
 
 	SessionRef		session = _service->MakeSession(clientSocket, client_addr, _service);
-	EpollEvent*		epollEvent = new EpollEvent(session, EventType::Read);
+	EpollEvent*		epollEvent = new EpollEvent(session, EventType::HandShaking);
 	SslObjectRef	sslObject = make_shared<SslObject>(_service->GetCtx(), clientSocket);
 	session->SetSslObject(sslObject);
-	
-	SocketUtil::MakeSocketNonblock(clientSocket);
 
 	_service->GetEpollCore()->Register(epollEvent);
 	_service->InsertSession(session);

@@ -38,7 +38,7 @@ private:
 
 	void	ProcessRead();
 	void	ProcessWrite();
-	void	ProcessConnect();
+	void	ProcessHandShaking();
 	void	ProcessDisconnect(bool isCanSslShutdown);
 
 	void	ModEvent(EventType type);

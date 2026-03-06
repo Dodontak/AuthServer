@@ -24,11 +24,9 @@ void	CAuthSession::OnWrite(int len)
 
 void	CAuthSession::OnReadPacket(BYTE* buffer, int len)
 {
-	PacketHeader	header = *reinterpret_cast<PacketHeader*>(buffer);
-
 	std::function<void()>	callback;
 	PacketSessionRef	session = std::static_pointer_cast<PacketSession>(shared_from_this());
-	bool result = ClientPacketHandler::GetCallback(callback, session, buffer, len);
+	bool result = ClientPacketHandler::PacketHandler(callback, session, buffer, len);
 	if (result == false)
 		std::cout << "error" << std::endl;
 	else

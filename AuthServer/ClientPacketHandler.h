@@ -42,7 +42,7 @@ public:
 		};
 	}
 
-	static bool	GetCallback(std::function<void()>& outFunc, PacketSessionRef session, BYTE* buffer, int32 len)
+	static bool	PacketHandler(std::function<void()>& outFunc, PacketSessionRef session, BYTE* buffer, int32 len)
 	{
 		PacketHeader*	header = reinterpret_cast<PacketHeader*>(buffer);
 		return GPacketHandler[header->id](outFunc, session, buffer, len);

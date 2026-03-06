@@ -39,6 +39,11 @@ void	Session::Dispatch(uint32_t events)
 		ProcessDisconnect(false);
 		return;
 	}
+	if (type == EventType::HandShaking)
+	{
+		Session::ProcessHandShaking();
+		return;
+	}
 	if (type == EventType::Disconnect)
 	{
 		ProcessDisconnect(true);
@@ -100,12 +105,6 @@ void	Session::Send(WriteBufferRef writeBuffer)
 		_writeBuffers.push_back(writeBuffer);
 		ModEvent(EventType::Write);
 	}
-}
-
-
-void	Session::ProcessConnect()
-{
-
 }
 
 void	Session::ProcessDisconnect(bool isCanSslShutdown)
@@ -204,6 +203,19 @@ void	Session::ProcessWrite()
 		}
 		ModEvent(EventType::Read);
 	}
+}
+
+void	Session::ProcessHandShaking()
+{
+	int	ret = _sslObject->SslHandShake();
+	if (ret == 1)
+		return;
+	if (ret == 0)
+	{
+		_epollEvent->SetEventType(EventType::Read);
+		return;
+	}
+	ProcessDisconnect(false);
 }
 
 void	Session::ModEvent(EventType type)

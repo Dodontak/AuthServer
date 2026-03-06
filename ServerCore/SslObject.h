@@ -9,8 +9,10 @@ public:
 	SslObject(SSL_CTX* ctx, int fd);
 	~SslObject();
 
+	int	SslHandShake();
 	SSL*	GetSsl() { return _ssl; }
 private:
-	int		_fd;
-	SSL*	_ssl;
+	SSL_CTX*	_ctx;
+	int			_fd;
+	SSL*		_ssl;
 };

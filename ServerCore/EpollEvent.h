@@ -9,6 +9,7 @@ enum class EventType : int
 	Accept,
 	Read,
 	Write,
+	HandShaking,
 	Timer
 };
 
