@@ -13,6 +13,21 @@
 
 using namespace std;
 
+void	WorkerThread()
+{
+	while (true)
+	{
+		JobRef job = nullptr;
+		{
+			std::unique_lock<std::mutex> lock(GThreadManager->_m);
+			GThreadManager->_cv.wait(lock, []() { return !GJobQueue->Empty(); });
+			job = GJobQueue->PopJob();
+		}
+		std::cout << "thread No." << LThreadId << " Awaken!" << std::endl;
+		job->Execute();
+	}
+}
+
 int main(int ac, char** av)
 {
 	if (ac != 2)
@@ -22,9 +37,9 @@ int main(int ac, char** av)
 	GDBConnectionPool->Connect(10,
 		"host=postgres user=postgres port=5432 dbname=postgres password=password connect_timeout=3");
 	for (int i = 0; i < 5; i++)
-		GThreadManager->Launch();
+		GThreadManager->Launch(WorkerThread);
 
-	ServiceRef	service = make_shared<Service>(
+	ServiceRef	service = make_shared<AuthService>(
 		"127.0.0.1",
 		stoi(av[1]),
 		"TLS/server.crt",

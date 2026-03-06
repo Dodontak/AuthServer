@@ -50,9 +50,7 @@ void	Listener::Accept()
 	SocketUtil::MakeSocketNonblock(clientSocket);
 
 	SessionRef		session = _service->MakeSession(clientSocket, client_addr, _service);
-	EpollEvent*		epollEvent = new EpollEvent(session, EventType::HandShaking);
-	SslObjectRef	sslObject = make_shared<SslObject>(_service->GetCtx(), clientSocket);
-	session->SetSslObject(sslObject);
+	EpollEvent*		epollEvent = new EpollEvent(session, EventType::HandShakingRead);
 
 	_service->GetEpollCore()->Register(epollEvent);
 	_service->InsertSession(session);

@@ -9,17 +9,17 @@ bool Handle_INVALID(std::function<void()>& outFunc, PacketSessionRef session, BY
 	return false;
 }
 
-void	Handle_S_SIGNUP(PacketSessionRef session, Protocol::C_SIGNUP pkt)
+void	Handle_S_SIGNUP(PacketSessionRef session, Protocol::S_SIGNUP pkt)
 {
 
 }
 
-void	Handle_S_VERIFY_EMAIL(PacketSessionRef session, Protocol::C_VERIFY_EMAIL pkt)
+void	Handle_S_VERIFY_EMAIL(PacketSessionRef session, Protocol::S_VERIFY_EMAIL pkt)
 {
 
 }
 
-void	Handle_S_LOGIN(PacketSessionRef session, Protocol::C_LOGIN pkt)
+void	Handle_S_LOGIN(PacketSessionRef session, Protocol::S_LOGIN pkt)
 {
 
 }

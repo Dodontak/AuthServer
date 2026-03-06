@@ -17,7 +17,8 @@ CLIENT_DIR = DummyClient
 CLIENT_EXE = client
 CLIENT_SRC_FILE = DummyClient.cpp \
 	Protocol.pb.cc \
-	ServerPacketHandler.cpp
+	ServerPacketHandler.cpp \
+	ServerSession.cpp 
 CLIENT_SRC = $(addprefix $(CLIENT_DIR)/, $(CLIENT_SRC_FILE))
 CLIENT_OBJ_DIR = $(CLIENT_DIR)/ObjectFiles
 CLIENT_OBJ_FILE = $(CLIENT_SRC_FILE:.cpp=.o)

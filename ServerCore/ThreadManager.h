@@ -14,16 +14,16 @@ public:
 	ThreadManager();
 	~ThreadManager();
 	
-	void	Launch();
+	void	Launch(std::function<void()> callback);
 	void	Join();
-	void	WorkerThread();
 	void	InsertJob(std::function<void()> callback);
 	void	InsertJob(JobRef job);
+	
+	std::mutex				_m;
+	std::condition_variable	_cv;
 private:
 	static void	InitTLS();
 	static void	DestroyTLS();
 
-	std::mutex					_m;
-	std::vector<std::thread>	_workerThreads;
-	std::condition_variable		_cv;
+	std::vector<std::thread>		_workerThreads;
 };

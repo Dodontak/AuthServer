@@ -20,40 +20,45 @@ public:
 	virtual ~Session();
 
 	NetAddress	GetNetAddress() { return _address; }
-	void		SetSslObject(SslObjectRef sslObject);
 
 public: //IocpObject Interface
-	virtual int			GetFd() { return _clientSocket;}
+	virtual int			GetFd() { return _socket;}
 	virtual void		SetEpollEvent(EpollEvent* epollEvent) { _epollEvent = epollEvent; }
 	virtual EpollEvent*	GetEpollEvent() { return _epollEvent; }
 	virtual void		Dispatch(uint32_t events);
 
+	void	Send(WriteBufferRef writeBuffer);
 protected:// 컨텐츠 코드에서 오버라이딩
 	virtual int		OnRead(BYTE* buffer, int len) { return len; }
 	virtual void	OnWrite(int len) {}
 
 private:
+	bool	Connect();
 	void	Disconnect();
-	void	Send(WriteBufferRef writeBuffer);
-
+	
+	void	ProcessConnect();
+	void	ProcessDisconnect(bool isCanSslShutdown);
 	void	ProcessRead();
 	void	ProcessWrite();
 	void	ProcessHandShaking();
-	void	ProcessDisconnect(bool isCanSslShutdown);
+
+	void	ProcessSslAccept();
+	void	ProcessSslConnect();
 
 	void	ModEvent(EventType type);
-	ReadBuffer					_readBuffer;
-private:
-	std::mutex					m;
+protected:
+	std::mutex					_m;
+	bool						_isClient;
 
-	int							_clientSocket;
+	int							_socket;
 	NetAddress					_address;
 	SslObjectRef				_sslObject = nullptr;
 	std::weak_ptr<Service>		_service;
-	EpollEvent*					_epollEvent = nullptr;
 	
-	int							timerfd = -1;
+	EpollEvent*					_epollEvent = nullptr;
 	EpollEvent*					_epollTimerEvent = nullptr;
+	int							timerfd = -1;
+	ReadBuffer					_readBuffer;
 	std::deque<WriteBufferRef>	_writeBuffers;
 };
 

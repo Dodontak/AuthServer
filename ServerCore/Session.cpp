@@ -1,5 +1,5 @@
 #include "CoreGlobal.h"
-#include "Threadmanager.h"
+#include "ThreadManager.h"
 #include "Session.h"
 #include "Service.h"
 #include "Timer.h"
@@ -12,51 +12,60 @@
         Session
 ====================*/
 
-Session::Session(int clientSocket, struct sockaddr_in addr, ServiceRef service) :
-	_clientSocket(clientSocket), _address(addr), _service(service), _readBuffer(BUFFER_SIZE)
+Session::Session(int socket, struct sockaddr_in addr, ServiceRef service) :
+	_socket(socket), _address(addr), _service(service), _readBuffer(BUFFER_SIZE)
 {
-	cout << "Session " << clientSocket <<" Constructed." << endl;
+	_sslObject = make_shared<SslObject>(service->GetCtx(), socket);
+	cout << "Session " << socket <<" Constructed." << endl;
 }
 
 Session::~Session()
 {
-	std::cout << "Session " << _clientSocket << " Distructed." << std::endl;
-	close(_clientSocket);
-}
-
-void	Session::SetSslObject(SslObjectRef sslObject)
-{
-	_sslObject = sslObject;
+	std::cout << "Session " << _socket << " Distructed." << std::endl;
+	close(_socket);
 }
 
 void	Session::Dispatch(uint32_t events)
 {
-	const uint32_t	readWrite = EPOLLIN | EPOLLOUT;
-	EventType 		type = _epollEvent->GetEventType();
+	switch (_epollEvent->GetEventType())
+	{
+		case EventType::Connect :
+			ProcessConnect();
+			return;
+		case EventType::Disconnect :
+			ProcessDisconnect(true);
+			return;
+		case EventType::HandShakingRead :
+			ProcessHandShaking();
+			return;
+		case EventType::HandShakingWrite :
+			ProcessHandShaking();
+			return;
+		case EventType::Write :
+			ProcessWrite();
+		case EventType::Read :
+			if (events & EPOLLIN)
+				ProcessRead();
+			return;
+	}
+	ProcessDisconnect(false);
+}
 
-	if ((events & readWrite) == 0)
+bool	Session::Connect()
+{
+	int	serverLen = sizeof(struct sockaddr);
+	if (connect(_socket, (struct sockaddr*)&_address.GetAddr(), serverLen))
 	{
-		ProcessDisconnect(false);
-		return;
+		if (errno == EINPROGRESS)
+		{
+			_epollEvent->SetEventType(EventType::Connect);
+			return true;
+		}
+		else
+			return false;
 	}
-	if (type == EventType::HandShaking)
-	{
-		Session::ProcessHandShaking();
-		return;
-	}
-	if (type == EventType::Disconnect)
-	{
-		ProcessDisconnect(true);
-		return;
-	}
-	if (events & EPOLLIN)
-	{
-		ProcessRead();
-	}
-	if (events & EPOLLOUT)
-	{
-		ProcessWrite();
-	}
+	_epollEvent->SetEventType(EventType::HandShakingRead);
+	return true;
 }
 
 void	Session::Disconnect()
@@ -65,7 +74,7 @@ void	Session::Disconnect()
 	{
 		EpollCoreRef	epollCore = service->GetEpollCore();
 		{//현재 이벤트 타입이 이미 disconnect면 다른스레드에서 disconnect 실행한거니까 그냥 종료
-			std::lock_guard<std::mutex>	lock(m);
+			std::lock_guard<std::mutex>	lock(_m);
 			if (_epollEvent->GetEventType() == EventType::Disconnect)
 				return;
 			ModEvent(EventType::Disconnect);
@@ -81,9 +90,7 @@ void	Session::Disconnect()
 					[self_weak = std::weak_ptr<Session>(shared_from_this())]()
 					{
 						if (std::shared_ptr<Session> session = self_weak.lock())
-						{
 							session->ProcessDisconnect(true);
-						}
 					},
 					2,
 					service
@@ -100,11 +107,15 @@ void	Session::Send(WriteBufferRef writeBuffer)
 {
 	if (ServiceRef service = _service.lock())
 	{
-		std::lock_guard<std::mutex>	lock(m);
+		std::lock_guard<std::mutex>	lock(_m);
 	
 		_writeBuffers.push_back(writeBuffer);
 		ModEvent(EventType::Write);
 	}
+}
+
+void	Session::ProcessConnect()
+{
 }
 
 void	Session::ProcessDisconnect(bool isCanSslShutdown)
@@ -152,7 +163,7 @@ void	Session::ProcessRead()
 			return;
 		}
 	} while (SSL_has_pending(ssl));
-	//TODO 읽은내용 Protobuf로 역직렬화 해서 메세지 구조체 만들고, 잡큐에 넣기.
+
 	int	processLen = OnRead(_readBuffer.ReadPos(), _readBuffer.DataSize());
 	_readBuffer.OnRead(processLen);
 	_readBuffer.Clean();
@@ -167,7 +178,7 @@ void	Session::ProcessWrite()
 		BYTE*			buffer;
 		int				dataLen;
 		{
-			std::lock_guard<std::mutex>	lock(m);
+			std::lock_guard<std::mutex>	lock(_m);
 
 			writeBuffer = _writeBuffers.front();
 			buffer = writeBuffer->GetBuffer();
@@ -183,7 +194,7 @@ void	Session::ProcessWrite()
 			if (err == SSL_ERROR_WANT_WRITE){//커널 버퍼 공간 부족
 				return;
 			} else if (err == SSL_ERROR_ZERO_RETURN) {
-				//??
+				// 상대가 연결 종료함
 				ProcessDisconnect(true);
 				return;
 			} else {//SSL에 심각한 에러 발생. SSL_shutdown 금지.
@@ -198,7 +209,7 @@ void	Session::ProcessWrite()
 				ProcessDisconnect(true);
 				return;
 			}
-			std::lock_guard<std::mutex>	lock(m);
+			std::lock_guard<std::mutex>	lock(_m);
 			_writeBuffers.push_front(writeBuffer);
 		}
 		ModEvent(EventType::Read);
@@ -207,16 +218,52 @@ void	Session::ProcessWrite()
 
 void	Session::ProcessHandShaking()
 {
-	int	ret = _sslObject->SslHandShake();
-	if (ret == 1)
-		return;
-	if (ret == 0)
-	{
-		_epollEvent->SetEventType(EventType::Read);
-		return;
-	}
-	ProcessDisconnect(false);
+	if (_isClient)
+		ProcessSslAccept();
+	else
+		ProcessSslConnect();
 }
+
+void	Session::ProcessSslAccept()
+{
+	int	ret = _sslObject->SslAccept();
+	switch (ret)
+	{
+		case 0 :
+			_epollEvent->SetEventType(EventType::Read);
+			return ;
+		case 1 :
+			_epollEvent->SetEventType(EventType::HandShakingRead);
+			return ;
+		case 2 :
+			_epollEvent->SetEventType(EventType::HandShakingWrite);
+			return ;
+		default :
+			ProcessDisconnect(false);
+			return ;
+	}
+}
+
+void	Session::ProcessSslConnect()
+{
+	int	ret = _sslObject->SslConnect();
+	switch (ret)
+	{
+		case 0 :
+			_epollEvent->SetEventType(EventType::Read);
+			return ;
+		case 1 :
+			_epollEvent->SetEventType(EventType::HandShakingRead);
+			return ;
+		case 2 :
+			_epollEvent->SetEventType(EventType::HandShakingWrite);
+			return ;
+		default :
+			ProcessDisconnect(false);
+			return ;
+	}
+}
+
 
 void	Session::ModEvent(EventType type)
 {

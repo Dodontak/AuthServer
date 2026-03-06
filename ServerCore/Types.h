@@ -18,6 +18,8 @@ using uint64 = uint64_t;
 #define USING_SHARED_PTR(name) using name##Ref = std::shared_ptr<class name>;
 
 USING_SHARED_PTR(Service);
+USING_SHARED_PTR(AuthService);
+USING_SHARED_PTR(ClientService);
 USING_SHARED_PTR(EpollCore);
 USING_SHARED_PTR(Listener);
 USING_SHARED_PTR(EpollObject);

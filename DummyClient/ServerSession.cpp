@@ -1,33 +1,33 @@
-#include "CAuthSession.h"
-#include "ClientPacketHandler.h"
+#include "ServerSession.h"
+#include "ServerPacketHandler.h"
 #include "CoreGlobal.h"
 #include "ThreadManager.h"
 #include "JobQueue.h"
 #include <functional>
 #include <iostream>
 
-CAuthSession::CAuthSession(int clientSocket, struct sockaddr_in addr, ServiceRef service)
+ServerSession::ServerSession(int clientSocket, struct sockaddr_in addr, ServiceRef service)
 	: PacketSession(clientSocket, addr, service)
 {
-	_isClient = true;
+	_isClient = false;
 }
 
 
-CAuthSession::~CAuthSession()
+ServerSession::~ServerSession()
 {
 
 }
 
 
-void	CAuthSession::OnWrite(int len)
+void	ServerSession::OnWrite(int len)
 {
 }
 
-void	CAuthSession::OnReadPacket(BYTE* buffer, int len)
+void	ServerSession::OnReadPacket(BYTE* buffer, int len)
 {
 	std::function<void()>	callback;
 	PacketSessionRef	session = std::static_pointer_cast<PacketSession>(shared_from_this());
-	bool result = ClientPacketHandler::PacketHandler(callback, session, buffer, len);
+	bool result = ServerPacketHandler::PacketHandler(callback, session, buffer, len);
 	if (result == false)
 		std::cout << "error" << std::endl;
 	else

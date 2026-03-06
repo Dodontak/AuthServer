@@ -20,42 +20,32 @@ enum : uint16
 };
 
 bool	Handle_INVALID(std::function<void()>& outFunc, PacketSessionRef session, BYTE* buffer, int32 len);
-void	Handle_S_SIGNUP(PacketSessionRef session, Protocol::C_SIGNUP pkt);
-void	Handle_S_VERIFY_EMAIL(PacketSessionRef session, Protocol::C_VERIFY_EMAIL pkt);
-void	Handle_S_LOGIN(PacketSessionRef session, Protocol::C_LOGIN pkt);
+void	Handle_S_SIGNUP(PacketSessionRef session, Protocol::S_SIGNUP pkt);
+void	Handle_S_VERIFY_EMAIL(PacketSessionRef session, Protocol::S_VERIFY_EMAIL pkt);
+void	Handle_S_LOGIN(PacketSessionRef session, Protocol::S_LOGIN pkt);
 
-class ClientPacketHandler
+class ServerPacketHandler
 {
 public:
 	static void	Init()
 	{
 		for (int i = 0; i < UINT16_MAX; ++i)
 			GPacketHandler[i] = Handle_INVALID;
-		GPacketHandler[PKT_C_SIGNUP] = [](std::function<void()>& outFunc, PacketSessionRef session, BYTE* buffer, int32 len) {
-			return GetCallback<Protocol::C_SIGNUP>(outFunc, Handle_S_SIGNUP, session, buffer, len);
+		GPacketHandler[PKT_S_SIGNUP] = [](std::function<void()>& outFunc, PacketSessionRef session, BYTE* buffer, int32 len) {
+			return GetCallback<Protocol::S_SIGNUP>(outFunc, Handle_S_SIGNUP, session, buffer, len);
 		};
-		GPacketHandler[PKT_C_VERIFY_EMAIL] = [](std::function<void()>& outFunc, PacketSessionRef session, BYTE* buffer, int32 len) {
-			return GetCallback<Protocol::C_VERIFY_EMAIL>(outFunc, Handle_S_VERIFY_EMAIL, session, buffer, len);
+		GPacketHandler[PKT_S_VERIFY_EMAIL] = [](std::function<void()>& outFunc, PacketSessionRef session, BYTE* buffer, int32 len) {
+			return GetCallback<Protocol::S_VERIFY_EMAIL>(outFunc, Handle_S_VERIFY_EMAIL, session, buffer, len);
 		};
-		GPacketHandler[PKT_C_LOGIN] = [](std::function<void()>& outFunc, PacketSessionRef session, BYTE* buffer, int32 len) {
-			return GetCallback<Protocol::C_LOGIN>(outFunc, Handle_S_LOGIN, session, buffer, len);
+		GPacketHandler[PKT_S_LOGIN] = [](std::function<void()>& outFunc, PacketSessionRef session, BYTE* buffer, int32 len) {
+			return GetCallback<Protocol::S_LOGIN>(outFunc, Handle_S_LOGIN, session, buffer, len);
 		};
 	}
 
-	static bool	GetCallback(std::function<void()>& outFunc, PacketSessionRef session, BYTE* buffer, int32 len)
+	static bool	PacketHandler(std::function<void()>& outFunc, PacketSessionRef session, BYTE* buffer, int32 len)
 	{
 		PacketHeader*	header = reinterpret_cast<PacketHeader*>(buffer);
 		return GPacketHandler[header->id](outFunc, session, buffer, len);
-	}
-private:
-	template<typename PacketType, typename ProcessFunc>
-	static bool	GetCallback(std::function<void()>& outFunc, ProcessFunc func, PacketSessionRef session, BYTE* buffer, int32 len)
-	{
-		PacketType	pkt;
-		if (false == pkt.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)))
-			return false;
-		outFunc = [func, session, pkt](){ func(session, pkt); };
-		return true;
 	}
 
 	template<typename T>
@@ -73,4 +63,16 @@ private:
 		pkt.SerializeToArray(writeBuffer->GetCopyBuffer(), pktSize);
 		return writeBuffer;
 	}
+	
+private:
+	template<typename PacketType, typename ProcessFunc>
+	static bool	GetCallback(std::function<void()>& outFunc, ProcessFunc func, PacketSessionRef session, BYTE* buffer, int32 len)
+	{
+		PacketType	pkt;
+		if (false == pkt.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)))
+			return false;
+		outFunc = [func, session, pkt](){ func(session, pkt); };
+		return true;
+	}
+
 };

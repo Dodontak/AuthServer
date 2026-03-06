@@ -15,7 +15,7 @@ using SessionFactory = function<SessionRef(int, struct sockaddr_in, ServiceRef)>
 class Service : public enable_shared_from_this<Service>
 {
 public:
-	Service(std::string ip, int port, const char* certFile, const char* keyFile, SessionFactory factory);
+	Service(const char* ip, int port, SessionFactory factory);
 	virtual ~Service() {}
 
 	SessionRef	MakeSession(int clinetSocket, struct sockaddr_in addr, ServiceRef service);
@@ -27,13 +27,36 @@ public:
 	NetAddress		GetNetAddress() { return _addr; }
 	SSL_CTX*		GetCtx();
 
-	int				Start();
+	virtual int		Start() = 0;
 protected:
-	std::mutex	m;
-	EpollCoreRef		_epollCore;
-	SslCtxRef			_ctx;
-	int 				_port;
-	NetAddress			_addr;
-	set<EpollObjectRef>	_sessions;
-	SessionFactory		_sessionFactory;
+	std::mutex					_m;
+	EpollCoreRef				_epollCore;
+	SslCtxRef					_ctx;
+	int 						_port;
+	NetAddress					_addr;
+	std::set<EpollObjectRef>	_sessions;
+	SessionFactory				_sessionFactory;
+};
+
+class AuthService : public Service
+{
+public:
+	AuthService(const char* ip, int port, const char* certFile, const char* keyFile, SessionFactory factory);
+	virtual ~AuthService();
+
+	virtual int	Start();
+};
+
+class ClientService : public Service
+{
+public:
+	ClientService(const char* ip, int port, SessionFactory factory, int clientCount);
+	
+	void	broadcastfortest(WriteBufferRef writebuffer);
+
+	virtual ~ClientService();
+
+	virtual int	Start();
+private:
+	int	_clientCount;
 };

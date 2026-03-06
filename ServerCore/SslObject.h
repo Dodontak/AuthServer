@@ -9,7 +9,9 @@ public:
 	SslObject(SSL_CTX* ctx, int fd);
 	~SslObject();
 
-	int	SslHandShake();
+	bool	Init();
+	int		SslAccept();
+	int		SslConnect();
 	SSL*	GetSsl() { return _ssl; }
 private:
 	SSL_CTX*	_ctx;

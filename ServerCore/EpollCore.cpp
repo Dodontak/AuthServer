@@ -74,6 +74,12 @@ struct epoll_event	EpollCore::CreateEv(EpollObjectRef epollObject, EventType typ
 		case EventType::Write :
 			ev.events = EPOLLIN | EPOLLOUT;
 			break;
+		case EventType::HandShakingRead :
+			ev.events = EPOLLIN;
+			break;
+		case EventType::HandShakingWrite :
+			ev.events = EPOLLOUT;
+			break;
 		case EventType::Timer :
 			ev.events = EPOLLIN;
 			break;

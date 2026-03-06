@@ -5,9 +5,11 @@
 class SslCtx
 {
 public:
-	SslCtx(const char* crt, const char* key);
+	SslCtx();
 	~SslCtx();
 
+	void		SetCrt(const char* crt);
+	void		SetKey(const char* key);
 	SSL_CTX*	GetCtx() { return _ctx;}
 private:
 	SSL_CTX*	_ctx;

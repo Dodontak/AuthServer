@@ -7,8 +7,6 @@
 #include <sys/epoll.h>
 #include <array>
 
-using namespace std;
-
 class EpollCore : public enable_shared_from_this<EpollCore>
 {
 	enum { MAX_WATCH_EVENT = 10 };
