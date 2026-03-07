@@ -20,9 +20,9 @@ enum : uint16
 };
 
 bool	Handle_INVALID(std::function<void()>& outFunc, PacketSessionRef session, BYTE* buffer, int32 len);
-void	Handle_C_SIGNUP(PacketSessionRef session, Protocol::C_SIGNUP pkt);
-void	Handle_C_VERIFY_EMAIL(PacketSessionRef session, Protocol::C_VERIFY_EMAIL pkt);
-void	Handle_C_LOGIN(PacketSessionRef session, Protocol::C_LOGIN pkt);
+void	Handle_C_SIGNUP(PacketSessionRef session, const Protocol::C_SIGNUP& pkt);
+void	Handle_C_VERIFY_EMAIL(PacketSessionRef session, const Protocol::C_VERIFY_EMAIL& pkt);
+void	Handle_C_LOGIN(PacketSessionRef session, const Protocol::C_LOGIN& pkt);
 
 class ClientPacketHandler
 {
@@ -47,16 +47,6 @@ public:
 		PacketHeader*	header = reinterpret_cast<PacketHeader*>(buffer);
 		return GPacketHandler[header->id](outFunc, session, buffer, len);
 	}
-private:
-	template<typename PacketType, typename ProcessFunc>
-	static bool	GetCallback(std::function<void()>& outFunc, ProcessFunc func, PacketSessionRef session, BYTE* buffer, int32 len)
-	{
-		PacketType	pkt;
-		if (false == pkt.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)))
-			return false;
-		outFunc = [func, session, pkt](){ func(session, pkt); };
-		return true;
-	}
 
 	template<typename T>
 	static WriteBufferRef	MakeWriteBuffer(T& pkt, uint16 pktId)
@@ -72,5 +62,16 @@ private:
 		writeBuffer->AppendBuffer(reinterpret_cast<BYTE*>(&header), headerSize);
 		pkt.SerializeToArray(writeBuffer->GetCopyBuffer(), pktSize);
 		return writeBuffer;
+	}
+
+private:
+	template<typename PacketType, typename ProcessFunc>
+	static bool	GetCallback(std::function<void()>& outFunc, ProcessFunc func, PacketSessionRef session, BYTE* buffer, int32 len)
+	{
+		PacketType	pkt;
+		if (false == pkt.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)))
+			return false;
+		outFunc = [func, session, pkt](){ func(session, pkt); };
+		return true;
 	}
 };

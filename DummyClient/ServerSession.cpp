@@ -27,13 +27,14 @@ void	ServerSession::OnReadPacket(BYTE* buffer, int len)
 {
 	std::function<void()>	callback;
 	PacketSessionRef	session = std::static_pointer_cast<PacketSession>(shared_from_this());
-	bool result = ServerPacketHandler::PacketHandler(callback, session, buffer, len);
-	if (result == false)
-		std::cout << "error" << std::endl;
-	else
+	bool	success = ServerPacketHandler::PacketHandler(callback, session, buffer, len);
+	if (success)
 	{
-		std::cout << "success" << std::endl;
 		JobRef			job = std::make_shared<Job>(callback);
 		GThreadManager->InsertJob(job);
+	}
+	else
+	{
+		Disconnect();
 	}
 }

@@ -78,7 +78,7 @@ struct S_VERIFY_EMAILDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 S_VERIFY_EMAILDefaultTypeInternal _S_VERIFY_EMAIL_default_instance_;
 PROTOBUF_CONSTEXPR C_LOGIN::C_LOGIN(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.email_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+    /*decltype(_impl_.nickname_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.password_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct C_LOGINDefaultTypeInternal {
@@ -146,7 +146,7 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::Protocol::C_LOGIN, _impl_.email_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_LOGIN, _impl_.nickname_),
   PROTOBUF_FIELD_OFFSET(::Protocol::C_LOGIN, _impl_.password_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::S_LOGIN, _internal_metadata_),
@@ -180,13 +180,13 @@ const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "ame\030\003 \001(\t\"\033\n\010S_SIGNUP\022\017\n\007success\030\001 \001(\010\":"
   "\n\016C_VERIFY_EMAIL\022\r\n\005email\030\001 \001(\t\022\031\n\021verif"
   "ication_code\030\002 \001(\t\"!\n\016S_VERIFY_EMAIL\022\017\n\007"
-  "success\030\001 \001(\010\"*\n\007C_LOGIN\022\r\n\005email\030\001 \001(\t\022"
-  "\020\n\010password\030\002 \001(\t\"\032\n\007S_LOGIN\022\017\n\007success\030"
-  "\001 \001(\010b\006proto3"
+  "success\030\001 \001(\010\"-\n\007C_LOGIN\022\020\n\010nickname\030\001 \001"
+  "(\t\022\020\n\010password\030\002 \001(\t\"\032\n\007S_LOGIN\022\017\n\007succe"
+  "ss\030\001 \001(\010b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 293, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 296, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
     &descriptor_table_Protocol_2eproto_once, nullptr, 0, 6,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
@@ -1129,17 +1129,17 @@ C_LOGIN::C_LOGIN(const C_LOGIN& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   C_LOGIN* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.email_){}
+      decltype(_impl_.nickname_){}
     , decltype(_impl_.password_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.email_.InitDefault();
+  _impl_.nickname_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.email_.Set("", GetArenaForAllocation());
+    _impl_.nickname_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_email().empty()) {
-    _this->_impl_.email_.Set(from._internal_email(), 
+  if (!from._internal_nickname().empty()) {
+    _this->_impl_.nickname_.Set(from._internal_nickname(), 
       _this->GetArenaForAllocation());
   }
   _impl_.password_.InitDefault();
@@ -1158,13 +1158,13 @@ inline void C_LOGIN::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.email_){}
+      decltype(_impl_.nickname_){}
     , decltype(_impl_.password_){}
     , /*decltype(_impl_._cached_size_)*/{}
   };
-  _impl_.email_.InitDefault();
+  _impl_.nickname_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.email_.Set("", GetArenaForAllocation());
+    _impl_.nickname_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   _impl_.password_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -1183,7 +1183,7 @@ C_LOGIN::~C_LOGIN() {
 
 inline void C_LOGIN::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.email_.Destroy();
+  _impl_.nickname_.Destroy();
   _impl_.password_.Destroy();
 }
 
@@ -1197,7 +1197,7 @@ void C_LOGIN::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.email_.ClearToEmpty();
+  _impl_.nickname_.ClearToEmpty();
   _impl_.password_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -1208,13 +1208,13 @@ const char* C_LOGIN::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // string email = 1;
+      // string nickname = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_email();
+          auto str = _internal_mutable_nickname();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "Protocol.C_LOGIN.email"));
+          CHK_(::_pbi::VerifyUTF8(str, "Protocol.C_LOGIN.nickname"));
         } else
           goto handle_unusual;
         continue;
@@ -1257,14 +1257,14 @@ uint8_t* C_LOGIN::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string email = 1;
-  if (!this->_internal_email().empty()) {
+  // string nickname = 1;
+  if (!this->_internal_nickname().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_email().data(), static_cast<int>(this->_internal_email().length()),
+      this->_internal_nickname().data(), static_cast<int>(this->_internal_nickname().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "Protocol.C_LOGIN.email");
+      "Protocol.C_LOGIN.nickname");
     target = stream->WriteStringMaybeAliased(
-        1, this->_internal_email(), target);
+        1, this->_internal_nickname(), target);
   }
 
   // string password = 2;
@@ -1293,11 +1293,11 @@ size_t C_LOGIN::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string email = 1;
-  if (!this->_internal_email().empty()) {
+  // string nickname = 1;
+  if (!this->_internal_nickname().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_email());
+        this->_internal_nickname());
   }
 
   // string password = 2;
@@ -1325,8 +1325,8 @@ void C_LOGIN::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOB
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_email().empty()) {
-    _this->_internal_set_email(from._internal_email());
+  if (!from._internal_nickname().empty()) {
+    _this->_internal_set_nickname(from._internal_nickname());
   }
   if (!from._internal_password().empty()) {
     _this->_internal_set_password(from._internal_password());
@@ -1351,8 +1351,8 @@ void C_LOGIN::InternalSwap(C_LOGIN* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.email_, lhs_arena,
-      &other->_impl_.email_, rhs_arena
+      &_impl_.nickname_, lhs_arena,
+      &other->_impl_.nickname_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &_impl_.password_, lhs_arena,

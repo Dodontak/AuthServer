@@ -13,7 +13,7 @@
 
 using namespace std;
 
-void	BroeadCaster(ClientServiceRef service)
+void	Broadcast(ClientServiceRef service)
 {
 	Protocol::C_SIGNUP	pkt;
 	pkt.set_email("asd@naver.com");
@@ -53,11 +53,11 @@ int main()
 		[](int clientSocket, sockaddr_in addr, ServiceRef service) {
         	return std::make_shared<ServerSession>(clientSocket, addr, service);
     	},
-		1
+		5
 	);
 	GThreadManager->Launch(
 		[service](){
-			BroeadCaster(service);
+			Broadcast(service);
 		}
 	);
 	service->Start();

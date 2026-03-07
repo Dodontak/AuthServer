@@ -27,14 +27,15 @@ public: //IocpObject Interface
 	virtual EpollEvent*	GetEpollEvent() { return _epollEvent; }
 	virtual void		Dispatch(uint32_t events);
 
-	void	Send(WriteBufferRef writeBuffer);
-	bool	Connect();
+	void		Send(WriteBufferRef writeBuffer);
+	bool		Connect();
+	ServiceRef	GetService() { return _service.lock(); }
+	void		Disconnect();
 protected:// 컨텐츠 코드에서 오버라이딩
 	virtual int		OnRead(BYTE* buffer, int len) { return len; }
 	virtual void	OnWrite(int len) {}
 
 private:
-	void	Disconnect();
 	
 	void	ProcessConnect();
 	void	ProcessDisconnect(bool isCanSslShutdown);

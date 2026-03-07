@@ -24,7 +24,7 @@ message S_VERIFY_EMAIL {
 
 // 3. 로그인 요청
 message C_LOGIN {
-  string email = 1;
+  string nickname = 1;
   string password = 2;
 }
 

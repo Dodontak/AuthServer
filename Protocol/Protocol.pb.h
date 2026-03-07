@@ -847,21 +847,21 @@ class C_LOGIN final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kEmailFieldNumber = 1,
+    kNicknameFieldNumber = 1,
     kPasswordFieldNumber = 2,
   };
-  // string email = 1;
-  void clear_email();
-  const std::string& email() const;
+  // string nickname = 1;
+  void clear_nickname();
+  const std::string& nickname() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_email(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_email();
-  PROTOBUF_NODISCARD std::string* release_email();
-  void set_allocated_email(std::string* email);
+  void set_nickname(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_nickname();
+  PROTOBUF_NODISCARD std::string* release_nickname();
+  void set_allocated_nickname(std::string* nickname);
   private:
-  const std::string& _internal_email() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_email(const std::string& value);
-  std::string* _internal_mutable_email();
+  const std::string& _internal_nickname() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_nickname(const std::string& value);
+  std::string* _internal_mutable_nickname();
   public:
 
   // string password = 2;
@@ -886,7 +886,7 @@ class C_LOGIN final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr email_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr nickname_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr password_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -1358,54 +1358,54 @@ inline void S_VERIFY_EMAIL::set_success(bool value) {
 
 // C_LOGIN
 
-// string email = 1;
-inline void C_LOGIN::clear_email() {
-  _impl_.email_.ClearToEmpty();
+// string nickname = 1;
+inline void C_LOGIN::clear_nickname() {
+  _impl_.nickname_.ClearToEmpty();
 }
-inline const std::string& C_LOGIN::email() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_LOGIN.email)
-  return _internal_email();
+inline const std::string& C_LOGIN::nickname() const {
+  // @@protoc_insertion_point(field_get:Protocol.C_LOGIN.nickname)
+  return _internal_nickname();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void C_LOGIN::set_email(ArgT0&& arg0, ArgT... args) {
+void C_LOGIN::set_nickname(ArgT0&& arg0, ArgT... args) {
  
- _impl_.email_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.C_LOGIN.email)
+ _impl_.nickname_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Protocol.C_LOGIN.nickname)
 }
-inline std::string* C_LOGIN::mutable_email() {
-  std::string* _s = _internal_mutable_email();
-  // @@protoc_insertion_point(field_mutable:Protocol.C_LOGIN.email)
+inline std::string* C_LOGIN::mutable_nickname() {
+  std::string* _s = _internal_mutable_nickname();
+  // @@protoc_insertion_point(field_mutable:Protocol.C_LOGIN.nickname)
   return _s;
 }
-inline const std::string& C_LOGIN::_internal_email() const {
-  return _impl_.email_.Get();
+inline const std::string& C_LOGIN::_internal_nickname() const {
+  return _impl_.nickname_.Get();
 }
-inline void C_LOGIN::_internal_set_email(const std::string& value) {
+inline void C_LOGIN::_internal_set_nickname(const std::string& value) {
   
-  _impl_.email_.Set(value, GetArenaForAllocation());
+  _impl_.nickname_.Set(value, GetArenaForAllocation());
 }
-inline std::string* C_LOGIN::_internal_mutable_email() {
+inline std::string* C_LOGIN::_internal_mutable_nickname() {
   
-  return _impl_.email_.Mutable(GetArenaForAllocation());
+  return _impl_.nickname_.Mutable(GetArenaForAllocation());
 }
-inline std::string* C_LOGIN::release_email() {
-  // @@protoc_insertion_point(field_release:Protocol.C_LOGIN.email)
-  return _impl_.email_.Release();
+inline std::string* C_LOGIN::release_nickname() {
+  // @@protoc_insertion_point(field_release:Protocol.C_LOGIN.nickname)
+  return _impl_.nickname_.Release();
 }
-inline void C_LOGIN::set_allocated_email(std::string* email) {
-  if (email != nullptr) {
+inline void C_LOGIN::set_allocated_nickname(std::string* nickname) {
+  if (nickname != nullptr) {
     
   } else {
     
   }
-  _impl_.email_.SetAllocated(email, GetArenaForAllocation());
+  _impl_.nickname_.SetAllocated(nickname, GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.email_.IsDefault()) {
-    _impl_.email_.Set("", GetArenaForAllocation());
+  if (_impl_.nickname_.IsDefault()) {
+    _impl_.nickname_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.C_LOGIN.email)
+  // @@protoc_insertion_point(field_set_allocated:Protocol.C_LOGIN.nickname)
 }
 
 // string password = 2;
