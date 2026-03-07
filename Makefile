@@ -57,7 +57,7 @@ SERVER_CORE_OBJ = $(addprefix $(SERVER_CORE_OBJ_DIR)/, $(SERVER_CORE_OBJ_FILE))
 SERVER_CORE_INC = -I$(SERVER_CORE_DIR)
 
 CXX = g++
-CXXFLAGS = #-Wall -Werror -Wextra
+CXXFLAGS = -MMD -MP # -Wall 
 LDLIBS = -lhiredis -lpq -lprotobuf -lssl -lcrypto
 
 .PHONY : all auth cli clean fclean re
@@ -74,10 +74,10 @@ $(AUTH_SERVER_OBJ_DIR) :
 	mkdir -p $(AUTH_SERVER_OBJ_DIR)
 
 $(AUTH_SERVER_OBJ_DIR)/%.o : $(AUTH_SERVER_DIR)/%.cpp
-	$(CXX) $(CXXFLAGS) $(SERVER_CORE_INC) -o $@ -c $<
+	$(CXX) $(CXXFLAGS) $(SERVER_CORE_INC) -MF $(@:.o=.d) -o $@ -c $<
 
 $(AUTH_SERVER_OBJ_DIR)/%.o : $(AUTH_SERVER_DIR)/%.cc
-	$(CXX) $(CXXFLAGS) $(SERVER_CORE_INC) -o $@ -c $<
+	$(CXX) $(CXXFLAGS) $(SERVER_CORE_INC) -MF $(@:.o=.d) -o $@ -c $<
 #======= AuthServer ========#
 
 
@@ -91,10 +91,10 @@ $(CLIENT_OBJ_DIR) :
 	mkdir -p $(CLIENT_OBJ_DIR)
 
 $(CLIENT_OBJ_DIR)/%.o : $(CLIENT_DIR)/%.cpp
-	$(CXX) $(CXXFLAGS) $(SERVER_CORE_INC) -o $@ -c $<
+	$(CXX) $(CXXFLAGS) $(SERVER_CORE_INC) -MF $(@:.o=.d) -o $@ -c $<
 
 $(CLIENT_OBJ_DIR)/%.o : $(CLIENT_DIR)/%.cc
-	$(CXX) $(CXXFLAGS) $(SERVER_CORE_INC) -o $@ -c $<
+	$(CXX) $(CXXFLAGS) $(SERVER_CORE_INC) -MF $(@:.o=.d) -o $@ -c $<
 #======= DummyCient ========#
 
 #======= ServerCore ========#
@@ -105,8 +105,12 @@ $(SERVER_CORE_OBJ_DIR) :
 	mkdir -p $(SERVER_CORE_OBJ_DIR)
 
 $(SERVER_CORE_OBJ_DIR)/%.o : $(SERVER_CORE_DIR)/%.cpp
-	$(CXX) $(CXXFLAGS) $(AUTH_SERVER_INC) -o $@ -c $<
+	$(CXX) $(CXXFLAGS) -MF $(@:.o=.d) -o $@ -c $<
 #======= ServerCore ========#
+
+DEPS = $(AUTH_SERVER_OBJ:.o=.d) $(CLIENT_OBJ:.o=.d) $(SERVER_CORE_OBJ:.o=.d) 
+
+-include $(DEPS)
 
 clean :
 	rm -rf $(AUTH_SERVER_OBJ_DIR) $(CLIENT_OBJ_DIR) $(SERVER_CORE_OBJ_DIR)
