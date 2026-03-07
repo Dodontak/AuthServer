@@ -23,7 +23,6 @@ void	WorkerThread()
 			GThreadManager->_cv.wait(lock, []() { return !GJobQueue->Empty(); });
 			job = GJobQueue->PopJob();
 		}
-		std::cout << "thread No." << LThreadId << " Awaken!" << std::endl;
 		job->Execute();
 	}
 }

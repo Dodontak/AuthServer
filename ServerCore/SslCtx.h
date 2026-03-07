@@ -5,7 +5,7 @@
 class SslCtx
 {
 public:
-	SslCtx();
+	SslCtx(bool serverMethod);
 	~SslCtx();
 
 	void		SetCrt(const char* crt);

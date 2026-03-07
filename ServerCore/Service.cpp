@@ -12,7 +12,6 @@
 Service::Service(const char* ip, int port, SessionFactory factory)
 	: _addr(ip, port), _sessionFactory(factory)
 {
-	_ctx = std::make_shared<SslCtx>();
 }
 
 SessionRef	Service::MakeSession(int clinetSocket, struct sockaddr_in addr, ServiceRef service)
@@ -43,7 +42,7 @@ void	Service::EraseSession(EpollObjectRef session)
 AuthService::AuthService(const char* ip, int port, const char* certFile, const char* keyFile, SessionFactory factory) :
 	Service(ip, port, factory)
 {
-
+	_ctx = std::make_shared<SslCtx>(true);
 	_ctx->SetCrt(certFile);
 	_ctx->SetKey(keyFile);
 }
@@ -71,15 +70,29 @@ int	AuthService::Start()
 
 
 ClientService::ClientService(const char* ip, int port, SessionFactory factory, int clientCount) :
-	Service(ip, port, factory), _clientCount(clientCount) {}
+	Service(ip, port, factory), _clientCount(clientCount)
+{
+	_ctx = std::make_shared<SslCtx>(false);
+}
 
 ClientService::~ClientService() {}
 
 int	ClientService::Start()
 {
 	signal(SIGPIPE, SIG_IGN);
-	for (int i = 0; i < _clientCount; i++)
+	
+	_epollCore = make_shared<EpollCore>();
+	for (int i = 0; i < _clientCount; ++i)
 	{
+		int	socket = SocketUtil::CreateSocket();
+		int	addrlen = sizeof(sockaddr_in);
+		SessionRef		session = _sessionFactory(socket, _addr.GetAddr(), shared_from_this());
+		EpollEvent*		epollEvent = new EpollEvent(session, EventType::Connect);
+		SocketUtil::MakeSocketNonblock(socket);
+
+		session->Connect();
+		_epollCore->Register(epollEvent);
+		InsertSession(session);
 	}
 	_epollCore->StartEpollWait();
 	return 1;

@@ -29,11 +29,10 @@ void	CAuthSession::OnReadPacket(BYTE* buffer, int len)
 	PacketSessionRef	session = std::static_pointer_cast<PacketSession>(shared_from_this());
 	bool result = ClientPacketHandler::PacketHandler(callback, session, buffer, len);
 	if (result == false)
-		std::cout << "error" << std::endl;
+		return;
 	else
 	{
-		std::cout << "success" << std::endl;
-		JobRef			job = std::make_shared<Job>(callback);
+		JobRef	job = std::make_shared<Job>(callback);
 		GThreadManager->InsertJob(job);
 	}
 }

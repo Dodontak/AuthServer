@@ -36,8 +36,6 @@ void	Session::Dispatch(uint32_t events)
 			ProcessDisconnect(true);
 			return;
 		case EventType::HandShakingRead :
-			ProcessHandShaking();
-			return;
 		case EventType::HandShakingWrite :
 			ProcessHandShaking();
 			return;
@@ -58,13 +56,13 @@ bool	Session::Connect()
 	{
 		if (errno == EINPROGRESS)
 		{
-			_epollEvent->SetEventType(EventType::Connect);
+			ModEvent(EventType::Connect);
 			return true;
 		}
 		else
 			return false;
 	}
-	_epollEvent->SetEventType(EventType::HandShakingRead);
+	ModEvent(EventType::HandShakingWrite);
 	return true;
 }
 
@@ -108,7 +106,7 @@ void	Session::Send(WriteBufferRef writeBuffer)
 	if (ServiceRef service = _service.lock())
 	{
 		std::lock_guard<std::mutex>	lock(_m);
-	
+
 		_writeBuffers.push_back(writeBuffer);
 		ModEvent(EventType::Write);
 	}
@@ -116,6 +114,7 @@ void	Session::Send(WriteBufferRef writeBuffer)
 
 void	Session::ProcessConnect()
 {
+	Connect();
 }
 
 void	Session::ProcessDisconnect(bool isCanSslShutdown)
@@ -230,13 +229,13 @@ void	Session::ProcessSslAccept()
 	switch (ret)
 	{
 		case 0 :
-			_epollEvent->SetEventType(EventType::Read);
+			ModEvent(EventType::Read);
 			return ;
 		case 1 :
-			_epollEvent->SetEventType(EventType::HandShakingRead);
+			ModEvent(EventType::HandShakingRead);
 			return ;
 		case 2 :
-			_epollEvent->SetEventType(EventType::HandShakingWrite);
+			ModEvent(EventType::HandShakingWrite);
 			return ;
 		default :
 			ProcessDisconnect(false);
@@ -250,20 +249,19 @@ void	Session::ProcessSslConnect()
 	switch (ret)
 	{
 		case 0 :
-			_epollEvent->SetEventType(EventType::Read);
+			ModEvent(EventType::Read);
 			return ;
 		case 1 :
-			_epollEvent->SetEventType(EventType::HandShakingRead);
+			ModEvent(EventType::HandShakingRead);
 			return ;
 		case 2 :
-			_epollEvent->SetEventType(EventType::HandShakingWrite);
+			ModEvent(EventType::HandShakingWrite);
 			return ;
 		default :
 			ProcessDisconnect(false);
 			return ;
 	}
 }
-
 
 void	Session::ModEvent(EventType type)
 {
@@ -275,7 +273,6 @@ void	Session::ModEvent(EventType type)
 /*====================
     PacketSession
 ====================*/
-
 
 PacketSession::PacketSession(int clinetSocket, struct sockaddr_in addr, ServiceRef service)
 	: Session(clinetSocket, addr, service) {}

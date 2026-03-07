@@ -2,6 +2,8 @@
 #include "EpollObject.h"
 #include "Utils.h"
 
+#include <openssl/err.h>
+
 SslObject::SslObject(SSL_CTX* ctx, int fd) : _ctx(ctx), _fd(fd), _ssl(nullptr) {}
 
 // 리턴 0 성공. 1 진행중 read 대기 필요. 2 진행중 write 대기 필요. -1 에러 세션종료 필요.

@@ -28,12 +28,12 @@ public: //IocpObject Interface
 	virtual void		Dispatch(uint32_t events);
 
 	void	Send(WriteBufferRef writeBuffer);
+	bool	Connect();
 protected:// 컨텐츠 코드에서 오버라이딩
 	virtual int		OnRead(BYTE* buffer, int len) { return len; }
 	virtual void	OnWrite(int len) {}
 
 private:
-	bool	Connect();
 	void	Disconnect();
 	
 	void	ProcessConnect();

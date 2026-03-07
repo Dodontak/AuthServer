@@ -1,9 +1,13 @@
 #include "SslCtx.h"
 #include "Utils.h"
 
-SslCtx::SslCtx()
+SslCtx::SslCtx(bool serverMethod)
 {
-	const SSL_METHOD*	method = TLS_server_method();
+	const SSL_METHOD*	method;
+	if (serverMethod)
+		method = TLS_server_method();
+	else
+		method = TLS_client_method();
 	_ctx = SSL_CTX_new(method);
 	if (!_ctx)
 		handle_error("SSL_CTX_new error", 1);
