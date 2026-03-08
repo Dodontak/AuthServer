@@ -11,35 +11,28 @@ extern std::function<bool(std::function<void()>&, PacketSessionRef&, BYTE*, int3
 
 enum : uint16
 {
-	PKT_C_SIGNUP = 1000,
-	PKT_S_SIGNUP = 1001,
-	PKT_C_VERIFY_EMAIL = 1002,
-	PKT_S_VERIFY_EMAIL = 1003,
-	PKT_C_LOGIN = 1004,
-	PKT_S_LOGIN = 1005,
+{%- for pkt in parser.total_pkt %}
+	PKT_{{pkt.name}} = {{pkt.id}},
+{%- endfor %}
 };
 
 bool	Handle_INVALID(std::function<void()>& outFunc, PacketSessionRef session, BYTE* buffer, int32 len);
-void	Handle_S_SIGNUP(const PacketSessionRef& session, const Protocol::S_SIGNUP& pkt);
-void	Handle_S_VERIFY_EMAIL(const PacketSessionRef& session, const Protocol::S_VERIFY_EMAIL& pkt);
-void	Handle_S_LOGIN(const PacketSessionRef& session, const Protocol::S_LOGIN& pkt);
+{%- for pkt in parser.recv_pkt %}
+void	Handle_{{pkt.name}}(const PacketSessionRef& session, const Protocol::{{pkt.name}}& pkt);
+{%- endfor %}
 
-class ServerPacketHandler
+class {{output}}
 {
 public:
 	static void	Init()
 	{
 		for (int i = 0; i < UINT16_MAX; ++i)
 			GPacketHandler[i] = Handle_INVALID;
-		GPacketHandler[PKT_S_SIGNUP] = [](std::function<void()>& outFunc, PacketSessionRef& session, BYTE* buffer, int32 len) {
-			return GetCallback<Protocol::S_SIGNUP>(outFunc, Handle_S_SIGNUP, session, buffer, len);
+{%- for pkt in parser.recv_pkt %}
+		GPacketHandler[PKT_{{pkt.name}}] = [](std::function<void()>& outFunc, PacketSessionRef& session, BYTE* buffer, int32 len) {
+			return GetCallback<Protocol::{{pkt.name}}>(outFunc, Handle_{{pkt.name}}, session, buffer, len);
 		};
-		GPacketHandler[PKT_S_VERIFY_EMAIL] = [](std::function<void()>& outFunc, PacketSessionRef& session, BYTE* buffer, int32 len) {
-			return GetCallback<Protocol::S_VERIFY_EMAIL>(outFunc, Handle_S_VERIFY_EMAIL, session, buffer, len);
-		};
-		GPacketHandler[PKT_S_LOGIN] = [](std::function<void()>& outFunc, PacketSessionRef& session, BYTE* buffer, int32 len) {
-			return GetCallback<Protocol::S_LOGIN>(outFunc, Handle_S_LOGIN, session, buffer, len);
-		};
+{%- endfor %}
 	}
 
 	static bool	PacketHandler(std::function<void()>& outFunc, PacketSessionRef& session, BYTE* buffer, int32 len)
@@ -47,9 +40,10 @@ public:
 		PacketHeader*	header = reinterpret_cast<PacketHeader*>(buffer);
 		return GPacketHandler[header->id](outFunc, session, buffer, len);
 	}
-	static WriteBufferRef MakeWriteBuffer(Protocol::C_SIGNUP& pkt) { return MakeWriteBuffer(pkt, PKT_C_SIGNUP); }
-	static WriteBufferRef MakeWriteBuffer(Protocol::C_VERIFY_EMAIL& pkt) { return MakeWriteBuffer(pkt, PKT_C_VERIFY_EMAIL); }
-	static WriteBufferRef MakeWriteBuffer(Protocol::C_LOGIN& pkt) { return MakeWriteBuffer(pkt, PKT_C_LOGIN); }
+
+{%- for pkt in parser.send_pkt %}
+	static WriteBufferRef MakeWriteBuffer(Protocol::{{pkt.name}}& pkt) { return MakeWriteBuffer(pkt, PKT_{{pkt.name}}); }
+{%- endfor %}
 
 private:
 	template<typename PacketType, typename ProcessFunc>

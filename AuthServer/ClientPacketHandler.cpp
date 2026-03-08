@@ -4,15 +4,14 @@
 #include <thread>
 #include <string>
 
-std::function<bool(std::function<void()>&, PacketSessionRef, BYTE*, int32)> GPacketHandler[UINT16_MAX];
-
+std::function<bool(std::function<void()>&, PacketSessionRef&, BYTE*, int32)> GPacketHandler[UINT16_MAX];
 
 bool	Handle_INVALID(std::function<void()>& outFunc, PacketSessionRef session, BYTE* buffer, int32 len)
 {
 	return false;
 }
 
-void	Handle_C_SIGNUP(PacketSessionRef session, const Protocol::C_SIGNUP& pkt)
+void	Handle_C_SIGNUP(const PacketSessionRef& session, const Protocol::C_SIGNUP& pkt)
 {
 	std::string	email, nickname, password;
 	email = pkt.email();
@@ -28,17 +27,17 @@ void	Handle_C_SIGNUP(PacketSessionRef session, const Protocol::C_SIGNUP& pkt)
 	{
 		response.set_success(true);
 		//중복 없으면 성공했다고 알림. 이메일인증쪽은 고민좀 해보자.
-		session->Send(ClientPacketHandler::MakeWriteBuffer(response, PKT_S_SIGNUP));
+		session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 	}
 	else
 	{
 		response.set_success(false);
 		//중복있으면 실패했다고 알림
-		session->Send(ClientPacketHandler::MakeWriteBuffer(response, PKT_S_SIGNUP));
+		session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 	}
 }
 
-void	Handle_C_VERIFY_EMAIL(PacketSessionRef session, const Protocol::C_VERIFY_EMAIL& pkt)
+void	Handle_C_VERIFY_EMAIL(const PacketSessionRef& session, const Protocol::C_VERIFY_EMAIL& pkt)
 {
 	std::string	email = pkt.email();
 	std::string	code = pkt.verification_code();
@@ -52,18 +51,18 @@ void	Handle_C_VERIFY_EMAIL(PacketSessionRef session, const Protocol::C_VERIFY_EM
 		//코드 일치하면 postgres에 새 계정 정보 INSERT 시도.
 		//INSERT 성공 시 성공 패킷 보냄. 실패 시 실패 패킷 보냄.
 		response.set_success(true);
-		session->Send(ClientPacketHandler::MakeWriteBuffer(response, PKT_S_VERIFY_EMAIL));
+		session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 	}
 	else
 	{
 		//코드 일치하지 않으면 실패 패킷 보냄
 		response.set_success(false);
-		session->Send(ClientPacketHandler::MakeWriteBuffer(response, PKT_S_VERIFY_EMAIL));
+		session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 		//disconnect?
 	}
 }
 
-void	Handle_C_LOGIN(PacketSessionRef session, const Protocol::C_LOGIN& pkt)
+void	Handle_C_LOGIN(const PacketSessionRef& session, const Protocol::C_LOGIN& pkt)
 {
 	std::string	nickname = pkt.nickname();
 	std::string	password = pkt.password();
@@ -74,12 +73,12 @@ void	Handle_C_LOGIN(PacketSessionRef session, const Protocol::C_LOGIN& pkt)
 	if (true)
 	{
 		response.set_success(true);
-		session->Send(ClientPacketHandler::MakeWriteBuffer(response, PKT_S_LOGIN));
+		session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 	}
 	else
 	{
 		response.set_success(false);
-		session->Send(ClientPacketHandler::MakeWriteBuffer(response, PKT_S_LOGIN));
+		session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 		session->Disconnect();
 	}
 }

@@ -19,12 +19,9 @@ void	Broadcast(ClientServiceRef service)
 	pkt.set_email("asd@naver.com");
 	pkt.set_nickname("Dodontak");
 	pkt.set_password("password123");
-	while (true)
-	{
-		WriteBufferRef	writeBuffer = ServerPacketHandler::MakeWriteBuffer(pkt, PKT_C_SIGNUP);
-		std::this_thread::sleep_for(chrono::seconds(1));
-		service->broadcastfortest(writeBuffer);
-	}
+	WriteBufferRef	writeBuffer = ServerPacketHandler::MakeWriteBuffer(pkt);
+	std::this_thread::sleep_for(chrono::seconds(1));
+	service->broadcastfortest(writeBuffer);
 }
 
 void	WorkerThread()
@@ -53,7 +50,7 @@ int main()
 		[](int clientSocket, sockaddr_in addr, ServiceRef service) {
         	return std::make_shared<ServerSession>(clientSocket, addr, service);
     	},
-		5
+		10
 	);
 	GThreadManager->Launch(
 		[service](){

@@ -1,7 +1,7 @@
 #include "ServerPacketHandler.h"
 #include <thread>
 
-std::function<bool(std::function<void()>&, PacketSessionRef, BYTE*, int32)> GPacketHandler[UINT16_MAX];
+std::function<bool(std::function<void()>&, PacketSessionRef&, BYTE*, int32)> GPacketHandler[UINT16_MAX];
 
 
 bool Handle_INVALID(std::function<void()>& outFunc, PacketSessionRef session, BYTE* buffer, int32 len)
@@ -9,7 +9,7 @@ bool Handle_INVALID(std::function<void()>& outFunc, PacketSessionRef session, BY
 	return false;
 }
 
-void	Handle_S_SIGNUP(PacketSessionRef session, Protocol::S_SIGNUP pkt)
+void	Handle_S_SIGNUP(const PacketSessionRef& session, const Protocol::S_SIGNUP& pkt)
 {
 	bool	success = pkt.success();
 
@@ -20,7 +20,7 @@ void	Handle_S_SIGNUP(PacketSessionRef session, Protocol::S_SIGNUP pkt)
 		response.set_verification_code("332134");//인증코드
 		std::cout << session->GetFd() << " : you can use nickname/email \n";
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));//DB작업(0.1초 걸렸다 침)
-		session->Send(ServerPacketHandler::MakeWriteBuffer(response, PKT_C_VERIFY_EMAIL));
+		session->Send(ServerPacketHandler::MakeWriteBuffer(response));
 	}
 	else
 	{//이미 있는 nickname / email입니다. 문구띄우기
@@ -29,7 +29,7 @@ void	Handle_S_SIGNUP(PacketSessionRef session, Protocol::S_SIGNUP pkt)
 	}
 }
 
-void	Handle_S_VERIFY_EMAIL(PacketSessionRef session, Protocol::S_VERIFY_EMAIL pkt)
+void	Handle_S_VERIFY_EMAIL(const PacketSessionRef& session, const Protocol::S_VERIFY_EMAIL& pkt)
 {
 	bool	success = pkt.success();
 
@@ -39,7 +39,7 @@ void	Handle_S_VERIFY_EMAIL(PacketSessionRef session, Protocol::S_VERIFY_EMAIL pk
 		std::cout << session->GetFd() << " : Verification Success!\n";
 		response.set_nickname("Dodontak");
 		response.set_password("password123");
-		session->Send(ServerPacketHandler::MakeWriteBuffer(response, PKT_C_LOGIN));
+		session->Send(ServerPacketHandler::MakeWriteBuffer(response));
 	}
 	else
 	{//실패 시 재도전 가능?
@@ -48,7 +48,7 @@ void	Handle_S_VERIFY_EMAIL(PacketSessionRef session, Protocol::S_VERIFY_EMAIL pk
 	}
 }
 
-void	Handle_S_LOGIN(PacketSessionRef session, Protocol::S_LOGIN pkt)
+void	Handle_S_LOGIN(const PacketSessionRef& session, const Protocol::S_LOGIN& pkt)
 {
 	bool	success = pkt.success();
 	if (success == true)

@@ -50,3 +50,4 @@ server.key
 .cache/
 .ssh/
 .gitconfig
+GenPackets

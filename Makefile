@@ -1,10 +1,19 @@
+#======= PacketHandler ========#
+PROTO_DIR = Protocol
+PROTO_FILES_NAME = Protocol.proto
+PROTO_FILES = $(addprefix $(PROTO_DIR)/, $(PROTO_FILES_NAME))
+PROTO_CC = $(PROTO_FILES:.proto=.pb.cc)
+PROTO_CC_FILES = $(notdir $(PROTO_CC))
+PROTO_H = $(PROTO_FILES:.proto=.pb.h)
+#======= PacketHandler ========#
+
 #======= AuthServer ========#
 AUTH_SERVER_DIR = AuthServer
 AUTH_SERVER_EXE = test
 AUTH_SERVER_SRC_FILE = AuthServer.cpp \
 	CAuthSession.cpp \
 	ClientPacketHandler.cpp \
-	Protocol.pb.cc
+	$(PROTO_CC_FILES)
 AUTH_SERVER_SRC = $(addprefix $(AUTH_SERVER_DIR)/, $(AUTH_SERVER_SRC_FILE))
 AUTH_SERVER_OBJ_DIR = $(AUTH_SERVER_DIR)/ObjectFiles
 AUTH_SERVER_OBJ_FILE = $(AUTH_SERVER_SRC_FILE:.cpp=.o)
@@ -16,9 +25,9 @@ AUTH_SERVER_OBJ = $(addprefix $(AUTH_SERVER_OBJ_DIR)/, $(AUTH_SERVER_OBJ_FILE))
 CLIENT_DIR = DummyClient
 CLIENT_EXE = client
 CLIENT_SRC_FILE = DummyClient.cpp \
-	Protocol.pb.cc \
 	ServerPacketHandler.cpp \
-	ServerSession.cpp 
+	ServerSession.cpp \
+	$(PROTO_CC_FILES)
 CLIENT_SRC = $(addprefix $(CLIENT_DIR)/, $(CLIENT_SRC_FILE))
 CLIENT_OBJ_DIR = $(CLIENT_DIR)/ObjectFiles
 CLIENT_OBJ_FILE = $(CLIENT_SRC_FILE:.cpp=.o)
@@ -60,12 +69,12 @@ CXX = g++
 CXXFLAGS = -MMD -MP # -Wall 
 LDLIBS = -lhiredis -lpq -lprotobuf -lssl -lcrypto
 
-.PHONY : all auth cli clean fclean re
+.PHONY : all auth cli clean fclean re proto
 
 all : auth cli
 
 #======= AuthServer ========#
-auth : $(AUTH_SERVER_EXE)
+auth : proto $(AUTH_SERVER_EXE)
 
 $(AUTH_SERVER_EXE) : $(AUTH_SERVER_OBJ_DIR) $(SERVER_CORE_LIB) $(AUTH_SERVER_OBJ)
 	$(CXX) $(CXXFLAGS) $(AUTH_SERVER_OBJ) $(SERVER_CORE_LIB) $(LDLIBS) -o $(AUTH_SERVER_EXE)
@@ -82,7 +91,7 @@ $(AUTH_SERVER_OBJ_DIR)/%.o : $(AUTH_SERVER_DIR)/%.cc
 
 
 #======= DummyCient ========#
-cli : $(CLIENT_EXE)
+cli : proto $(CLIENT_EXE)
 
 $(CLIENT_EXE) : $(CLIENT_OBJ_DIR) $(CLIENT_OBJ) $(SERVER_CORE_LIB)
 	$(CXX) $(CXXFLAGS) $(CLIENT_OBJ) $(SERVER_CORE_LIB) $(LDLIBS) -o $(CLIENT_EXE)
@@ -108,12 +117,20 @@ $(SERVER_CORE_OBJ_DIR)/%.o : $(SERVER_CORE_DIR)/%.cpp
 	$(CXX) $(CXXFLAGS) -MF $(@:.o=.d) -o $@ -c $<
 #======= ServerCore ========#
 
+#======= PacketHandler ========#
+proto : $(PROTO_CC) $(PROTO_H)
+
+$(PROTO_CC) $(PROTO_H) : $(PROTO_FILES)
+	bash ./Protocol/MakePackets.sh
+#======= PacketHandler ========#
+
+
 DEPS = $(AUTH_SERVER_OBJ:.o=.d) $(CLIENT_OBJ:.o=.d) $(SERVER_CORE_OBJ:.o=.d) 
 
 -include $(DEPS)
 
 clean :
-	rm -rf $(AUTH_SERVER_OBJ_DIR) $(CLIENT_OBJ_DIR) $(SERVER_CORE_OBJ_DIR)
+	rm -rf $(AUTH_SERVER_OBJ_DIR) $(CLIENT_OBJ_DIR) $(SERVER_CORE_OBJ_DIR) $(PROTO_CC) $(PROTO_H)
 
 fclean : clean
 	rm -rf $(AUTH_SERVER_EXE) $(CLIENT_EXE) $(SERVER_CORE_LIB)
