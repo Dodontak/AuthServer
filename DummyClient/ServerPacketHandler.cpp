@@ -19,7 +19,7 @@ void	Handle_S_SIGNUP(const PacketSessionRef& session, const Protocol::S_SIGNUP& 
 		response.set_email("email");//이메일
 		response.set_verification_code("332134");//인증코드
 		std::cout << session->GetFd() << " : you can use nickname/email \n";
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));//DB작업(0.1초 걸렸다 침)
+		std::this_thread::sleep_for(std::chrono::milliseconds(1000));//DB작업(0.1초 걸렸다 침)
 		session->Send(ServerPacketHandler::MakeWriteBuffer(response));
 	}
 	else
@@ -39,6 +39,8 @@ void	Handle_S_VERIFY_EMAIL(const PacketSessionRef& session, const Protocol::S_VE
 		std::cout << session->GetFd() << " : Verification Success!\n";
 		response.set_nickname("Dodontak");
 		response.set_password("password123");
+		std::this_thread::sleep_for(std::chrono::milliseconds(1000));//DB작업(0.1초 걸렸다 침)
+
 		session->Send(ServerPacketHandler::MakeWriteBuffer(response));
 	}
 	else

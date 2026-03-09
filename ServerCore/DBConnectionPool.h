@@ -1,7 +1,8 @@
 #pragma once
 
 #include "Types.h"
-#include "DBConnection.h"
+#include "PGConnection.h"
+#include "RedisConnection.h"
 #include <vector>
 #include <mutex>
 #include <string>
@@ -12,10 +13,25 @@ public:
 	DBConnectionPool() {}
 	~DBConnectionPool() {}
 
-	bool			Connect(int connectionCount, const char* connectionString);
-	void			Push(DBConnectionRef conn);
-	DBConnectionRef	Pop();
+	bool	Init(int maxRedis, const char* redisIp, int redisPort,
+					int maxPostgres, const char* pgConString);
+
+	void	Push(PGConnection* conn);
+	void	Push(RedisConnection* conn);
+
+
+	PGConnection*		PopPG();
+	RedisConnection*	PopRedis();
 private:
-	std::mutex						_m;
-	std::vector<DBConnectionRef>	_connections;
+	std::mutex						_mPostgres;
+	int								_maxPostgres;
+	std::string						_pgConString;
+
+	std::mutex						_mRedis;
+	int								_maxRedis;
+	std::string						_redisIp;
+	int								_redisPort;
+
+	std::vector<PGConnection*>		_postgresConnections;
+	std::vector<RedisConnection*>	_redisConnections;
 };

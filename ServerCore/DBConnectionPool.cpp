@@ -1,30 +1,65 @@
 #include "DBConnectionPool.h"
 
-bool	DBConnectionPool::Connect(int connectionCount, const char* connectionString)
+bool	DBConnectionPool::Init(int maxRedis, const char* redisIp, int redisPort,
+				int maxPostgres, const char* pgConString)
 {
-	_connections.reserve(connectionCount);
-	for (int i = 0; i < connectionCount; i++)
+	_maxRedis = maxRedis;
+	_maxPostgres = maxPostgres;
+	_pgConString = pgConString;
+	_redisIp = redisIp;
+	_redisPort = redisPort;
+
+	_postgresConnections.reserve(maxPostgres);
+	for (int i = 0; i < _maxPostgres; ++i)
 	{
-		DBConnectionRef	conn = make_shared<DBConnection>(connectionString);
-		_connections.push_back(conn);
+		PGConnection*	conn = new PGConnection();
+		if (conn->Connect(_pgConString.c_str()) == false)
+			handle_error("PGConnect Error", 1);
+		_postgresConnections.push_back(conn);		
+	}
+
+	_redisConnections.reserve(maxRedis);
+	for (int i = 0; i < _maxRedis; ++i)
+	{
+		RedisConnection*	conn = new RedisConnection();
+		if (conn->Connect(_redisIp.c_str(), _redisPort) == false)
+			handle_error("RedisConnect Error", 1);
+		_redisConnections.push_back(conn);		
 	}
 	return true;
 }
 
-void	DBConnectionPool::Push(DBConnectionRef conn)
+void	DBConnectionPool::Push(PGConnection* conn)
 {
-	std::lock_guard<std::mutex>	lock(_m);
-	_connections.push_back(conn);
+	std::lock_guard<std::mutex>	lock(_mPostgres);
+	_postgresConnections.push_back(conn);
+}
+
+void	DBConnectionPool::Push(RedisConnection* conn)
+{
+	std::lock_guard<std::mutex>	lock(_mRedis);
+	_redisConnections.push_back(conn);
 }
 
 
-DBConnectionRef	DBConnectionPool::Pop()
+PGConnection*	DBConnectionPool::PopPG()
 {
-	DBConnectionRef	connection = nullptr;
-	std::lock_guard<std::mutex>	lock(_m);
-	if (_connections.empty())
-		return connection;
-	connection = _connections.back();
-	_connections.pop_back();
+	PGConnection*	connection;
+	std::lock_guard<std::mutex>	lock(_mPostgres);
+	if (_postgresConnections.empty())
+		return nullptr;
+	connection = _postgresConnections.back();
+	_postgresConnections.pop_back();
+	return connection;
+}
+
+RedisConnection*	DBConnectionPool::PopRedis()
+{
+	RedisConnection*	connection;
+	std::lock_guard<std::mutex>	lock(_mRedis);
+	if (_redisConnections.empty())
+		return nullptr;
+	connection = _redisConnections.back();
+	_redisConnections.pop_back();
 	return connection;
 }

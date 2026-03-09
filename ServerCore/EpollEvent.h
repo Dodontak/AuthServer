@@ -24,6 +24,7 @@ public:
 	EpollObjectRef	GetOwner() { return _owner; }
 	void			SetEventType(EventType type) { _type = type; }
 	EventType		GetEventType() { return _type; }
+	void			ClearOwner() { _owner = nullptr; }
 private:
 	void	SetEventType(struct epoll_event &ev, EventType type);
 

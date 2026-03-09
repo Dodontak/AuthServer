@@ -23,6 +23,7 @@ Session::~Session()
 {
 	std::cout << "Session " << _socket << " Distructed." << std::endl;
 	close(_socket);
+	delete _epollEvent;
 }
 
 void	Session::Dispatch(uint32_t events)
@@ -131,8 +132,7 @@ void	Session::ProcessDisconnect(bool isCanSslShutdown)
 		{
 			service->EraseSession(_epollEvent->GetOwner());
 			epollCore->DelEvent(_epollEvent);
-			delete _epollEvent;
-			_epollEvent = nullptr;
+			_epollEvent->ClearOwner();
 		}
 	}
 }

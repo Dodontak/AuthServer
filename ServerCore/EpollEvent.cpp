@@ -10,5 +10,4 @@ EpollEvent::EpollEvent(EpollObjectRef owner, EventType type) : _owner(owner), _t
 EpollEvent::~EpollEvent()
 {
 	cout << "EpollEvent distructed." << endl;
-	_owner = nullptr;
 }

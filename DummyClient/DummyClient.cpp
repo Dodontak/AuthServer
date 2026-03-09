@@ -50,7 +50,7 @@ int main()
 		[](int clientSocket, sockaddr_in addr, ServiceRef service) {
         	return std::make_shared<ServerSession>(clientSocket, addr, service);
     	},
-		10
+		20
 	);
 	GThreadManager->Launch(
 		[service](){

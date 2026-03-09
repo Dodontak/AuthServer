@@ -1,8 +1,11 @@
 #include "ClientPacketHandler.h"
+#include "CoreGlobal.h"
+#include "DBConnectionPool.h"
 #include "Types.h"
 #include "Timer.h"
 #include <thread>
 #include <string>
+
 
 std::function<bool(std::function<void()>&, PacketSessionRef&, BYTE*, int32)> GPacketHandler[UINT16_MAX];
 
@@ -11,7 +14,7 @@ bool	Handle_INVALID(std::function<void()>& outFunc, PacketSessionRef session, BY
 	return false;
 }
 
-void	Handle_C_SIGNUP(const PacketSessionRef& session, const Protocol::C_SIGNUP& pkt)
+void	Handle_C_SIGNUP(const PacketSessionRef session, const Protocol::C_SIGNUP& pkt)
 {
 	std::string	email, nickname, password;
 	email = pkt.email();
@@ -20,14 +23,17 @@ void	Handle_C_SIGNUP(const PacketSessionRef& session, const Protocol::C_SIGNUP& 
 	/* TODO DB에서 email, nickname 이미 있는지 확인.
 	중복 있으면 실패, disconnect(해야할까?). 없으면 다음 단계로.
 	*/
-	std::this_thread::sleep_for(std::chrono::milliseconds(100));//DB작업(0.1초 걸렸다 침)
+	// PGConnection*	pg = GDBConnectionPool->PopPG();
+	// RedisConnection*	redis = GDBConnectionPool->PopRedis();
 
 	Protocol::S_SIGNUP	response;
 	if (true)
 	{
 		response.set_success(true);
 		//중복 없으면 성공했다고 알림. 이메일인증쪽은 고민좀 해보자.
+		cout << "send S_SIGNUP start" << endl;
 		session->Send(ClientPacketHandler::MakeWriteBuffer(response));
+		cout << "send S_SIGNUP done" << endl;
 	}
 	else
 	{
@@ -37,7 +43,7 @@ void	Handle_C_SIGNUP(const PacketSessionRef& session, const Protocol::C_SIGNUP& 
 	}
 }
 
-void	Handle_C_VERIFY_EMAIL(const PacketSessionRef& session, const Protocol::C_VERIFY_EMAIL& pkt)
+void	Handle_C_VERIFY_EMAIL(const PacketSessionRef session, const Protocol::C_VERIFY_EMAIL& pkt)
 {
 	std::string	email = pkt.email();
 	std::string	code = pkt.verification_code();
@@ -51,7 +57,9 @@ void	Handle_C_VERIFY_EMAIL(const PacketSessionRef& session, const Protocol::C_VE
 		//코드 일치하면 postgres에 새 계정 정보 INSERT 시도.
 		//INSERT 성공 시 성공 패킷 보냄. 실패 시 실패 패킷 보냄.
 		response.set_success(true);
+		cout << "send S_VERIFY_EMAIL start" << endl;
 		session->Send(ClientPacketHandler::MakeWriteBuffer(response));
+		cout << "send S_VERIFY_EMAIL done" << endl;
 	}
 	else
 	{
@@ -62,7 +70,7 @@ void	Handle_C_VERIFY_EMAIL(const PacketSessionRef& session, const Protocol::C_VE
 	}
 }
 
-void	Handle_C_LOGIN(const PacketSessionRef& session, const Protocol::C_LOGIN& pkt)
+void	Handle_C_LOGIN(const PacketSessionRef session, const Protocol::C_LOGIN& pkt)
 {
 	std::string	nickname = pkt.nickname();
 	std::string	password = pkt.password();
@@ -73,7 +81,9 @@ void	Handle_C_LOGIN(const PacketSessionRef& session, const Protocol::C_LOGIN& pk
 	if (true)
 	{
 		response.set_success(true);
+		cout << "send S_LOGIN start" << endl;
 		session->Send(ClientPacketHandler::MakeWriteBuffer(response));
+		cout << "send S_LOGIN done" << endl;
 	}
 	else
 	{

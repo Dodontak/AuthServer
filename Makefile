@@ -28,6 +28,7 @@ CLIENT_SRC_FILE = DummyClient.cpp \
 	ServerPacketHandler.cpp \
 	ServerSession.cpp \
 	$(PROTO_CC_FILES)
+
 CLIENT_SRC = $(addprefix $(CLIENT_DIR)/, $(CLIENT_SRC_FILE))
 CLIENT_OBJ_DIR = $(CLIENT_DIR)/ObjectFiles
 CLIENT_OBJ_FILE = $(CLIENT_SRC_FILE:.cpp=.o)
@@ -40,7 +41,6 @@ SERVER_CORE_DIR = ServerCore
 SERVER_CORE_LIB = $(SERVER_CORE_DIR)/ServerCore.a
 SERVER_CORE_SRC_FILE = CoreGlobal.cpp \
 	CoreTLS.cpp \
-	DBConnection.cpp \
 	DBConnectionPool.cpp \
 	EpollCore.cpp \
 	EpollEvent.cpp \
@@ -48,7 +48,9 @@ SERVER_CORE_SRC_FILE = CoreGlobal.cpp \
 	JobQueue.cpp \
 	Listener.cpp \
 	NetAddress.cpp \
+	PGConnection.cpp \
 	ReadBuffer.cpp \
+	RedisConnection.cpp \
 	Service.cpp \
 	Session.cpp \
 	SslCtx.cpp \
@@ -69,7 +71,7 @@ CXX = g++
 CXXFLAGS = -MMD -MP # -Wall 
 LDLIBS = -lhiredis -lpq -lprotobuf -lssl -lcrypto
 
-.PHONY : all auth cli clean fclean re proto
+.PHONY : all auth cli clean fclean re
 
 all : auth cli
 
@@ -130,7 +132,7 @@ DEPS = $(AUTH_SERVER_OBJ:.o=.d) $(CLIENT_OBJ:.o=.d) $(SERVER_CORE_OBJ:.o=.d)
 -include $(DEPS)
 
 clean :
-	rm -rf $(AUTH_SERVER_OBJ_DIR) $(CLIENT_OBJ_DIR) $(SERVER_CORE_OBJ_DIR) $(PROTO_CC) $(PROTO_H)
+	rm -rf $(AUTH_SERVER_OBJ_DIR) $(CLIENT_OBJ_DIR) $(SERVER_CORE_OBJ_DIR)
 
 fclean : clean
 	rm -rf $(AUTH_SERVER_EXE) $(CLIENT_EXE) $(SERVER_CORE_LIB)

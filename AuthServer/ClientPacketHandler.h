@@ -20,9 +20,9 @@ enum : uint16
 };
 
 bool	Handle_INVALID(std::function<void()>& outFunc, PacketSessionRef session, BYTE* buffer, int32 len);
-void	Handle_C_SIGNUP(const PacketSessionRef& session, const Protocol::C_SIGNUP& pkt);
-void	Handle_C_VERIFY_EMAIL(const PacketSessionRef& session, const Protocol::C_VERIFY_EMAIL& pkt);
-void	Handle_C_LOGIN(const PacketSessionRef& session, const Protocol::C_LOGIN& pkt);
+void	Handle_C_SIGNUP(const PacketSessionRef session, const Protocol::C_SIGNUP& pkt);
+void	Handle_C_VERIFY_EMAIL(const PacketSessionRef session, const Protocol::C_VERIFY_EMAIL& pkt);
+void	Handle_C_LOGIN(const PacketSessionRef session, const Protocol::C_LOGIN& pkt);
 
 class ClientPacketHandler
 {

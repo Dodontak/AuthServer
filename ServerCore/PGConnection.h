@@ -2,13 +2,15 @@
 
 #include "Utils.h"
 #include <libpq-fe.h>
+#include <string>
 
-class DBConnection
+class PGConnection
 {
 public:
-	DBConnection(const char* connectionString);
-	~DBConnection();
+	PGConnection() {}
+	~PGConnection();
 
+	bool		Connect(const char* connectionString);
 	PGresult*	ExecuteSQL(const char* sql);
 private:
 	PGconn* 	_connection = nullptr;
