@@ -32,7 +32,8 @@ void	Service::InsertSession(EpollObjectRef session)
 
 void	Service::EraseSession(EpollObjectRef session)
 {
-	_sessions.erase(session);
+	if (session)
+		_sessions.erase(session);
 }
 
 /*====================
@@ -105,4 +106,22 @@ void	ClientService::broadcastfortest(WriteBufferRef writebuffer)
 	{
 		static_pointer_cast<Session>(session)->Send(writebuffer);
 	}
+}
+
+#include <random>
+
+SessionRef	ClientService::GetRandomSession()
+{
+	std::random_device rd;
+	std::mt19937	gen(rd());
+	std::lock_guard<std::mutex>	lock(_m);
+	std::set<EpollObjectRef>::iterator it = _sessions.begin();
+	int	session_count = _sessions.size();
+	if (session_count == 0)
+		return nullptr;	
+	std::uniform_int_distribution<int> dis(0, session_count - 1);
+	int idx = dis(gen);
+	for (int i = 0; i < idx; i++)
+		++it;
+	return static_pointer_cast<Session>(*it);
 }

@@ -13,16 +13,19 @@ enum : uint16
 {
 	PKT_C_SIGNUP = 1000,
 	PKT_S_SIGNUP = 1001,
-	PKT_C_VERIFY_EMAIL = 1002,
-	PKT_S_VERIFY_EMAIL = 1003,
-	PKT_C_LOGIN = 1004,
-	PKT_S_LOGIN = 1005,
+	PKT_C_VERIFY_MAIL_REQ = 1002,
+	PKT_S_VERIFY_MAIL_REQ = 1003,
+	PKT_C_VERIFY_EMAIL_CODE = 1004,
+	PKT_S_VERIFY_EMAIL_CODE = 1005,
+	PKT_C_LOGIN = 1006,
+	PKT_S_LOGIN = 1007,
 };
 
 bool	Handle_INVALID(std::function<void()>& outFunc, PacketSessionRef session, BYTE* buffer, int32 len);
-void	Handle_C_SIGNUP(const PacketSessionRef session, const Protocol::C_SIGNUP& pkt);
-void	Handle_C_VERIFY_EMAIL(const PacketSessionRef session, const Protocol::C_VERIFY_EMAIL& pkt);
-void	Handle_C_LOGIN(const PacketSessionRef session, const Protocol::C_LOGIN& pkt);
+void	Handle_C_SIGNUP(const PacketSessionRef& session, const Protocol::C_SIGNUP& pkt);
+void	Handle_C_VERIFY_MAIL_REQ(const PacketSessionRef& session, const Protocol::C_VERIFY_MAIL_REQ& pkt);
+void	Handle_C_VERIFY_EMAIL_CODE(const PacketSessionRef& session, const Protocol::C_VERIFY_EMAIL_CODE& pkt);
+void	Handle_C_LOGIN(const PacketSessionRef& session, const Protocol::C_LOGIN& pkt);
 
 class ClientPacketHandler
 {
@@ -34,8 +37,11 @@ public:
 		GPacketHandler[PKT_C_SIGNUP] = [](std::function<void()>& outFunc, PacketSessionRef& session, BYTE* buffer, int32 len) {
 			return GetCallback<Protocol::C_SIGNUP>(outFunc, Handle_C_SIGNUP, session, buffer, len);
 		};
-		GPacketHandler[PKT_C_VERIFY_EMAIL] = [](std::function<void()>& outFunc, PacketSessionRef& session, BYTE* buffer, int32 len) {
-			return GetCallback<Protocol::C_VERIFY_EMAIL>(outFunc, Handle_C_VERIFY_EMAIL, session, buffer, len);
+		GPacketHandler[PKT_C_VERIFY_MAIL_REQ] = [](std::function<void()>& outFunc, PacketSessionRef& session, BYTE* buffer, int32 len) {
+			return GetCallback<Protocol::C_VERIFY_MAIL_REQ>(outFunc, Handle_C_VERIFY_MAIL_REQ, session, buffer, len);
+		};
+		GPacketHandler[PKT_C_VERIFY_EMAIL_CODE] = [](std::function<void()>& outFunc, PacketSessionRef& session, BYTE* buffer, int32 len) {
+			return GetCallback<Protocol::C_VERIFY_EMAIL_CODE>(outFunc, Handle_C_VERIFY_EMAIL_CODE, session, buffer, len);
 		};
 		GPacketHandler[PKT_C_LOGIN] = [](std::function<void()>& outFunc, PacketSessionRef& session, BYTE* buffer, int32 len) {
 			return GetCallback<Protocol::C_LOGIN>(outFunc, Handle_C_LOGIN, session, buffer, len);
@@ -48,7 +54,8 @@ public:
 		return GPacketHandler[header->id](outFunc, session, buffer, len);
 	}
 	static WriteBufferRef MakeWriteBuffer(Protocol::S_SIGNUP& pkt) { return MakeWriteBuffer(pkt, PKT_S_SIGNUP); }
-	static WriteBufferRef MakeWriteBuffer(Protocol::S_VERIFY_EMAIL& pkt) { return MakeWriteBuffer(pkt, PKT_S_VERIFY_EMAIL); }
+	static WriteBufferRef MakeWriteBuffer(Protocol::S_VERIFY_MAIL_REQ& pkt) { return MakeWriteBuffer(pkt, PKT_S_VERIFY_MAIL_REQ); }
+	static WriteBufferRef MakeWriteBuffer(Protocol::S_VERIFY_EMAIL_CODE& pkt) { return MakeWriteBuffer(pkt, PKT_S_VERIFY_EMAIL_CODE); }
 	static WriteBufferRef MakeWriteBuffer(Protocol::S_LOGIN& pkt) { return MakeWriteBuffer(pkt, PKT_S_LOGIN); }
 
 private:

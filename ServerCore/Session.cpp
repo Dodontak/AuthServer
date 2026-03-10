@@ -72,7 +72,8 @@ void	Session::Disconnect()
 	if (ServiceRef service = _service.lock())
 	{
 		EpollCoreRef	epollCore = service->GetEpollCore();
-		{//현재 이벤트 타입이 이미 disconnect면 다른스레드에서 disconnect 실행한거니까 그냥 종료
+
+		{//현재 이벤트 타입이 이미 disconnect면 다른스레드에서 disconnect 실행한거니까 함수 중단.
 			std::lock_guard<std::mutex>	lock(_m);
 			if (_epollEvent->GetEventType() == EventType::Disconnect)
 				return;
@@ -81,7 +82,7 @@ void	Session::Disconnect()
 
 		if (_sslObject)
 		{
-			int	ret = SSL_shutdown(_sslObject->GetSsl());
+			int	ret = SSL_shutdown(_sslObject->GetSsl());//정상ssl종료 시도
 			if (ret != 1) 
 			{// 정상|비정상 종료. 상대 클로즈노티 대기.하다가 세션 disconnect
 				// 2초 디스커넥트 타이머
@@ -128,11 +129,11 @@ void	Session::ProcessDisconnect(bool isCanSslShutdown)
 	if (ServiceRef service = _service.lock())
 	{
 		EpollCoreRef	epollCore = service->GetEpollCore();
+		std::lock_guard<std::mutex>	lock(_m);
 		if (_epollEvent)
 		{
-			service->EraseSession(_epollEvent->GetOwner());
+			service->EraseSession(shared_from_this());
 			epollCore->DelEvent(_epollEvent);
-			_epollEvent->ClearOwner();
 		}
 	}
 }
@@ -267,7 +268,9 @@ void	Session::ModEvent(EventType type)
 {
 	_epollEvent->SetEventType(type);
 	if (ServiceRef service = _service.lock())
+	{
 		service->GetEpollCore()->ModEvent(_epollEvent);	
+	}
 }
 
 /*====================

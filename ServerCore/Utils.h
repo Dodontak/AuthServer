@@ -3,10 +3,10 @@
 #include <sys/socket.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <string>
 #include <iostream>
 
 using namespace std;
-
 
 class SocketUtil
 {
@@ -16,4 +16,5 @@ public:
 	static void	CloseSocket(int socket);
 };
 
-void handle_error(const char* err_str, int rtn);
+void 		handle_error(const char* err_str, int rtn);
+std::string	GetTempId(int len);

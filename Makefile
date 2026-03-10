@@ -69,7 +69,7 @@ SERVER_CORE_INC = -I$(SERVER_CORE_DIR)
 
 CXX = g++
 CXXFLAGS = -MMD -MP # -Wall 
-LDLIBS = -lhiredis -lpq -lprotobuf -lssl -lcrypto
+LDLIBS = -lhiredis -lpq -lprotobuf -lssl -lcrypto -lbcrypt
 
 .PHONY : all auth cli clean fclean re
 

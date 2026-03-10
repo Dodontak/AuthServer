@@ -13,15 +13,32 @@
 
 using namespace std;
 
-void	Broadcast(ClientServiceRef service)
+void	SignUp(SessionRef session)
 {
 	Protocol::C_SIGNUP	pkt;
-	pkt.set_email("asd@naver.com");
-	pkt.set_nickname("Dodontak");
-	pkt.set_password("password123");
+	std::string	email, nickname, password;
+	email = GetTempId(20) + '@' + GetTempId(6) + ".com";
+	pkt.set_email(email);
+	nickname = GetTempId(20);
+	pkt.set_nickname(nickname);
+	password = GetTempId(20);
+	pkt.set_password(password);
 	WriteBufferRef	writeBuffer = ServerPacketHandler::MakeWriteBuffer(pkt);
+	session->Send(writeBuffer);
+}
+
+
+//std::this_thread::sleep_for(chrono::seconds(1));
+
+void	SignUpThread(ClientServiceRef service)
+{
 	std::this_thread::sleep_for(chrono::seconds(1));
-	service->broadcastfortest(writeBuffer);
+	for (int i = 0; i < 10; i++)
+	{//랜덤하게 10개 세션 골라서 SignUp시킴
+		SessionRef session = service->GetRandomSession();
+		if (session)
+			SignUp(session);
+	}
 }
 
 void	WorkerThread()
@@ -50,11 +67,11 @@ int main()
 		[](int clientSocket, sockaddr_in addr, ServiceRef service) {
         	return std::make_shared<ServerSession>(clientSocket, addr, service);
     	},
-		20
+		5
 	);
 	GThreadManager->Launch(
 		[service](){
-			Broadcast(service);
+			SignUpThread(service);
 		}
 	);
 	service->Start();

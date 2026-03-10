@@ -45,4 +45,5 @@ server.crt
 server.key
 .vscode
 .gitconfig
+libbcrypt
 GenPackets

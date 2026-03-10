@@ -24,7 +24,8 @@ void	EpollCore::StartEpollWait()
 			struct epoll_event	ev = _epEvents[n];
 			EpollEvent* 		epollEvent = (EpollEvent*)ev.data.ptr;
 			EpollObjectRef		epollObject = epollEvent->GetOwner();
-			epollObject->Dispatch(ev.events);
+			if (epollObject)
+				epollObject->Dispatch(ev.events);
 		}
 	}
 }
@@ -34,6 +35,8 @@ void	EpollCore::Register(EpollEvent* epollEvent)
 {
 	EventType			type = epollEvent->GetEventType();
 	EpollObjectRef		epollObject = epollEvent->GetOwner();
+	if (epollObject == nullptr)
+		return;
 	struct epoll_event	ev = CreateEv(epollObject, type);
 	epoll_ctl(_epfd, EPOLL_CTL_ADD, epollObject->GetFd(), &ev);
 }
@@ -42,6 +45,8 @@ void	EpollCore::ModEvent(EpollEvent* epollEvent)
 {
 	EventType			type = epollEvent->GetEventType();
 	EpollObjectRef		epollObject = epollEvent->GetOwner();
+	if (epollObject == nullptr)
+		return;
 	struct epoll_event	ev = CreateEv(epollObject, type);
 	epoll_ctl(_epfd, EPOLL_CTL_MOD, epollObject->GetFd(), &ev);
 }
@@ -50,6 +55,8 @@ void	EpollCore::DelEvent(EpollEvent* epollEvent)
 {
 	EventType			type = epollEvent->GetEventType();
 	EpollObjectRef		epollObject = epollEvent->GetOwner();
+	if (epollObject == nullptr)
+		return;
 	epoll_ctl(_epfd, EPOLL_CTL_DEL, epollObject->GetFd(), nullptr);
 }
 

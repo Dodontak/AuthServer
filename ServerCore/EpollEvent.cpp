@@ -4,10 +4,15 @@
 EpollEvent::EpollEvent(EpollObjectRef owner, EventType type) : _owner(owner), _type(type)
 {
 	cout << "EpollEvent constructed." << endl;
-	_owner->SetEpollEvent(this);
+	owner->SetEpollEvent(this);
 }
 
 EpollEvent::~EpollEvent()
 {
 	cout << "EpollEvent distructed." << endl;
+}
+
+EpollObjectRef	EpollEvent::GetOwner()
+{
+	return _owner.lock();
 }

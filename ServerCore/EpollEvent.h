@@ -21,13 +21,12 @@ public:
 	~EpollEvent();
 	
 public:
-	EpollObjectRef	GetOwner() { return _owner; }
+	EpollObjectRef	GetOwner();
 	void			SetEventType(EventType type) { _type = type; }
 	EventType		GetEventType() { return _type; }
-	void			ClearOwner() { _owner = nullptr; }
 private:
 	void	SetEventType(struct epoll_event &ev, EventType type);
 
-	EventType		_type;
-	EpollObjectRef	_owner;
+	EventType				_type;
+	std::weak_ptr<EpollObject>	_owner;
 };

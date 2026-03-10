@@ -12,6 +12,9 @@
 #include <string>
 #include <hiredis.h>
 
+#include <openssl/rand.h>
+#include <iomanip>
+
 using namespace std;
 
 void	WorkerThread()
@@ -36,7 +39,7 @@ int main(int ac, char** av)
 			"host=postgres user=postgres port=5432 dbname=postgres password=password connect_timeout=3");
 		ClientPacketHandler::Init();
 	
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 1; i++)
 		GThreadManager->Launch(WorkerThread);
 
 	ServiceRef	service = make_shared<AuthService>(

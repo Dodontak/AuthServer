@@ -53,6 +53,7 @@ public:
 	ClientService(const char* ip, int port, SessionFactory factory, int clientCount);
 	
 	void	broadcastfortest(WriteBufferRef writebuffer);
+	SessionRef	GetRandomSession();
 
 	virtual ~ClientService();
 

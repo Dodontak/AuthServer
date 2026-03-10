@@ -20,7 +20,19 @@ bool	RedisConnection::Connect(const char* ip, int port)
 	return true;
 }
 
-redisReply*	RedisConnection::Execute(std::string query)
+redisReply*	RedisConnection::Execute(const std::string& query)
 {
 	return	(redisReply *)redisCommand(_connection, query.c_str());
+}
+
+bool	RedisConnection::isReplyError(redisReply* reply)
+{
+	if (reply == nullptr || reply->type == REDIS_REPLY_ERROR) {
+		if (reply == nullptr)
+			return true;
+		else
+			freeReplyObject(reply);
+			return true;
+	}
+	return false;
 }

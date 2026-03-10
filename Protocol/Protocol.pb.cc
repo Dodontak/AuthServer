@@ -23,9 +23,10 @@ namespace _pbi = _pb::internal;
 namespace Protocol {
 PROTOBUF_CONSTEXPR C_SIGNUP::C_SIGNUP(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.email_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+    /*decltype(_impl_.nickname_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.password_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.nickname_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.email_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.skip_email_)*/false
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct C_SIGNUPDefaultTypeInternal {
   PROTOBUF_CONSTEXPR C_SIGNUPDefaultTypeInternal()
@@ -38,7 +39,9 @@ struct C_SIGNUPDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 C_SIGNUPDefaultTypeInternal _C_SIGNUP_default_instance_;
 PROTOBUF_CONSTEXPR S_SIGNUP::S_SIGNUP(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.success_)*/false
+    /*decltype(_impl_.temp_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.success_)*/false
+  , /*decltype(_impl_.skip_email_)*/false
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct S_SIGNUPDefaultTypeInternal {
   PROTOBUF_CONSTEXPR S_SIGNUPDefaultTypeInternal()
@@ -49,33 +52,60 @@ struct S_SIGNUPDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 S_SIGNUPDefaultTypeInternal _S_SIGNUP_default_instance_;
-PROTOBUF_CONSTEXPR C_VERIFY_EMAIL::C_VERIFY_EMAIL(
+PROTOBUF_CONSTEXPR C_VERIFY_MAIL_REQ::C_VERIFY_MAIL_REQ(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.email_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.verification_code_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+    /*decltype(_impl_.temp_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_._cached_size_)*/{}} {}
-struct C_VERIFY_EMAILDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR C_VERIFY_EMAILDefaultTypeInternal()
+struct C_VERIFY_MAIL_REQDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR C_VERIFY_MAIL_REQDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~C_VERIFY_EMAILDefaultTypeInternal() {}
+  ~C_VERIFY_MAIL_REQDefaultTypeInternal() {}
   union {
-    C_VERIFY_EMAIL _instance;
+    C_VERIFY_MAIL_REQ _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 C_VERIFY_EMAILDefaultTypeInternal _C_VERIFY_EMAIL_default_instance_;
-PROTOBUF_CONSTEXPR S_VERIFY_EMAIL::S_VERIFY_EMAIL(
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 C_VERIFY_MAIL_REQDefaultTypeInternal _C_VERIFY_MAIL_REQ_default_instance_;
+PROTOBUF_CONSTEXPR S_VERIFY_MAIL_REQ::S_VERIFY_MAIL_REQ(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.success_)*/false
   , /*decltype(_impl_._cached_size_)*/{}} {}
-struct S_VERIFY_EMAILDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR S_VERIFY_EMAILDefaultTypeInternal()
+struct S_VERIFY_MAIL_REQDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR S_VERIFY_MAIL_REQDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~S_VERIFY_EMAILDefaultTypeInternal() {}
+  ~S_VERIFY_MAIL_REQDefaultTypeInternal() {}
   union {
-    S_VERIFY_EMAIL _instance;
+    S_VERIFY_MAIL_REQ _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 S_VERIFY_EMAILDefaultTypeInternal _S_VERIFY_EMAIL_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 S_VERIFY_MAIL_REQDefaultTypeInternal _S_VERIFY_MAIL_REQ_default_instance_;
+PROTOBUF_CONSTEXPR C_VERIFY_EMAIL_CODE::C_VERIFY_EMAIL_CODE(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.temp_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.verify_code_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct C_VERIFY_EMAIL_CODEDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR C_VERIFY_EMAIL_CODEDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~C_VERIFY_EMAIL_CODEDefaultTypeInternal() {}
+  union {
+    C_VERIFY_EMAIL_CODE _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 C_VERIFY_EMAIL_CODEDefaultTypeInternal _C_VERIFY_EMAIL_CODE_default_instance_;
+PROTOBUF_CONSTEXPR S_VERIFY_EMAIL_CODE::S_VERIFY_EMAIL_CODE(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.success_)*/false
+  , /*decltype(_impl_.expired_)*/false
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct S_VERIFY_EMAIL_CODEDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR S_VERIFY_EMAIL_CODEDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~S_VERIFY_EMAIL_CODEDefaultTypeInternal() {}
+  union {
+    S_VERIFY_EMAIL_CODE _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 S_VERIFY_EMAIL_CODEDefaultTypeInternal _S_VERIFY_EMAIL_CODE_default_instance_;
 PROTOBUF_CONSTEXPR C_LOGIN::C_LOGIN(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.nickname_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
@@ -104,7 +134,7 @@ struct S_LOGINDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 S_LOGINDefaultTypeInternal _S_LOGIN_default_instance_;
 }  // namespace Protocol
-static ::_pb::Metadata file_level_metadata_Protocol_2eproto[6];
+static ::_pb::Metadata file_level_metadata_Protocol_2eproto[8];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_Protocol_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_Protocol_2eproto = nullptr;
 
@@ -115,9 +145,10 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::Protocol::C_SIGNUP, _impl_.email_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::C_SIGNUP, _impl_.password_),
   PROTOBUF_FIELD_OFFSET(::Protocol::C_SIGNUP, _impl_.nickname_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SIGNUP, _impl_.password_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SIGNUP, _impl_.email_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_SIGNUP, _impl_.skip_email_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::S_SIGNUP, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -125,21 +156,38 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::Protocol::S_SIGNUP, _impl_.success_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_SIGNUP, _impl_.skip_email_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_SIGNUP, _impl_.temp_id_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::Protocol::C_VERIFY_EMAIL, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_VERIFY_MAIL_REQ, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::Protocol::C_VERIFY_EMAIL, _impl_.email_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::C_VERIFY_EMAIL, _impl_.verification_code_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_VERIFY_MAIL_REQ, _impl_.temp_id_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::Protocol::S_VERIFY_EMAIL, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_VERIFY_MAIL_REQ, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::Protocol::S_VERIFY_EMAIL, _impl_.success_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_VERIFY_MAIL_REQ, _impl_.success_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_VERIFY_EMAIL_CODE, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_VERIFY_EMAIL_CODE, _impl_.temp_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C_VERIFY_EMAIL_CODE, _impl_.verify_code_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_VERIFY_EMAIL_CODE, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_VERIFY_EMAIL_CODE, _impl_.success_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_VERIFY_EMAIL_CODE, _impl_.expired_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::C_LOGIN, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -158,37 +206,45 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::Protocol::C_SIGNUP)},
-  { 9, -1, -1, sizeof(::Protocol::S_SIGNUP)},
-  { 16, -1, -1, sizeof(::Protocol::C_VERIFY_EMAIL)},
-  { 24, -1, -1, sizeof(::Protocol::S_VERIFY_EMAIL)},
-  { 31, -1, -1, sizeof(::Protocol::C_LOGIN)},
-  { 39, -1, -1, sizeof(::Protocol::S_LOGIN)},
+  { 10, -1, -1, sizeof(::Protocol::S_SIGNUP)},
+  { 19, -1, -1, sizeof(::Protocol::C_VERIFY_MAIL_REQ)},
+  { 26, -1, -1, sizeof(::Protocol::S_VERIFY_MAIL_REQ)},
+  { 33, -1, -1, sizeof(::Protocol::C_VERIFY_EMAIL_CODE)},
+  { 41, -1, -1, sizeof(::Protocol::S_VERIFY_EMAIL_CODE)},
+  { 49, -1, -1, sizeof(::Protocol::C_LOGIN)},
+  { 57, -1, -1, sizeof(::Protocol::S_LOGIN)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
   &::Protocol::_C_SIGNUP_default_instance_._instance,
   &::Protocol::_S_SIGNUP_default_instance_._instance,
-  &::Protocol::_C_VERIFY_EMAIL_default_instance_._instance,
-  &::Protocol::_S_VERIFY_EMAIL_default_instance_._instance,
+  &::Protocol::_C_VERIFY_MAIL_REQ_default_instance_._instance,
+  &::Protocol::_S_VERIFY_MAIL_REQ_default_instance_._instance,
+  &::Protocol::_C_VERIFY_EMAIL_CODE_default_instance_._instance,
+  &::Protocol::_S_VERIFY_EMAIL_CODE_default_instance_._instance,
   &::Protocol::_C_LOGIN_default_instance_._instance,
   &::Protocol::_S_LOGIN_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\016Protocol.proto\022\010Protocol\"=\n\010C_SIGNUP\022\r"
-  "\n\005email\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\020\n\010nickn"
-  "ame\030\003 \001(\t\"\033\n\010S_SIGNUP\022\017\n\007success\030\001 \001(\010\":"
-  "\n\016C_VERIFY_EMAIL\022\r\n\005email\030\001 \001(\t\022\031\n\021verif"
-  "ication_code\030\002 \001(\t\"!\n\016S_VERIFY_EMAIL\022\017\n\007"
-  "success\030\001 \001(\010\"-\n\007C_LOGIN\022\020\n\010nickname\030\001 \001"
-  "(\t\022\020\n\010password\030\002 \001(\t\"\032\n\007S_LOGIN\022\017\n\007succe"
-  "ss\030\001 \001(\010b\006proto3"
+  "\n\016Protocol.proto\022\010Protocol\"Q\n\010C_SIGNUP\022\020"
+  "\n\010nickname\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\r\n\005em"
+  "ail\030\003 \001(\t\022\022\n\nskip_email\030\004 \001(\010\"@\n\010S_SIGNU"
+  "P\022\017\n\007success\030\001 \001(\010\022\022\n\nskip_email\030\002 \001(\010\022\017"
+  "\n\007temp_id\030\003 \001(\t\"$\n\021C_VERIFY_MAIL_REQ\022\017\n\007"
+  "temp_id\030\001 \001(\t\"$\n\021S_VERIFY_MAIL_REQ\022\017\n\007su"
+  "ccess\030\001 \001(\010\";\n\023C_VERIFY_EMAIL_CODE\022\017\n\007te"
+  "mp_id\030\001 \001(\t\022\023\n\013verify_code\030\002 \001(\t\"7\n\023S_VE"
+  "RIFY_EMAIL_CODE\022\017\n\007success\030\001 \001(\010\022\017\n\007expi"
+  "red\030\002 \001(\010\"-\n\007C_LOGIN\022\020\n\010nickname\030\001 \001(\t\022\020"
+  "\n\010password\030\002 \001(\t\"\032\n\007S_LOGIN\022\017\n\007success\030\001"
+  " \001(\010b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 296, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 452, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
-    &descriptor_table_Protocol_2eproto_once, nullptr, 0, 6,
+    &descriptor_table_Protocol_2eproto_once, nullptr, 0, 8,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
     file_level_metadata_Protocol_2eproto, file_level_enum_descriptors_Protocol_2eproto,
     file_level_service_descriptors_Protocol_2eproto,
@@ -217,18 +273,19 @@ C_SIGNUP::C_SIGNUP(const C_SIGNUP& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   C_SIGNUP* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.email_){}
+      decltype(_impl_.nickname_){}
     , decltype(_impl_.password_){}
-    , decltype(_impl_.nickname_){}
+    , decltype(_impl_.email_){}
+    , decltype(_impl_.skip_email_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.email_.InitDefault();
+  _impl_.nickname_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.email_.Set("", GetArenaForAllocation());
+    _impl_.nickname_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_email().empty()) {
-    _this->_impl_.email_.Set(from._internal_email(), 
+  if (!from._internal_nickname().empty()) {
+    _this->_impl_.nickname_.Set(from._internal_nickname(), 
       _this->GetArenaForAllocation());
   }
   _impl_.password_.InitDefault();
@@ -239,14 +296,15 @@ C_SIGNUP::C_SIGNUP(const C_SIGNUP& from)
     _this->_impl_.password_.Set(from._internal_password(), 
       _this->GetArenaForAllocation());
   }
-  _impl_.nickname_.InitDefault();
+  _impl_.email_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.nickname_.Set("", GetArenaForAllocation());
+    _impl_.email_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_nickname().empty()) {
-    _this->_impl_.nickname_.Set(from._internal_nickname(), 
+  if (!from._internal_email().empty()) {
+    _this->_impl_.email_.Set(from._internal_email(), 
       _this->GetArenaForAllocation());
   }
+  _this->_impl_.skip_email_ = from._impl_.skip_email_;
   // @@protoc_insertion_point(copy_constructor:Protocol.C_SIGNUP)
 }
 
@@ -255,22 +313,23 @@ inline void C_SIGNUP::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.email_){}
+      decltype(_impl_.nickname_){}
     , decltype(_impl_.password_){}
-    , decltype(_impl_.nickname_){}
+    , decltype(_impl_.email_){}
+    , decltype(_impl_.skip_email_){false}
     , /*decltype(_impl_._cached_size_)*/{}
   };
-  _impl_.email_.InitDefault();
+  _impl_.nickname_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.email_.Set("", GetArenaForAllocation());
+    _impl_.nickname_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   _impl_.password_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     _impl_.password_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.nickname_.InitDefault();
+  _impl_.email_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.nickname_.Set("", GetArenaForAllocation());
+    _impl_.email_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
@@ -285,9 +344,9 @@ C_SIGNUP::~C_SIGNUP() {
 
 inline void C_SIGNUP::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.email_.Destroy();
-  _impl_.password_.Destroy();
   _impl_.nickname_.Destroy();
+  _impl_.password_.Destroy();
+  _impl_.email_.Destroy();
 }
 
 void C_SIGNUP::SetCachedSize(int size) const {
@@ -300,9 +359,10 @@ void C_SIGNUP::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.email_.ClearToEmpty();
-  _impl_.password_.ClearToEmpty();
   _impl_.nickname_.ClearToEmpty();
+  _impl_.password_.ClearToEmpty();
+  _impl_.email_.ClearToEmpty();
+  _impl_.skip_email_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -312,13 +372,13 @@ const char* C_SIGNUP::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // string email = 1;
+      // string nickname = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_email();
+          auto str = _internal_mutable_nickname();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "Protocol.C_SIGNUP.email"));
+          CHK_(::_pbi::VerifyUTF8(str, "Protocol.C_SIGNUP.nickname"));
         } else
           goto handle_unusual;
         continue;
@@ -332,13 +392,21 @@ const char* C_SIGNUP::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
         } else
           goto handle_unusual;
         continue;
-      // string nickname = 3;
+      // string email = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          auto str = _internal_mutable_nickname();
+          auto str = _internal_mutable_email();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "Protocol.C_SIGNUP.nickname"));
+          CHK_(::_pbi::VerifyUTF8(str, "Protocol.C_SIGNUP.email"));
+        } else
+          goto handle_unusual;
+        continue;
+      // bool skip_email = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          _impl_.skip_email_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -371,14 +439,14 @@ uint8_t* C_SIGNUP::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string email = 1;
-  if (!this->_internal_email().empty()) {
+  // string nickname = 1;
+  if (!this->_internal_nickname().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_email().data(), static_cast<int>(this->_internal_email().length()),
+      this->_internal_nickname().data(), static_cast<int>(this->_internal_nickname().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "Protocol.C_SIGNUP.email");
+      "Protocol.C_SIGNUP.nickname");
     target = stream->WriteStringMaybeAliased(
-        1, this->_internal_email(), target);
+        1, this->_internal_nickname(), target);
   }
 
   // string password = 2;
@@ -391,14 +459,20 @@ uint8_t* C_SIGNUP::_InternalSerialize(
         2, this->_internal_password(), target);
   }
 
-  // string nickname = 3;
-  if (!this->_internal_nickname().empty()) {
+  // string email = 3;
+  if (!this->_internal_email().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_nickname().data(), static_cast<int>(this->_internal_nickname().length()),
+      this->_internal_email().data(), static_cast<int>(this->_internal_email().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "Protocol.C_SIGNUP.nickname");
+      "Protocol.C_SIGNUP.email");
     target = stream->WriteStringMaybeAliased(
-        3, this->_internal_nickname(), target);
+        3, this->_internal_email(), target);
+  }
+
+  // bool skip_email = 4;
+  if (this->_internal_skip_email() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(4, this->_internal_skip_email(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -417,11 +491,11 @@ size_t C_SIGNUP::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string email = 1;
-  if (!this->_internal_email().empty()) {
+  // string nickname = 1;
+  if (!this->_internal_nickname().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_email());
+        this->_internal_nickname());
   }
 
   // string password = 2;
@@ -431,11 +505,16 @@ size_t C_SIGNUP::ByteSizeLong() const {
         this->_internal_password());
   }
 
-  // string nickname = 3;
-  if (!this->_internal_nickname().empty()) {
+  // string email = 3;
+  if (!this->_internal_email().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_nickname());
+        this->_internal_email());
+  }
+
+  // bool skip_email = 4;
+  if (this->_internal_skip_email() != 0) {
+    total_size += 1 + 1;
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -456,14 +535,17 @@ void C_SIGNUP::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTO
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_email().empty()) {
-    _this->_internal_set_email(from._internal_email());
+  if (!from._internal_nickname().empty()) {
+    _this->_internal_set_nickname(from._internal_nickname());
   }
   if (!from._internal_password().empty()) {
     _this->_internal_set_password(from._internal_password());
   }
-  if (!from._internal_nickname().empty()) {
-    _this->_internal_set_nickname(from._internal_nickname());
+  if (!from._internal_email().empty()) {
+    _this->_internal_set_email(from._internal_email());
+  }
+  if (from._internal_skip_email() != 0) {
+    _this->_internal_set_skip_email(from._internal_skip_email());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -485,17 +567,18 @@ void C_SIGNUP::InternalSwap(C_SIGNUP* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.email_, lhs_arena,
-      &other->_impl_.email_, rhs_arena
+      &_impl_.nickname_, lhs_arena,
+      &other->_impl_.nickname_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &_impl_.password_, lhs_arena,
       &other->_impl_.password_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.nickname_, lhs_arena,
-      &other->_impl_.nickname_, rhs_arena
+      &_impl_.email_, lhs_arena,
+      &other->_impl_.email_, rhs_arena
   );
+  swap(_impl_.skip_email_, other->_impl_.skip_email_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata C_SIGNUP::GetMetadata() const {
@@ -520,11 +603,23 @@ S_SIGNUP::S_SIGNUP(const S_SIGNUP& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   S_SIGNUP* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.success_){}
+      decltype(_impl_.temp_id_){}
+    , decltype(_impl_.success_){}
+    , decltype(_impl_.skip_email_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.success_ = from._impl_.success_;
+  _impl_.temp_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.temp_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_temp_id().empty()) {
+    _this->_impl_.temp_id_.Set(from._internal_temp_id(), 
+      _this->GetArenaForAllocation());
+  }
+  ::memcpy(&_impl_.success_, &from._impl_.success_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.skip_email_) -
+    reinterpret_cast<char*>(&_impl_.success_)) + sizeof(_impl_.skip_email_));
   // @@protoc_insertion_point(copy_constructor:Protocol.S_SIGNUP)
 }
 
@@ -533,9 +628,15 @@ inline void S_SIGNUP::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.success_){false}
+      decltype(_impl_.temp_id_){}
+    , decltype(_impl_.success_){false}
+    , decltype(_impl_.skip_email_){false}
     , /*decltype(_impl_._cached_size_)*/{}
   };
+  _impl_.temp_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.temp_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 S_SIGNUP::~S_SIGNUP() {
@@ -549,6 +650,7 @@ S_SIGNUP::~S_SIGNUP() {
 
 inline void S_SIGNUP::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.temp_id_.Destroy();
 }
 
 void S_SIGNUP::SetCachedSize(int size) const {
@@ -561,7 +663,10 @@ void S_SIGNUP::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.success_ = false;
+  _impl_.temp_id_.ClearToEmpty();
+  ::memset(&_impl_.success_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.skip_email_) -
+      reinterpret_cast<char*>(&_impl_.success_)) + sizeof(_impl_.skip_email_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -576,6 +681,24 @@ const char* S_SIGNUP::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           _impl_.success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool skip_email = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.skip_email_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string temp_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_temp_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "Protocol.S_SIGNUP.temp_id"));
         } else
           goto handle_unusual;
         continue;
@@ -614,6 +737,22 @@ uint8_t* S_SIGNUP::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
   }
 
+  // bool skip_email = 2;
+  if (this->_internal_skip_email() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_skip_email(), target);
+  }
+
+  // string temp_id = 3;
+  if (!this->_internal_temp_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_temp_id().data(), static_cast<int>(this->_internal_temp_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_SIGNUP.temp_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_temp_id(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -630,8 +769,20 @@ size_t S_SIGNUP::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  // string temp_id = 3;
+  if (!this->_internal_temp_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_temp_id());
+  }
+
   // bool success = 1;
   if (this->_internal_success() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool skip_email = 2;
+  if (this->_internal_skip_email() != 0) {
     total_size += 1 + 1;
   }
 
@@ -653,8 +804,14 @@ void S_SIGNUP::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTO
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (!from._internal_temp_id().empty()) {
+    _this->_internal_set_temp_id(from._internal_temp_id());
+  }
   if (from._internal_success() != 0) {
     _this->_internal_set_success(from._internal_success());
+  }
+  if (from._internal_skip_email() != 0) {
+    _this->_internal_set_skip_email(from._internal_skip_email());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -672,8 +829,19 @@ bool S_SIGNUP::IsInitialized() const {
 
 void S_SIGNUP::InternalSwap(S_SIGNUP* other) {
   using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.success_, other->_impl_.success_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.temp_id_, lhs_arena,
+      &other->_impl_.temp_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(S_SIGNUP, _impl_.skip_email_)
+      + sizeof(S_SIGNUP::_impl_.skip_email_)
+      - PROTOBUF_FIELD_OFFSET(S_SIGNUP, _impl_.success_)>(
+          reinterpret_cast<char*>(&_impl_.success_),
+          reinterpret_cast<char*>(&other->_impl_.success_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata S_SIGNUP::GetMetadata() const {
@@ -684,65 +852,51 @@ void S_SIGNUP::InternalSwap(S_SIGNUP* other) {
 
 // ===================================================================
 
-class C_VERIFY_EMAIL::_Internal {
+class C_VERIFY_MAIL_REQ::_Internal {
  public:
 };
 
-C_VERIFY_EMAIL::C_VERIFY_EMAIL(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+C_VERIFY_MAIL_REQ::C_VERIFY_MAIL_REQ(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:Protocol.C_VERIFY_EMAIL)
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_VERIFY_MAIL_REQ)
 }
-C_VERIFY_EMAIL::C_VERIFY_EMAIL(const C_VERIFY_EMAIL& from)
+C_VERIFY_MAIL_REQ::C_VERIFY_MAIL_REQ(const C_VERIFY_MAIL_REQ& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  C_VERIFY_EMAIL* const _this = this; (void)_this;
+  C_VERIFY_MAIL_REQ* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.email_){}
-    , decltype(_impl_.verification_code_){}
+      decltype(_impl_.temp_id_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.email_.InitDefault();
+  _impl_.temp_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.email_.Set("", GetArenaForAllocation());
+    _impl_.temp_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_email().empty()) {
-    _this->_impl_.email_.Set(from._internal_email(), 
+  if (!from._internal_temp_id().empty()) {
+    _this->_impl_.temp_id_.Set(from._internal_temp_id(), 
       _this->GetArenaForAllocation());
   }
-  _impl_.verification_code_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.verification_code_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_verification_code().empty()) {
-    _this->_impl_.verification_code_.Set(from._internal_verification_code(), 
-      _this->GetArenaForAllocation());
-  }
-  // @@protoc_insertion_point(copy_constructor:Protocol.C_VERIFY_EMAIL)
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_VERIFY_MAIL_REQ)
 }
 
-inline void C_VERIFY_EMAIL::SharedCtor(
+inline void C_VERIFY_MAIL_REQ::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.email_){}
-    , decltype(_impl_.verification_code_){}
+      decltype(_impl_.temp_id_){}
     , /*decltype(_impl_._cached_size_)*/{}
   };
-  _impl_.email_.InitDefault();
+  _impl_.temp_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.email_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.verification_code_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.verification_code_.Set("", GetArenaForAllocation());
+    _impl_.temp_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
-C_VERIFY_EMAIL::~C_VERIFY_EMAIL() {
-  // @@protoc_insertion_point(destructor:Protocol.C_VERIFY_EMAIL)
+C_VERIFY_MAIL_REQ::~C_VERIFY_MAIL_REQ() {
+  // @@protoc_insertion_point(destructor:Protocol.C_VERIFY_MAIL_REQ)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -750,50 +904,38 @@ C_VERIFY_EMAIL::~C_VERIFY_EMAIL() {
   SharedDtor();
 }
 
-inline void C_VERIFY_EMAIL::SharedDtor() {
+inline void C_VERIFY_MAIL_REQ::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.email_.Destroy();
-  _impl_.verification_code_.Destroy();
+  _impl_.temp_id_.Destroy();
 }
 
-void C_VERIFY_EMAIL::SetCachedSize(int size) const {
+void C_VERIFY_MAIL_REQ::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void C_VERIFY_EMAIL::Clear() {
-// @@protoc_insertion_point(message_clear_start:Protocol.C_VERIFY_EMAIL)
+void C_VERIFY_MAIL_REQ::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_VERIFY_MAIL_REQ)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.email_.ClearToEmpty();
-  _impl_.verification_code_.ClearToEmpty();
+  _impl_.temp_id_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* C_VERIFY_EMAIL::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* C_VERIFY_MAIL_REQ::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // string email = 1;
+      // string temp_id = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_email();
+          auto str = _internal_mutable_temp_id();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "Protocol.C_VERIFY_EMAIL.email"));
-        } else
-          goto handle_unusual;
-        continue;
-      // string verification_code = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_verification_code();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "Protocol.C_VERIFY_EMAIL.verification_code"));
+          CHK_(::_pbi::VerifyUTF8(str, "Protocol.C_VERIFY_MAIL_REQ.temp_id"));
         } else
           goto handle_unusual;
         continue;
@@ -820,116 +962,92 @@ failure:
 #undef CHK_
 }
 
-uint8_t* C_VERIFY_EMAIL::_InternalSerialize(
+uint8_t* C_VERIFY_MAIL_REQ::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_VERIFY_EMAIL)
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_VERIFY_MAIL_REQ)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string email = 1;
-  if (!this->_internal_email().empty()) {
+  // string temp_id = 1;
+  if (!this->_internal_temp_id().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_email().data(), static_cast<int>(this->_internal_email().length()),
+      this->_internal_temp_id().data(), static_cast<int>(this->_internal_temp_id().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "Protocol.C_VERIFY_EMAIL.email");
+      "Protocol.C_VERIFY_MAIL_REQ.temp_id");
     target = stream->WriteStringMaybeAliased(
-        1, this->_internal_email(), target);
-  }
-
-  // string verification_code = 2;
-  if (!this->_internal_verification_code().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_verification_code().data(), static_cast<int>(this->_internal_verification_code().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "Protocol.C_VERIFY_EMAIL.verification_code");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_verification_code(), target);
+        1, this->_internal_temp_id(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_VERIFY_EMAIL)
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_VERIFY_MAIL_REQ)
   return target;
 }
 
-size_t C_VERIFY_EMAIL::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Protocol.C_VERIFY_EMAIL)
+size_t C_VERIFY_MAIL_REQ::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.C_VERIFY_MAIL_REQ)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string email = 1;
-  if (!this->_internal_email().empty()) {
+  // string temp_id = 1;
+  if (!this->_internal_temp_id().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_email());
-  }
-
-  // string verification_code = 2;
-  if (!this->_internal_verification_code().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_verification_code());
+        this->_internal_temp_id());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData C_VERIFY_EMAIL::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData C_VERIFY_MAIL_REQ::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    C_VERIFY_EMAIL::MergeImpl
+    C_VERIFY_MAIL_REQ::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*C_VERIFY_EMAIL::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*C_VERIFY_MAIL_REQ::GetClassData() const { return &_class_data_; }
 
 
-void C_VERIFY_EMAIL::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<C_VERIFY_EMAIL*>(&to_msg);
-  auto& from = static_cast<const C_VERIFY_EMAIL&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_VERIFY_EMAIL)
+void C_VERIFY_MAIL_REQ::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<C_VERIFY_MAIL_REQ*>(&to_msg);
+  auto& from = static_cast<const C_VERIFY_MAIL_REQ&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_VERIFY_MAIL_REQ)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_email().empty()) {
-    _this->_internal_set_email(from._internal_email());
-  }
-  if (!from._internal_verification_code().empty()) {
-    _this->_internal_set_verification_code(from._internal_verification_code());
+  if (!from._internal_temp_id().empty()) {
+    _this->_internal_set_temp_id(from._internal_temp_id());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void C_VERIFY_EMAIL::CopyFrom(const C_VERIFY_EMAIL& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_VERIFY_EMAIL)
+void C_VERIFY_MAIL_REQ::CopyFrom(const C_VERIFY_MAIL_REQ& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_VERIFY_MAIL_REQ)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool C_VERIFY_EMAIL::IsInitialized() const {
+bool C_VERIFY_MAIL_REQ::IsInitialized() const {
   return true;
 }
 
-void C_VERIFY_EMAIL::InternalSwap(C_VERIFY_EMAIL* other) {
+void C_VERIFY_MAIL_REQ::InternalSwap(C_VERIFY_MAIL_REQ* other) {
   using std::swap;
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.email_, lhs_arena,
-      &other->_impl_.email_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.verification_code_, lhs_arena,
-      &other->_impl_.verification_code_, rhs_arena
+      &_impl_.temp_id_, lhs_arena,
+      &other->_impl_.temp_id_, rhs_arena
   );
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata C_VERIFY_EMAIL::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata C_VERIFY_MAIL_REQ::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
       file_level_metadata_Protocol_2eproto[2]);
@@ -937,29 +1055,29 @@ void C_VERIFY_EMAIL::InternalSwap(C_VERIFY_EMAIL* other) {
 
 // ===================================================================
 
-class S_VERIFY_EMAIL::_Internal {
+class S_VERIFY_MAIL_REQ::_Internal {
  public:
 };
 
-S_VERIFY_EMAIL::S_VERIFY_EMAIL(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+S_VERIFY_MAIL_REQ::S_VERIFY_MAIL_REQ(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:Protocol.S_VERIFY_EMAIL)
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_VERIFY_MAIL_REQ)
 }
-S_VERIFY_EMAIL::S_VERIFY_EMAIL(const S_VERIFY_EMAIL& from)
+S_VERIFY_MAIL_REQ::S_VERIFY_MAIL_REQ(const S_VERIFY_MAIL_REQ& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  S_VERIFY_EMAIL* const _this = this; (void)_this;
+  S_VERIFY_MAIL_REQ* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.success_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   _this->_impl_.success_ = from._impl_.success_;
-  // @@protoc_insertion_point(copy_constructor:Protocol.S_VERIFY_EMAIL)
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_VERIFY_MAIL_REQ)
 }
 
-inline void S_VERIFY_EMAIL::SharedCtor(
+inline void S_VERIFY_MAIL_REQ::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
@@ -969,8 +1087,8 @@ inline void S_VERIFY_EMAIL::SharedCtor(
   };
 }
 
-S_VERIFY_EMAIL::~S_VERIFY_EMAIL() {
-  // @@protoc_insertion_point(destructor:Protocol.S_VERIFY_EMAIL)
+S_VERIFY_MAIL_REQ::~S_VERIFY_MAIL_REQ() {
+  // @@protoc_insertion_point(destructor:Protocol.S_VERIFY_MAIL_REQ)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -978,16 +1096,16 @@ S_VERIFY_EMAIL::~S_VERIFY_EMAIL() {
   SharedDtor();
 }
 
-inline void S_VERIFY_EMAIL::SharedDtor() {
+inline void S_VERIFY_MAIL_REQ::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
-void S_VERIFY_EMAIL::SetCachedSize(int size) const {
+void S_VERIFY_MAIL_REQ::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void S_VERIFY_EMAIL::Clear() {
-// @@protoc_insertion_point(message_clear_start:Protocol.S_VERIFY_EMAIL)
+void S_VERIFY_MAIL_REQ::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_VERIFY_MAIL_REQ)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -996,7 +1114,7 @@ void S_VERIFY_EMAIL::Clear() {
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* S_VERIFY_EMAIL::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* S_VERIFY_MAIL_REQ::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
@@ -1033,9 +1151,9 @@ failure:
 #undef CHK_
 }
 
-uint8_t* S_VERIFY_EMAIL::_InternalSerialize(
+uint8_t* S_VERIFY_MAIL_REQ::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_VERIFY_EMAIL)
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_VERIFY_MAIL_REQ)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1049,12 +1167,12 @@ uint8_t* S_VERIFY_EMAIL::_InternalSerialize(
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_VERIFY_EMAIL)
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_VERIFY_MAIL_REQ)
   return target;
 }
 
-size_t S_VERIFY_EMAIL::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Protocol.S_VERIFY_EMAIL)
+size_t S_VERIFY_MAIL_REQ::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.S_VERIFY_MAIL_REQ)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
@@ -1069,17 +1187,17 @@ size_t S_VERIFY_EMAIL::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData S_VERIFY_EMAIL::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData S_VERIFY_MAIL_REQ::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    S_VERIFY_EMAIL::MergeImpl
+    S_VERIFY_MAIL_REQ::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*S_VERIFY_EMAIL::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*S_VERIFY_MAIL_REQ::GetClassData() const { return &_class_data_; }
 
 
-void S_VERIFY_EMAIL::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<S_VERIFY_EMAIL*>(&to_msg);
-  auto& from = static_cast<const S_VERIFY_EMAIL&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_VERIFY_EMAIL)
+void S_VERIFY_MAIL_REQ::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<S_VERIFY_MAIL_REQ*>(&to_msg);
+  auto& from = static_cast<const S_VERIFY_MAIL_REQ&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_VERIFY_MAIL_REQ)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1090,27 +1208,491 @@ void S_VERIFY_EMAIL::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const :
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void S_VERIFY_EMAIL::CopyFrom(const S_VERIFY_EMAIL& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_VERIFY_EMAIL)
+void S_VERIFY_MAIL_REQ::CopyFrom(const S_VERIFY_MAIL_REQ& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_VERIFY_MAIL_REQ)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool S_VERIFY_EMAIL::IsInitialized() const {
+bool S_VERIFY_MAIL_REQ::IsInitialized() const {
   return true;
 }
 
-void S_VERIFY_EMAIL::InternalSwap(S_VERIFY_EMAIL* other) {
+void S_VERIFY_MAIL_REQ::InternalSwap(S_VERIFY_MAIL_REQ* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_.success_, other->_impl_.success_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata S_VERIFY_EMAIL::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata S_VERIFY_MAIL_REQ::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
       file_level_metadata_Protocol_2eproto[3]);
+}
+
+// ===================================================================
+
+class C_VERIFY_EMAIL_CODE::_Internal {
+ public:
+};
+
+C_VERIFY_EMAIL_CODE::C_VERIFY_EMAIL_CODE(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:Protocol.C_VERIFY_EMAIL_CODE)
+}
+C_VERIFY_EMAIL_CODE::C_VERIFY_EMAIL_CODE(const C_VERIFY_EMAIL_CODE& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  C_VERIFY_EMAIL_CODE* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.temp_id_){}
+    , decltype(_impl_.verify_code_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.temp_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.temp_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_temp_id().empty()) {
+    _this->_impl_.temp_id_.Set(from._internal_temp_id(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.verify_code_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.verify_code_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_verify_code().empty()) {
+    _this->_impl_.verify_code_.Set(from._internal_verify_code(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:Protocol.C_VERIFY_EMAIL_CODE)
+}
+
+inline void C_VERIFY_EMAIL_CODE::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.temp_id_){}
+    , decltype(_impl_.verify_code_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.temp_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.temp_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.verify_code_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.verify_code_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+C_VERIFY_EMAIL_CODE::~C_VERIFY_EMAIL_CODE() {
+  // @@protoc_insertion_point(destructor:Protocol.C_VERIFY_EMAIL_CODE)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void C_VERIFY_EMAIL_CODE::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.temp_id_.Destroy();
+  _impl_.verify_code_.Destroy();
+}
+
+void C_VERIFY_EMAIL_CODE::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void C_VERIFY_EMAIL_CODE::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.C_VERIFY_EMAIL_CODE)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.temp_id_.ClearToEmpty();
+  _impl_.verify_code_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* C_VERIFY_EMAIL_CODE::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string temp_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_temp_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "Protocol.C_VERIFY_EMAIL_CODE.temp_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string verify_code = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_verify_code();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "Protocol.C_VERIFY_EMAIL_CODE.verify_code"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* C_VERIFY_EMAIL_CODE::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.C_VERIFY_EMAIL_CODE)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string temp_id = 1;
+  if (!this->_internal_temp_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_temp_id().data(), static_cast<int>(this->_internal_temp_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_VERIFY_EMAIL_CODE.temp_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_temp_id(), target);
+  }
+
+  // string verify_code = 2;
+  if (!this->_internal_verify_code().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_verify_code().data(), static_cast<int>(this->_internal_verify_code().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.C_VERIFY_EMAIL_CODE.verify_code");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_verify_code(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.C_VERIFY_EMAIL_CODE)
+  return target;
+}
+
+size_t C_VERIFY_EMAIL_CODE::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.C_VERIFY_EMAIL_CODE)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string temp_id = 1;
+  if (!this->_internal_temp_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_temp_id());
+  }
+
+  // string verify_code = 2;
+  if (!this->_internal_verify_code().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_verify_code());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData C_VERIFY_EMAIL_CODE::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    C_VERIFY_EMAIL_CODE::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*C_VERIFY_EMAIL_CODE::GetClassData() const { return &_class_data_; }
+
+
+void C_VERIFY_EMAIL_CODE::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<C_VERIFY_EMAIL_CODE*>(&to_msg);
+  auto& from = static_cast<const C_VERIFY_EMAIL_CODE&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.C_VERIFY_EMAIL_CODE)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_temp_id().empty()) {
+    _this->_internal_set_temp_id(from._internal_temp_id());
+  }
+  if (!from._internal_verify_code().empty()) {
+    _this->_internal_set_verify_code(from._internal_verify_code());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void C_VERIFY_EMAIL_CODE::CopyFrom(const C_VERIFY_EMAIL_CODE& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.C_VERIFY_EMAIL_CODE)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool C_VERIFY_EMAIL_CODE::IsInitialized() const {
+  return true;
+}
+
+void C_VERIFY_EMAIL_CODE::InternalSwap(C_VERIFY_EMAIL_CODE* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.temp_id_, lhs_arena,
+      &other->_impl_.temp_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.verify_code_, lhs_arena,
+      &other->_impl_.verify_code_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata C_VERIFY_EMAIL_CODE::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
+      file_level_metadata_Protocol_2eproto[4]);
+}
+
+// ===================================================================
+
+class S_VERIFY_EMAIL_CODE::_Internal {
+ public:
+};
+
+S_VERIFY_EMAIL_CODE::S_VERIFY_EMAIL_CODE(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:Protocol.S_VERIFY_EMAIL_CODE)
+}
+S_VERIFY_EMAIL_CODE::S_VERIFY_EMAIL_CODE(const S_VERIFY_EMAIL_CODE& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  S_VERIFY_EMAIL_CODE* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.success_){}
+    , decltype(_impl_.expired_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&_impl_.success_, &from._impl_.success_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.expired_) -
+    reinterpret_cast<char*>(&_impl_.success_)) + sizeof(_impl_.expired_));
+  // @@protoc_insertion_point(copy_constructor:Protocol.S_VERIFY_EMAIL_CODE)
+}
+
+inline void S_VERIFY_EMAIL_CODE::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.success_){false}
+    , decltype(_impl_.expired_){false}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+S_VERIFY_EMAIL_CODE::~S_VERIFY_EMAIL_CODE() {
+  // @@protoc_insertion_point(destructor:Protocol.S_VERIFY_EMAIL_CODE)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void S_VERIFY_EMAIL_CODE::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void S_VERIFY_EMAIL_CODE::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void S_VERIFY_EMAIL_CODE::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.S_VERIFY_EMAIL_CODE)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.success_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.expired_) -
+      reinterpret_cast<char*>(&_impl_.success_)) + sizeof(_impl_.expired_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* S_VERIFY_EMAIL_CODE::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool success = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool expired = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.expired_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* S_VERIFY_EMAIL_CODE::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.S_VERIFY_EMAIL_CODE)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
+  }
+
+  // bool expired = 2;
+  if (this->_internal_expired() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_expired(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.S_VERIFY_EMAIL_CODE)
+  return target;
+}
+
+size_t S_VERIFY_EMAIL_CODE::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.S_VERIFY_EMAIL_CODE)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool expired = 2;
+  if (this->_internal_expired() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData S_VERIFY_EMAIL_CODE::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    S_VERIFY_EMAIL_CODE::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*S_VERIFY_EMAIL_CODE::GetClassData() const { return &_class_data_; }
+
+
+void S_VERIFY_EMAIL_CODE::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<S_VERIFY_EMAIL_CODE*>(&to_msg);
+  auto& from = static_cast<const S_VERIFY_EMAIL_CODE&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.S_VERIFY_EMAIL_CODE)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_success() != 0) {
+    _this->_internal_set_success(from._internal_success());
+  }
+  if (from._internal_expired() != 0) {
+    _this->_internal_set_expired(from._internal_expired());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void S_VERIFY_EMAIL_CODE::CopyFrom(const S_VERIFY_EMAIL_CODE& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.S_VERIFY_EMAIL_CODE)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool S_VERIFY_EMAIL_CODE::IsInitialized() const {
+  return true;
+}
+
+void S_VERIFY_EMAIL_CODE::InternalSwap(S_VERIFY_EMAIL_CODE* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(S_VERIFY_EMAIL_CODE, _impl_.expired_)
+      + sizeof(S_VERIFY_EMAIL_CODE::_impl_.expired_)
+      - PROTOBUF_FIELD_OFFSET(S_VERIFY_EMAIL_CODE, _impl_.success_)>(
+          reinterpret_cast<char*>(&_impl_.success_),
+          reinterpret_cast<char*>(&other->_impl_.success_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata S_VERIFY_EMAIL_CODE::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
+      file_level_metadata_Protocol_2eproto[5]);
 }
 
 // ===================================================================
@@ -1363,7 +1945,7 @@ void C_LOGIN::InternalSwap(C_LOGIN* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata C_LOGIN::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[4]);
+      file_level_metadata_Protocol_2eproto[6]);
 }
 
 // ===================================================================
@@ -1541,7 +2123,7 @@ void S_LOGIN::InternalSwap(S_LOGIN* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata S_LOGIN::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
-      file_level_metadata_Protocol_2eproto[5]);
+      file_level_metadata_Protocol_2eproto[7]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -1555,13 +2137,21 @@ template<> PROTOBUF_NOINLINE ::Protocol::S_SIGNUP*
 Arena::CreateMaybeMessage< ::Protocol::S_SIGNUP >(Arena* arena) {
   return Arena::CreateMessageInternal< ::Protocol::S_SIGNUP >(arena);
 }
-template<> PROTOBUF_NOINLINE ::Protocol::C_VERIFY_EMAIL*
-Arena::CreateMaybeMessage< ::Protocol::C_VERIFY_EMAIL >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::Protocol::C_VERIFY_EMAIL >(arena);
+template<> PROTOBUF_NOINLINE ::Protocol::C_VERIFY_MAIL_REQ*
+Arena::CreateMaybeMessage< ::Protocol::C_VERIFY_MAIL_REQ >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::C_VERIFY_MAIL_REQ >(arena);
 }
-template<> PROTOBUF_NOINLINE ::Protocol::S_VERIFY_EMAIL*
-Arena::CreateMaybeMessage< ::Protocol::S_VERIFY_EMAIL >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::Protocol::S_VERIFY_EMAIL >(arena);
+template<> PROTOBUF_NOINLINE ::Protocol::S_VERIFY_MAIL_REQ*
+Arena::CreateMaybeMessage< ::Protocol::S_VERIFY_MAIL_REQ >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::S_VERIFY_MAIL_REQ >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::C_VERIFY_EMAIL_CODE*
+Arena::CreateMaybeMessage< ::Protocol::C_VERIFY_EMAIL_CODE >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::C_VERIFY_EMAIL_CODE >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::S_VERIFY_EMAIL_CODE*
+Arena::CreateMaybeMessage< ::Protocol::S_VERIFY_EMAIL_CODE >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::S_VERIFY_EMAIL_CODE >(arena);
 }
 template<> PROTOBUF_NOINLINE ::Protocol::C_LOGIN*
 Arena::CreateMaybeMessage< ::Protocol::C_LOGIN >(Arena* arena) {

@@ -10,7 +10,9 @@ public:
 	~RedisConnection();
 
 	bool		Connect(const char* ip, int port);
-	redisReply*	Execute(std::string query);
+	redisReply*	Execute(const std::string& query);
+
+	static	bool	isReplyError(redisReply* reply);
 private:
 	redisContext*	_connection = nullptr;
 };
