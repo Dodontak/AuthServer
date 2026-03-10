@@ -22,6 +22,7 @@ message C_VERIFY_MAIL_REQ {
 // 2. 인증코드 발송 성공여부
 message S_VERIFY_MAIL_REQ {
 	bool success = 1;
+	string temp_id = 2;
 }
 
 // 3. 이메일 인증 확인 요청

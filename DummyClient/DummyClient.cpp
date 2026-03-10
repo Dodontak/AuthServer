@@ -26,8 +26,6 @@ void	SignUp(SessionRef session)
 	WriteBufferRef	writeBuffer = ServerPacketHandler::MakeWriteBuffer(pkt);
 	session->Send(writeBuffer);
 }
-
-
 //std::this_thread::sleep_for(chrono::seconds(1));
 
 void	SignUpThread(ClientServiceRef service)

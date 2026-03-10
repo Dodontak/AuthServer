@@ -19,13 +19,12 @@ bool	Handle_INVALID(std::function<void()>& outFunc, PacketSessionRef session, BY
 
 void	Handle_C_SIGNUP(const PacketSessionRef& session, const Protocol::C_SIGNUP& pkt)
 {
-	std::cout << "Handle_C_SIGNUP " << session->GetFd() << std::endl;
 	Protocol::S_SIGNUP	response;
 	std::string nickname = pkt.nickname();
 	std::string email = pkt.email();
 	bool		skip_email = pkt.skip_email();
 	
-	std::string	pgsql = "SELECT user_id FROM auth.users WHERE nickname = " + nickname + " OR " + email;
+	std::string	pgsql = "SELECT user_id FROM auth.users WHERE nickname = '" + nickname + "' OR email = '" + email + "'";
 	//TODO 커넥션풀에 남은거 없을 때 처리
 	PGConnection*	pg = GDBConnectionPool->PopPG();
 	PGresult*	pgResult = pg->ExecuteSQL(pgsql.c_str());
@@ -81,7 +80,6 @@ void	Handle_C_SIGNUP(const PacketSessionRef& session, const Protocol::C_SIGNUP& 
 		response.set_success(true);
 		response.set_skip_email(skip_email);
 		response.set_temp_id(temp_id);
-		std::cout << "send success " << session->GetFd() << std::endl;
 		session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 	}
 	else// ID,email 중복 있음 생성 불가능
@@ -128,6 +126,7 @@ void	Handle_C_VERIFY_MAIL_REQ(const PacketSessionRef& session, const Protocol::C
 	GDBConnectionPool->Push(redis);
 	//TODO EmailAPI로 이메일 보내기, 실패시 처리
 	response.set_success(true);
+	response.set_temp_id(temp_id);
 	session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 }
 
@@ -207,11 +206,11 @@ void	Handle_C_VERIFY_EMAIL_CODE(const PacketSessionRef& session, const Protocol:
 	GDBConnectionPool->Push(redis);
 
 	std::string	pgsql = "INSERT INTO auth.users (nickname, password, email) VALUES \
-		(" + a2_nickname + ", " + a3_password + ", " + a4_email + ")";
+		('" + a2_nickname + "', '" + a3_password + "', '" + a4_email + "')";
 	PGConnection*	pg = GDBConnectionPool->PopPG();
 	PGresult*	pgResult = pg->ExecuteSQL(pgsql.c_str());
 	GDBConnectionPool->Push(pg);
-
+	PQclear(pgResult);
 	response.set_success(true);
 	response.set_expired(false);
 	session->Send(ClientPacketHandler::MakeWriteBuffer(response));

@@ -729,8 +729,23 @@ class S_VERIFY_MAIL_REQ final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kTempIdFieldNumber = 2,
     kSuccessFieldNumber = 1,
   };
+  // string temp_id = 2;
+  void clear_temp_id();
+  const std::string& temp_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_temp_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_temp_id();
+  PROTOBUF_NODISCARD std::string* release_temp_id();
+  void set_allocated_temp_id(std::string* temp_id);
+  private:
+  const std::string& _internal_temp_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_temp_id(const std::string& value);
+  std::string* _internal_mutable_temp_id();
+  public:
+
   // bool success = 1;
   void clear_success();
   bool success() const;
@@ -748,6 +763,7 @@ class S_VERIFY_MAIL_REQ final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr temp_id_;
     bool success_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -1750,6 +1766,56 @@ inline void S_VERIFY_MAIL_REQ::_internal_set_success(bool value) {
 inline void S_VERIFY_MAIL_REQ::set_success(bool value) {
   _internal_set_success(value);
   // @@protoc_insertion_point(field_set:Protocol.S_VERIFY_MAIL_REQ.success)
+}
+
+// string temp_id = 2;
+inline void S_VERIFY_MAIL_REQ::clear_temp_id() {
+  _impl_.temp_id_.ClearToEmpty();
+}
+inline const std::string& S_VERIFY_MAIL_REQ::temp_id() const {
+  // @@protoc_insertion_point(field_get:Protocol.S_VERIFY_MAIL_REQ.temp_id)
+  return _internal_temp_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void S_VERIFY_MAIL_REQ::set_temp_id(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.temp_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Protocol.S_VERIFY_MAIL_REQ.temp_id)
+}
+inline std::string* S_VERIFY_MAIL_REQ::mutable_temp_id() {
+  std::string* _s = _internal_mutable_temp_id();
+  // @@protoc_insertion_point(field_mutable:Protocol.S_VERIFY_MAIL_REQ.temp_id)
+  return _s;
+}
+inline const std::string& S_VERIFY_MAIL_REQ::_internal_temp_id() const {
+  return _impl_.temp_id_.Get();
+}
+inline void S_VERIFY_MAIL_REQ::_internal_set_temp_id(const std::string& value) {
+  
+  _impl_.temp_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* S_VERIFY_MAIL_REQ::_internal_mutable_temp_id() {
+  
+  return _impl_.temp_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* S_VERIFY_MAIL_REQ::release_temp_id() {
+  // @@protoc_insertion_point(field_release:Protocol.S_VERIFY_MAIL_REQ.temp_id)
+  return _impl_.temp_id_.Release();
+}
+inline void S_VERIFY_MAIL_REQ::set_allocated_temp_id(std::string* temp_id) {
+  if (temp_id != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.temp_id_.SetAllocated(temp_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.temp_id_.IsDefault()) {
+    _impl_.temp_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Protocol.S_VERIFY_MAIL_REQ.temp_id)
 }
 
 // -------------------------------------------------------------------
