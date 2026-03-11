@@ -104,7 +104,7 @@ void	Handle_S_LOGIN(const PacketSessionRef& session, const Protocol::S_LOGIN& pk
 	{
 		string	token = pkt.token();
 		string	user_id;
-		if (token == "asd"/*VerifyAccessToken(token, user_id)*/)//토큰부분 잠시 제거
+		if (token == "token"/*VerifyAccessToken(token, user_id)*/)//토큰부분 잠시 제거
 		{
 			cout << "login suceess! user : " << user_id << endl;
 		}

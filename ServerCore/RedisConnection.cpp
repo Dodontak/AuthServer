@@ -32,20 +32,13 @@ void	RedisConnection::Clear()
 	}
 }
 
-bool	RedisConnection::Execute(const string& query)
+bool	RedisConnection::IsReplyError()
 {
-	_reply = (redisReply*)redisCommand(_connection, query.c_str());
-	return true;
+	if (_reply == nullptr || _reply->type == REDIS_REPLY_ERROR) {
+		if (_reply == nullptr)
+			return true;
+		else
+			return true;
+	}
+	return false;
 }
-
-// bool	RedisConnection::isReplyError(redisReply* reply)
-// {
-// 	if (reply == nullptr || reply->type == REDIS_REPLY_ERROR) {
-// 		if (reply == nullptr)
-// 			return true;
-// 		else
-// 			freeReplyObject(reply);
-// 			return true;
-// 	}
-// 	return false;
-// }

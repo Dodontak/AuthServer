@@ -1406,10 +1406,11 @@ class S_LOGIN final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kTokenFieldNumber = 2,
+    kTokenFieldNumber = 3,
     kSuccessFieldNumber = 1,
+    kIsBlockFieldNumber = 2,
   };
-  // string token = 2;
+  // string token = 3;
   void clear_token();
   const std::string& token() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -1432,6 +1433,15 @@ class S_LOGIN final :
   void _internal_set_success(bool value);
   public:
 
+  // bool is_block = 2;
+  void clear_is_block();
+  bool is_block() const;
+  void set_is_block(bool value);
+  private:
+  bool _internal_is_block() const;
+  void _internal_set_is_block(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:Protocol.S_LOGIN)
  private:
   class _Internal;
@@ -1442,6 +1452,7 @@ class S_LOGIN final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
     bool success_;
+    bool is_block_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -2176,7 +2187,27 @@ inline void S_LOGIN::set_success(bool value) {
   // @@protoc_insertion_point(field_set:Protocol.S_LOGIN.success)
 }
 
-// string token = 2;
+// bool is_block = 2;
+inline void S_LOGIN::clear_is_block() {
+  _impl_.is_block_ = false;
+}
+inline bool S_LOGIN::_internal_is_block() const {
+  return _impl_.is_block_;
+}
+inline bool S_LOGIN::is_block() const {
+  // @@protoc_insertion_point(field_get:Protocol.S_LOGIN.is_block)
+  return _internal_is_block();
+}
+inline void S_LOGIN::_internal_set_is_block(bool value) {
+  
+  _impl_.is_block_ = value;
+}
+inline void S_LOGIN::set_is_block(bool value) {
+  _internal_set_is_block(value);
+  // @@protoc_insertion_point(field_set:Protocol.S_LOGIN.is_block)
+}
+
+// string token = 3;
 inline void S_LOGIN::clear_token() {
   _impl_.token_.ClearToEmpty();
 }

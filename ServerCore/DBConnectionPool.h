@@ -16,8 +16,8 @@ public:
 	bool	Init(int maxRedis, const char* redisIp, int redisPort,
 					int maxPostgres, const char* pgConString);
 
-	void	Push(PGConnection* conn);
-	void	Push(RedisConnection* conn);
+	void	Push(PGConnection** conn);
+	void	Push(RedisConnection** conn);
 
 
 	PGConnection*		PopPG();

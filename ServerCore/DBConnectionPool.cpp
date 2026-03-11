@@ -29,16 +29,18 @@ bool	DBConnectionPool::Init(int maxRedis, const char* redisIp, int redisPort,
 	return true;
 }
 
-void	DBConnectionPool::Push(PGConnection* conn)
+void	DBConnectionPool::Push(PGConnection** conn)
 {
 	std::lock_guard<std::mutex>	lock(_mPostgres);
-	_postgresConnections.push_back(conn);
+	_postgresConnections.push_back(*conn);
+	*conn = nullptr;
 }
 
-void	DBConnectionPool::Push(RedisConnection* conn)
+void	DBConnectionPool::Push(RedisConnection** conn)
 {
 	std::lock_guard<std::mutex>	lock(_mRedis);
-	_redisConnections.push_back(conn);
+	_redisConnections.push_back(*conn);
+	*conn = nullptr;
 }
 
 
