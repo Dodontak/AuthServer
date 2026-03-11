@@ -9,10 +9,12 @@ public:
 	RedisConnection() {}
 	~RedisConnection();
 
-	bool		Connect(const char* ip, int port);
-	redisReply*	Execute(const std::string& query);
+	bool	Connect(const char* ip, int port);
+	void	Clear();
 
-	static	bool	isReplyError(redisReply* reply);
+	bool	Execute(const std::string& query);
+	
 private:
 	redisContext*	_connection = nullptr;
+	redisReply*		_reply = nullptr;
 };

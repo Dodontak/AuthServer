@@ -9,30 +9,29 @@
 #include <libpq-fe.h>
 #include <iomanip>
 #include <openssl/rand.h>
-#include <jwt-cpp/jwt.h>
 
 using namespace std;
 
 function<bool(function<void()>&, PacketSessionRef&, BYTE*, int32)> GPacketHandler[UINT16_MAX];
 
-string CreateAccessToken(const string& user_id, const string& nickname)
-{
-    // 비밀키는 환경변수나 설정파일에서 읽어야 해요
-    // 코드에 하드코딩 절대 금지
-    const string SECRET_KEY = getenv("JWT_SECRET_KEY");
+// string CreateAccessToken(const string& user_id, const string& nickname)
+// {
+//     // 비밀키는 환경변수나 설정파일에서 읽어야 해요
+//     // 코드에 하드코딩 절대 금지
+//     const string SECRET_KEY = getenv("JWT_SECRET_KEY");
 
-    auto token = jwt::create()
-        .set_issuer("auth_server")          // 발급자
-        .set_type("JWT")
-        .set_payload_claim("user_id",  jwt::claim(user_id))
-        .set_payload_claim("nickname", jwt::claim(nickname))
-        .set_issued_at(chrono::system_clock::now())
-        .set_expires_at(chrono::system_clock::now() 
-                        + chrono::hours(1))    // 1시간
-        .sign(jwt::algorithm::hs256{SECRET_KEY});   // 비밀키로 서명
+//     auto token = jwt::create()
+//         .set_issuer("auth_server")          // 발급자
+//         .set_type("JWT")
+//         .set_payload_claim("user_id",  jwt::claim(user_id))
+//         .set_payload_claim("nickname", jwt::claim(nickname))
+//         .set_issued_at(chrono::system_clock::now())
+//         .set_expires_at(chrono::system_clock::now() 
+//                         + chrono::hours(1))    // 1시간
+//         .sign(jwt::algorithm::hs256{SECRET_KEY});   // 비밀키로 서명
 
-    return token;
-}
+//     return token;
+// }
 
 bool	Handle_INVALID(function<void()>& outFunc, PacketSessionRef session, BYTE* buffer, int32 len)
 {
@@ -295,7 +294,7 @@ void	Handle_C_LOGIN(const PacketSessionRef& session, const Protocol::C_LOGIN& pk
 
 	if (BCrypt::validatePassword(password, a_password))
 	{//로그인 성공
-		string	token = CreateAccessToken(a_user_id, nickname);
+		string	token = "token";//CreateAccessToken(a_user_id, nickname);
 		response.set_success(true);
 		response.set_token(token);
 		session->Send(ClientPacketHandler::MakeWriteBuffer(response));
