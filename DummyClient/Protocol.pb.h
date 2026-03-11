@@ -1062,9 +1062,24 @@ class S_VERIFY_EMAIL_CODE final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kNicknameFieldNumber = 3,
     kSuccessFieldNumber = 1,
     kExpiredFieldNumber = 2,
   };
+  // string nickname = 3;
+  void clear_nickname();
+  const std::string& nickname() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_nickname(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_nickname();
+  PROTOBUF_NODISCARD std::string* release_nickname();
+  void set_allocated_nickname(std::string* nickname);
+  private:
+  const std::string& _internal_nickname() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_nickname(const std::string& value);
+  std::string* _internal_mutable_nickname();
+  public:
+
   // bool success = 1;
   void clear_success();
   bool success() const;
@@ -1091,6 +1106,7 @@ class S_VERIFY_EMAIL_CODE final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr nickname_;
     bool success_;
     bool expired_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -1390,8 +1406,23 @@ class S_LOGIN final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kTokenFieldNumber = 2,
     kSuccessFieldNumber = 1,
   };
+  // string token = 2;
+  void clear_token();
+  const std::string& token() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_token(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_token();
+  PROTOBUF_NODISCARD std::string* release_token();
+  void set_allocated_token(std::string* token);
+  private:
+  const std::string& _internal_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_token(const std::string& value);
+  std::string* _internal_mutable_token();
+  public:
+
   // bool success = 1;
   void clear_success();
   bool success() const;
@@ -1409,6 +1440,7 @@ class S_LOGIN final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
     bool success_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -1966,6 +1998,56 @@ inline void S_VERIFY_EMAIL_CODE::set_expired(bool value) {
   // @@protoc_insertion_point(field_set:Protocol.S_VERIFY_EMAIL_CODE.expired)
 }
 
+// string nickname = 3;
+inline void S_VERIFY_EMAIL_CODE::clear_nickname() {
+  _impl_.nickname_.ClearToEmpty();
+}
+inline const std::string& S_VERIFY_EMAIL_CODE::nickname() const {
+  // @@protoc_insertion_point(field_get:Protocol.S_VERIFY_EMAIL_CODE.nickname)
+  return _internal_nickname();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void S_VERIFY_EMAIL_CODE::set_nickname(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.nickname_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Protocol.S_VERIFY_EMAIL_CODE.nickname)
+}
+inline std::string* S_VERIFY_EMAIL_CODE::mutable_nickname() {
+  std::string* _s = _internal_mutable_nickname();
+  // @@protoc_insertion_point(field_mutable:Protocol.S_VERIFY_EMAIL_CODE.nickname)
+  return _s;
+}
+inline const std::string& S_VERIFY_EMAIL_CODE::_internal_nickname() const {
+  return _impl_.nickname_.Get();
+}
+inline void S_VERIFY_EMAIL_CODE::_internal_set_nickname(const std::string& value) {
+  
+  _impl_.nickname_.Set(value, GetArenaForAllocation());
+}
+inline std::string* S_VERIFY_EMAIL_CODE::_internal_mutable_nickname() {
+  
+  return _impl_.nickname_.Mutable(GetArenaForAllocation());
+}
+inline std::string* S_VERIFY_EMAIL_CODE::release_nickname() {
+  // @@protoc_insertion_point(field_release:Protocol.S_VERIFY_EMAIL_CODE.nickname)
+  return _impl_.nickname_.Release();
+}
+inline void S_VERIFY_EMAIL_CODE::set_allocated_nickname(std::string* nickname) {
+  if (nickname != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.nickname_.SetAllocated(nickname, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.nickname_.IsDefault()) {
+    _impl_.nickname_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Protocol.S_VERIFY_EMAIL_CODE.nickname)
+}
+
 // -------------------------------------------------------------------
 
 // C_LOGIN
@@ -2092,6 +2174,56 @@ inline void S_LOGIN::_internal_set_success(bool value) {
 inline void S_LOGIN::set_success(bool value) {
   _internal_set_success(value);
   // @@protoc_insertion_point(field_set:Protocol.S_LOGIN.success)
+}
+
+// string token = 2;
+inline void S_LOGIN::clear_token() {
+  _impl_.token_.ClearToEmpty();
+}
+inline const std::string& S_LOGIN::token() const {
+  // @@protoc_insertion_point(field_get:Protocol.S_LOGIN.token)
+  return _internal_token();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void S_LOGIN::set_token(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.token_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Protocol.S_LOGIN.token)
+}
+inline std::string* S_LOGIN::mutable_token() {
+  std::string* _s = _internal_mutable_token();
+  // @@protoc_insertion_point(field_mutable:Protocol.S_LOGIN.token)
+  return _s;
+}
+inline const std::string& S_LOGIN::_internal_token() const {
+  return _impl_.token_.Get();
+}
+inline void S_LOGIN::_internal_set_token(const std::string& value) {
+  
+  _impl_.token_.Set(value, GetArenaForAllocation());
+}
+inline std::string* S_LOGIN::_internal_mutable_token() {
+  
+  return _impl_.token_.Mutable(GetArenaForAllocation());
+}
+inline std::string* S_LOGIN::release_token() {
+  // @@protoc_insertion_point(field_release:Protocol.S_LOGIN.token)
+  return _impl_.token_.Release();
+}
+inline void S_LOGIN::set_allocated_token(std::string* token) {
+  if (token != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.token_.SetAllocated(token, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.token_.IsDefault()) {
+    _impl_.token_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Protocol.S_LOGIN.token)
 }
 
 #ifdef __GNUC__

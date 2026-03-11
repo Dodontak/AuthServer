@@ -34,6 +34,7 @@ message C_VERIFY_EMAIL_CODE {
 message S_VERIFY_EMAIL_CODE {
 	bool success = 1;
 	bool expired = 2;
+	string nickname = 3;//더미클라 테스트용
 }
 
 // 4. 로그인 요청
@@ -44,4 +45,5 @@ message C_LOGIN {
 // 4. 로그인 성공 여부
 message S_LOGIN {
 	bool success = 1;
+	string token = 2;
 }

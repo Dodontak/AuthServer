@@ -86,18 +86,18 @@ void	Session::Disconnect()
 			if (ret != 1) 
 			{// 정상|비정상 종료. 상대 클로즈노티 대기.하다가 세션 disconnect
 				// 2초 디스커넥트 타이머
-				// TimerRef	timer = make_shared<Timer>(
-				// 	[self_weak = std::weak_ptr<Session>(shared_from_this())]()
-				// 	{
-				// 		if (std::shared_ptr<Session> session = self_weak.lock())
-				// 			session->ProcessDisconnect(true);
-				// 	},
-				// 	2,
-				// 	service
-				// );
-				// EpollEvent*	timerEvent = new EpollEvent(timer, EventType::Timer);
-				// timer->SetEpollEvent(timerEvent);
-				// epollCore->Register(timerEvent);
+				TimerRef	timer = make_shared<Timer>(
+					[self_weak = std::weak_ptr<Session>(shared_from_this())]()
+					{
+						if (std::shared_ptr<Session> session = self_weak.lock())
+							session->ProcessDisconnect(true);
+					},
+					2,
+					service
+				);
+				EpollEvent*	timerEvent = new EpollEvent(timer, EventType::Timer);
+				timer->SetEpollEvent(timerEvent);
+				epollCore->Register(timerEvent);
 			}
 		}
 	}

@@ -21,7 +21,7 @@ void	SignUp(SessionRef session)
 	pkt.set_email(email);
 	nickname = GetTempId(20);
 	pkt.set_nickname(nickname);
-	password = GetTempId(20);
+	password = "asdqwezxc123";//GetTempId(20); 테스트용 password
 	pkt.set_password(password);
 	WriteBufferRef	writeBuffer = ServerPacketHandler::MakeWriteBuffer(pkt);
 	session->Send(writeBuffer);
@@ -31,7 +31,8 @@ void	SignUp(SessionRef session)
 void	SignUpThread(ClientServiceRef service)
 {
 	std::this_thread::sleep_for(chrono::seconds(1));
-	for (int i = 0; i < 10; i++)
+	cout << "Start SignUpThread" << endl;
+	for (int i = 0; i < 5; i++)
 	{//랜덤하게 10개 세션 골라서 SignUp시킴
 		SessionRef session = service->GetRandomSession();
 		if (session)
@@ -53,15 +54,20 @@ void	WorkerThread()
 	}
 }
 
-int main()
+int main(int ac, char** av)
 {
+	if (ac != 2)
+	{
+		cout << av[0] << " [port]" << endl;
+		return 1;	
+	}
 	ServerPacketHandler::Init();
 
 	for (int i = 0; i < 10; i++)
 		GThreadManager->Launch(WorkerThread);
 	ClientServiceRef	service = make_shared<ClientService>(
 		"127.0.0.1",
-		4242,
+		atoi(av[1]),
 		[](int clientSocket, sockaddr_in addr, ServiceRef service) {
         	return std::make_shared<ServerSession>(clientSocket, addr, service);
     	},

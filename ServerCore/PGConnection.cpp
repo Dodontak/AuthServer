@@ -3,6 +3,7 @@
 PGConnection::~PGConnection()
 {
 	PQfinish(_connection);
+	Clear();
 }
 
 bool	PGConnection::Connect(const char* connectionString)
@@ -13,8 +14,64 @@ bool	PGConnection::Connect(const char* connectionString)
 	return true;
 }
 
-
-PGresult*	PGConnection::ExecuteSQL(const char* sql)
+void	PGConnection::Clear()
 {
-	return PQexec(_connection, sql);
+	ClearValues();
+	if (_result)
+	{
+		PQclear(_result);
+		_result = nullptr;
+	}
+}
+
+void	PGConnection::AddValue(const std::string& val)
+{
+	_values.push_back(val);
+}
+
+void	PGConnection::ClearValues()
+{
+	_values.resize(0);
+}
+
+bool	PGConnection::ExecuteSQL(const std::string& sql)
+{
+	std::vector<const char*>	value_ptrs(_values.size());
+	for (int i = 0; i < _values.size(); ++i)
+		value_ptrs[i] = _values[i].c_str();
+	_result = PQexecParams(
+		_connection,
+		sql.c_str(),
+		_values.size(),
+		NULL,
+		value_ptrs.data(),
+		NULL,
+		NULL,
+		0
+	);
+
+	ClearValues();
+	ExecStatusType	ret = PQresultStatus(_result);
+	if (ret != PGRES_COMMAND_OK && ret != PGRES_TUPLES_OK)//실패했다면
+	{
+		std::cout << PQerrorMessage(_connection) << endl;
+		Clear();
+		return false;
+	}
+	return true;
+}
+
+int	PGConnection::GetRowCount()
+{
+	return PQntuples(_result);
+}
+
+std::string	PGConnection::GetValue(int row, int col)
+{
+	return PQgetvalue(_result, row, col);
+}
+
+bool	PGConnection::IsNull(int row, int col)
+{
+	return PQgetisnull(_result, row, col);
 }
