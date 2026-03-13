@@ -4,8 +4,8 @@
 #include "Utils.h"
 #include "EpollEvent.h"
 #include "Session.h"
-#include <cstring> // memset
-#include <sys/socket.h> // socket
+#include <cstring>
+#include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
 

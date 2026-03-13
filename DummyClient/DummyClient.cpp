@@ -1,4 +1,3 @@
-
 #include "Service.h"
 #include "Types.h"
 #include "ThreadManager.h"
@@ -6,6 +5,7 @@
 #include "ServerPacketHandler.h"
 #include "DBConnectionPool.h"
 #include "ServerSession.h"
+#include "SMTPConnection.h"
 #include <thread>
 #include <libpq-fe.h>
 #include <iostream>
@@ -17,9 +17,9 @@ void	SignUp(SessionRef session)
 {
 	Protocol::C_SIGNUP	pkt;
 	std::string	email, nickname, password;
-	email = GetTempId(20) + '@' + GetTempId(6) + ".com";
+	email = GetTempId(10) + '@' + GetTempId(3) + ".com";
 	pkt.set_email(email);
-	nickname = GetTempId(20);
+	nickname = GetTempId(10);
 	pkt.set_nickname(nickname);
 	password = "asdqwezxc123";//GetTempId(20); 테스트용 password
 	pkt.set_password(password);

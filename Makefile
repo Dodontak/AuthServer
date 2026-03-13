@@ -53,6 +53,7 @@ SERVER_CORE_SRC_FILE = CoreGlobal.cpp \
 	RedisConnection.cpp \
 	Service.cpp \
 	Session.cpp \
+	SMTPConnection.cpp \
 	SslCtx.cpp \
 	SslObject.cpp \
 	ThreadManager.cpp \
