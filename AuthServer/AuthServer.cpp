@@ -27,7 +27,8 @@ void	WorkerThread()
 			GThreadManager->_cv.wait(lock, []() { return !GJobQueue->Empty(); });
 			job = GJobQueue->PopJob();
 		}
-		job->Execute();
+		if (job)
+			job->Execute();
 	}
 }
 
