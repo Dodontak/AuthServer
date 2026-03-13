@@ -10,8 +10,11 @@ public:
 	~SslObject();
 
 	bool	Init();
-	int		SslAccept();
-	int		SslConnect();
+	int		Accept();
+	int		Connect();
+	int		Read(BYTE* buffer, int readSize, size_t* readLen);
+	int		HasPendingData();
+	int		Write(BYTE* buffer, int dataLen, size_t* writeLen);
 	SSL*	GetSsl() { return _ssl; }
 private:
 	SSL_CTX*	_ctx;

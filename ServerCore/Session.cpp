@@ -140,29 +140,27 @@ void	Session::ProcessDisconnect(bool isCanSslShutdown)
 
 void	Session::ProcessRead()
 {
-	SSL*	ssl = _sslObject->GetSsl();
 	do {
-		int	readLen = SSL_read(ssl, _readBuffer.ReadPos(), READ_SIZE);
-		if (readLen <= 0)
+		size_t	readLen = 0;
+		int	ret = _sslObject->Read(_readBuffer.ReadPos(), READ_SIZE, &readLen);
+		switch (ret)
 		{
-			int err = SSL_get_error(ssl, readLen);
-			if (err == SSL_ERROR_WANT_READ){//복호화 하기에 데이터 부족함.
-				return;
-			} else if (err == SSL_ERROR_ZERO_RETURN) {
-				// 상대가 close 함. SSL_shutdown ok
+		case 1://복호화 하기에 데이터 부족함
+			return;
+		case 2://상대가 close함.ssl_shutdown ok
+			ProcessDisconnect(true);
+			return;
+		case 3://SSL에러 ssl_shutdown 금지
+			ProcessDisconnect(false);
+			return;
+		default ://성공
+			if (_readBuffer.OnWrite(readLen) == false)
+			{
 				ProcessDisconnect(true);
-				return;
-			} else {//SSL에 심각한 에러 발생. SSL_shutdown 금지.
-				ProcessDisconnect(false);
 				return;
 			}
 		}
-		if (_readBuffer.OnWrite(readLen) == false)
-		{
-			ProcessDisconnect(true);
-			return;
-		}
-	} while (SSL_has_pending(ssl));
+	} while (_sslObject->HasPendingData());//복호화 할 수 있는 데이터 남아있으면 반복
 
 	int	processLen = OnRead(_readBuffer.ReadPos(), _readBuffer.DataSize());
 	_readBuffer.OnRead(processLen);
@@ -171,12 +169,12 @@ void	Session::ProcessRead()
 
 void	Session::ProcessWrite()
 {
-	SSL*	ssl = _sslObject->GetSsl();
 	while (!_writeBuffers.empty())//writebuffers가 빌때까지 반복
 	{
 		WriteBufferRef	writeBuffer;
 		BYTE*			buffer;
 		int				dataLen;
+
 		{
 			std::lock_guard<std::mutex>	lock(_m);
 
@@ -187,33 +185,32 @@ void	Session::ProcessWrite()
 		}
 		
 		size_t	writeLen = 0;
-		int rtn = SSL_write_ex(ssl, buffer, dataLen, &writeLen);
-		if (rtn == 0)
-		{// 실패
-			int err = SSL_get_error(ssl, rtn);
-			if (err == SSL_ERROR_WANT_WRITE){//커널 버퍼 공간 부족
-				return;
-			} else if (err == SSL_ERROR_ZERO_RETURN) {
-				// 상대가 연결 종료함
-				ProcessDisconnect(true);
-				return;
-			} else {//SSL에 심각한 에러 발생. SSL_shutdown 금지.
-				ProcessDisconnect(false);
-				return;
-			}
-		}
-		else if (writeLen != dataLen)
-		{//일부만 write 성공 시
+		int ret = _sslObject->Write(buffer, dataLen, &writeLen);
+		switch (ret)
+		{
+		case 1://일부만 write 성공
 			if (writeBuffer->UpdateWritePos(writeLen) == false)
 			{
 				ProcessDisconnect(true);
 				return;
 			}
-			std::lock_guard<std::mutex>	lock(_m);
-			_writeBuffers.push_front(writeBuffer);
+			{
+				std::lock_guard<std::mutex>	lock(_m);
+				_writeBuffers.push_front(writeBuffer);
+			}
+			return;
+		case 2://커널 버퍼 공간 부족
+			return;
+		case 3://상대가 연결 종료
+			ProcessDisconnect(true);
+			return;
+		case 4://SSL심각한 오류.
+			ProcessDisconnect(false);
+			return;
 		}
-		ModEvent(EventType::Read);
 	}
+	//쓸거 다 썼으면 Read로 변경
+	ModEvent(EventType::Read);
 }
 
 void	Session::ProcessHandShaking()
@@ -226,7 +223,7 @@ void	Session::ProcessHandShaking()
 
 void	Session::ProcessSslAccept()
 {
-	int	ret = _sslObject->SslAccept();
+	int	ret = _sslObject->Accept();
 	switch (ret)
 	{
 		case 0 :
@@ -246,7 +243,7 @@ void	Session::ProcessSslAccept()
 
 void	Session::ProcessSslConnect()
 {
-	int	ret = _sslObject->SslConnect();
+	int	ret = _sslObject->Connect();
 	switch (ret)
 	{
 		case 0 :
