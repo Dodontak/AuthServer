@@ -66,7 +66,7 @@ SERVER_CORE_OBJ_FILE = $(SERVER_CORE_SRC_FILE:.cpp=.o)
 SERVER_CORE_OBJ = $(addprefix $(SERVER_CORE_OBJ_DIR)/, $(SERVER_CORE_OBJ_FILE))
 #======= ServerCore ========#
 
-INC = -I$(SERVER_CORE_DIR) -Ijwt-cpp/include
+INC = -I$(SERVER_CORE_DIR) -I$(SERVER_CORE_DIR)/jwt
 
 CXX = g++
 CXXFLAGS = -MMD -MP # -Wall 

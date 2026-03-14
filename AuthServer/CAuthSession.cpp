@@ -33,6 +33,7 @@ void	CAuthSession::OnReadPacket(BYTE* buffer, int len)
 	else
 	{
 		JobRef	job = std::make_shared<Job>(callback);
-		GThreadManager->InsertJob(job);
+		GJobQueue->PushJob(job);
+		GThreadManager->_workerCv.notify_one();
 	}
 }

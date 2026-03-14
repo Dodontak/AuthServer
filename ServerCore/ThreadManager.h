@@ -16,14 +16,16 @@ public:
 	
 	void	Launch(std::function<void()> callback);
 	void	Join();
-	void	InsertJob(std::function<void()> callback);
-	void	InsertJob(JobRef job);
 	
-	std::mutex				_m;
-	std::condition_variable	_cv;
+	std::mutex				_workerMutex;
+	std::condition_variable	_workerCv;
+
+	std::mutex				_mailMutex;
+	std::condition_variable	_mailCv;
 private:
 	static void	InitTLS();
 	static void	DestroyTLS();
 
 	std::vector<std::thread>		_workerThreads;
+	std::vector<std::thread>		_mailThreads;
 };

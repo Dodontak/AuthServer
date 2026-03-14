@@ -6,9 +6,12 @@
 #include <string>
 #include <mutex>
 #include <queue>
+#include <memory>
 
 typedef struct Mail
 {
+	Mail(std::string _emailTo, std::string _subject, std::string _message) :
+		emailTo(_emailTo), subject(_subject), message(_message) {}
 	std::string	emailTo;
 	std::string	subject;
 	std::string	message;
@@ -17,9 +20,12 @@ typedef struct Mail
 class SMTPManager
 {
 public:
-	SMTPManager(std::string emailFrom);
+	SMTPManager();
 	~SMTPManager();
-	void					PushMail(std::shared_ptr<Mail>& mail);
+	void	Init(std::string emailFrom);
+
+	bool					Empty();
+	void					PushMail(std::shared_ptr<Mail> mail);
 	std::shared_ptr<Mail>	PopMail();
 
 	SMTPConnectionRef	GetConnection();
@@ -42,10 +48,14 @@ public:
 			std::string emailFrom, std::string STMPServer);
 	~SMTPConnection();
 
+	void	SendMail(std::shared_ptr<Mail> mail);
+	
+private:
 	void	Ehlo();
 	void	AuthLogin();
 	void	SendMail(const std::string& emailTo, const std::string& subject, const std::string& message);
 	void	Quit();
+
 private:
 	BYTE		_readBuffer[READ_SIZE + 1];
 	std::string	_writeBuffer;

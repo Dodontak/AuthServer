@@ -2,9 +2,6 @@
 #include "Utils.h"
 #include "unistd.h"
 #include <netinet/in.h>
-#include <openssl/bio.h>
-#include <openssl/evp.h>
-#include <openssl/buffer.h>
 #include <netdb.h>
 #include <arpa/inet.h>
 
@@ -32,12 +29,17 @@ string Base64Encode(const string& input)
      SMTPManager
 ===================*/
 
-SMTPManager::SMTPManager(string emailFrom)	: _ctx(false), _DNSAddress("google.co.kr"),
-	_STMPServer("smtp.gmail.com"), _emailFrom(emailFrom), _serverPort(587)
+SMTPManager::SMTPManager() : _ctx(false), _DNSAddress("google.co.kr"),
+	_STMPServer("smtp.gmail.com"), _serverPort(587)
 {
 }
 
 SMTPManager::~SMTPManager() {}
+
+void	SMTPManager::Init(string emailFrom)
+{
+	_emailFrom = emailFrom;
+}
 
 SMTPConnectionRef	SMTPManager::GetConnection()
 {
@@ -75,7 +77,12 @@ SMTPConnectionRef	SMTPManager::GetConnection()
 	return conn;
 }
 
-void	SMTPManager::PushMail(shared_ptr<Mail>& mail)
+bool	SMTPManager::Empty()
+{
+	return _mailQueue.empty();
+}
+
+void	SMTPManager::PushMail(shared_ptr<Mail> mail)
 {
 	lock_guard<mutex>	lock(_m);
 	_mailQueue.push(mail);
@@ -106,36 +113,43 @@ SMTPConnection::~SMTPConnection()
 	SocketUtil::CloseSocket(_socket);
 }
 
+void	SMTPConnection::SendMail(shared_ptr<Mail> mail)
+{
+	Ehlo();
+	AuthLogin();
+	SendMail(mail->emailTo, mail->subject, mail->message);
+	Quit();
+}
+
 void	SMTPConnection::Ehlo()
 {
 	size_t	readLen = 0;
 	size_t	writeLen = 0;
-	cout << _socket << endl;
 	/*========== ehlo ==========*/
 	readLen = read(_socket, _readBuffer, READ_SIZE);
 	_readBuffer[readLen] = 0;
-	cout << _readBuffer << endl;
+	// cout << _readBuffer << endl;
 	_writeBuffer = "ehlo " + _DNSAddress + "\r\n";
-	cout << _writeBuffer;
+	// cout << _writeBuffer;
 	write(_socket, (BYTE*)_writeBuffer.data(), _writeBuffer.length());
 	_writeBuffer.clear();
 
 	/*========== START TLS ==========*/
 	readLen = read(_socket, _readBuffer, READ_SIZE);
 	_readBuffer[readLen] = 0;
-	cout << _readBuffer << endl;
+	// cout << _readBuffer << endl;
 	_writeBuffer = "STARTTLS\r\n";
-	cout << _writeBuffer;
+	// cout << _writeBuffer;
 	write(_socket, (BYTE*)_writeBuffer.data(), _writeBuffer.length());
 	_writeBuffer.clear();
 
 	/*========== TLS ehlo ==========*/
 	readLen = read(_socket, _readBuffer, READ_SIZE);
 	_readBuffer[readLen] = 0;
-	cout << _readBuffer << endl;
+	// cout << _readBuffer << endl;
 	_ssl.Connect();
 	_writeBuffer = "ehlo " + _DNSAddress + "\r\n";
-	cout << _writeBuffer;
+	// cout << _writeBuffer;
 	_ssl.Write((BYTE*)_writeBuffer.data(), _writeBuffer.length(), &writeLen);
 	_writeBuffer.clear();
 }
@@ -147,9 +161,9 @@ void	SMTPConnection::AuthLogin()
 	/*========== AUTH LOGIN ==========*/
 	_ssl.Read(_readBuffer, READ_SIZE, &readLen);
 	_readBuffer[readLen] = 0;
-	cout << _readBuffer << endl;
+	// cout << _readBuffer << endl;
 	_writeBuffer = "AUTH LOGIN\r\n";
-	cout << _writeBuffer;
+	// cout << _writeBuffer;
 	_ssl.Write((BYTE*)_writeBuffer.data(), _writeBuffer.length(), &writeLen);
 	_writeBuffer.clear();
 
@@ -157,9 +171,9 @@ void	SMTPConnection::AuthLogin()
 	string	encodedEmail = Base64Encode(_emailFrom);
 	_ssl.Read(_readBuffer, READ_SIZE, &readLen);
 	_readBuffer[readLen] = 0;
-	cout << _readBuffer << endl;
+	// cout << _readBuffer << endl;
 	_writeBuffer = encodedEmail + "\r\n";
-	cout << _writeBuffer;
+	// cout << _writeBuffer;
 	_ssl.Write((BYTE*)_writeBuffer.data(), _writeBuffer.length(), &writeLen);
 	_writeBuffer.clear();
 
@@ -167,13 +181,12 @@ void	SMTPConnection::AuthLogin()
 	string	encodedPw = Base64Encode(getenv("SMTP_APP_PASSWORD"));
 	_ssl.Read(_readBuffer, READ_SIZE, &readLen);
 	_readBuffer[readLen] = 0;
-	cout << _readBuffer << endl;
+	// cout << _readBuffer << endl;
 	_writeBuffer = encodedPw + "\r\n";
-	cout << _writeBuffer;
+	// cout << _writeBuffer;
 	_ssl.Write((BYTE*)_writeBuffer.data(), _writeBuffer.length(), &writeLen);
 	_writeBuffer.clear();
 }
-
 
 void	SMTPConnection::SendMail(const string& emailTo, const string& subject, const string& message)
 {
@@ -182,27 +195,27 @@ void	SMTPConnection::SendMail(const string& emailTo, const string& subject, cons
 	/*========== mail ==========*/
 	_ssl.Read(_readBuffer, READ_SIZE, &readLen);
 	_readBuffer[readLen] = 0;
-	cout << _readBuffer << endl;
+	// cout << _readBuffer << endl;
 	_writeBuffer = "mail from:<" + _emailFrom + ">\r\n";
-	cout << _writeBuffer;
+	// cout << _writeBuffer;
 	_ssl.Write((BYTE*)_writeBuffer.data(), _writeBuffer.length(), &writeLen);
 	_writeBuffer.clear();
 
 	/*========== rcpt ==========*/
 	_ssl.Read(_readBuffer, READ_SIZE, &readLen);
 	_readBuffer[readLen] = 0;
-	cout << _readBuffer << endl;
+	// cout << _readBuffer << endl;
 	_writeBuffer = "rcpt to:<" + emailTo + ">\r\n";
-	cout << _writeBuffer;
+	// cout << _writeBuffer;
 	_ssl.Write((BYTE*)_writeBuffer.data(), _writeBuffer.length(), &writeLen);
 	_writeBuffer.clear();
 
 	/*========== data ==========*/
 	_ssl.Read(_readBuffer, READ_SIZE, &readLen);
 	_readBuffer[readLen] = 0;
-	cout << _readBuffer << endl;
+	// cout << _readBuffer << endl;
 	_writeBuffer = "data\r\n";
-	cout << _writeBuffer;
+	// cout << _writeBuffer;
 	_ssl.Write((BYTE*)_writeBuffer.data(), _writeBuffer.length(), &writeLen);
 	_writeBuffer.clear();
 
@@ -210,13 +223,13 @@ void	SMTPConnection::SendMail(const string& emailTo, const string& subject, cons
 	std::string msgId = std::to_string(time(nullptr)) + "-dodontak@gmail.com";
 	_ssl.Read(_readBuffer, READ_SIZE, &readLen);
 	_readBuffer[readLen] = 0;
-	cout << _readBuffer << endl;
+	// cout << _readBuffer << endl;
 	_writeBuffer = "To: " + emailTo + "\r\n" +
 		"From: " + _emailFrom + "\r\n" + 
 		"Subject: " + subject + "\r\n" +
 		"Message-ID: " + msgId + "\r\n\r\n" +
 		message + "\r\n.\r\n";
-	cout << _writeBuffer;
+	// cout << _writeBuffer;
 	_ssl.Write((BYTE*)_writeBuffer.data(), _writeBuffer.length(), &writeLen);
 	_writeBuffer.clear();
 }
@@ -228,14 +241,14 @@ void	SMTPConnection::Quit()
 	/*========== quit ==========*/
 	_ssl.Read(_readBuffer, READ_SIZE, &readLen);
 	_readBuffer[readLen] = 0;
-	cout << _readBuffer << endl;
+	// cout << _readBuffer << endl;
 	_writeBuffer = "quit\r\n";
-	cout << _writeBuffer;
+	// cout << _writeBuffer;
 	_ssl.Write((BYTE*)_writeBuffer.data(), _writeBuffer.length(), &writeLen);
 	_writeBuffer.clear();
 
 
 	_ssl.Read(_readBuffer, READ_SIZE, &readLen);
 	_readBuffer[readLen] = 0;
-	cout << _readBuffer << endl;
+	// cout << _readBuffer << endl;
 }

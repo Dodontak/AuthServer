@@ -30,8 +30,10 @@ void	ServerSession::OnReadPacket(BYTE* buffer, int len)
 	bool	success = ServerPacketHandler::PacketHandler(callback, session, buffer, len);
 	if (success)
 	{
-		JobRef			job = std::make_shared<Job>(callback);
-		GThreadManager->InsertJob(job);
+		JobRef	job = std::make_shared<Job>(callback);
+		
+		GJobQueue->PushJob(job);
+		GThreadManager->_workerCv.notify_one();
 	}
 	else
 	{

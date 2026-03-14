@@ -17,7 +17,7 @@ void	SignUp(SessionRef session)
 {
 	Protocol::C_SIGNUP	pkt;
 	std::string	email, nickname, password;
-	email = GetTempId(10) + '@' + GetTempId(3) + ".com";
+	email = "dodontak2@gmail.com";//GetTempId(10) + '@' + GetTempId(3) + ".com";
 	pkt.set_email(email);
 	nickname = GetTempId(10);
 	pkt.set_nickname(nickname);
@@ -32,7 +32,7 @@ void	SignUpThread(ClientServiceRef service)
 {
 	std::this_thread::sleep_for(chrono::seconds(1));
 	cout << "Start SignUpThread" << endl;
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 10; i++)
 	{//랜덤하게 10개 세션 골라서 SignUp시킴
 		SessionRef session = service->GetRandomSession();
 		if (session)
@@ -46,11 +46,12 @@ void	WorkerThread()
 	{
 		JobRef job = nullptr;
 		{
-			std::unique_lock<std::mutex> lock(GThreadManager->_m);
-			GThreadManager->_cv.wait(lock, []() { return !GJobQueue->Empty(); });
+			std::unique_lock<std::mutex> lock(GThreadManager->_workerMutex);
+			GThreadManager->_workerCv.wait(lock, []() { return !GJobQueue->Empty(); });
 			job = GJobQueue->PopJob();
 		}
-		job->Execute();
+		if (job)
+			job->Execute();
 	}
 }
 
