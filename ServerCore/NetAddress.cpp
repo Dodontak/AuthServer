@@ -2,9 +2,11 @@
 #include <cstring>
 #include <arpa/inet.h>
 
+using namespace std;
+
 NetAddress::NetAddress(sockaddr_in sockAddr) : _sockAddr(sockAddr) {}
 
-NetAddress::NetAddress(std::string ip, uint16 port)
+NetAddress::NetAddress(string ip, uint16 port)
 {
 	memset(&_sockAddr, 0, sizeof(sockaddr_in));
 
@@ -17,7 +19,7 @@ NetAddress::NetAddress(std::string ip, uint16 port)
 }
 
 
-std::string	NetAddress::GetIpString()
+string	NetAddress::GetIpString()
 {
 	char	buffer[INET_ADDRSTRLEN]; // IPv4용 버퍼
 	const char* result = inet_ntop(
@@ -28,5 +30,5 @@ std::string	NetAddress::GetIpString()
 	);
 	if (result == nullptr)
 		return "";
-	return std::string(buffer);
+	return string(buffer);
 }

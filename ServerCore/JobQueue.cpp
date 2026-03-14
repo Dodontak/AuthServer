@@ -2,11 +2,13 @@
 #include "CoreTLS.h"
 #include <iostream>
 
+using namespace std;
+
 /*=======================
 		  Job
 =======================*/
 
-Job::Job(std::function<void()> callback) : _callback(callback) {}
+Job::Job(function<void()> callback) : _callback(callback) {}
 
 void	Job::Execute()
 {
@@ -19,14 +21,14 @@ void	Job::Execute()
 
 void	JobQueue::PushJob(JobRef job)
 {
-	std::lock_guard<std::mutex>	lock(m);
+	lock_guard<mutex>	lock(m);
 	_jobQueue.push(job);
 }
 
 JobRef	JobQueue::PopJob()
 {
 	JobRef	job = nullptr;
-	std::lock_guard<std::mutex>	lock(m);
+	lock_guard<mutex>	lock(m);
 
 	if (_jobQueue.empty())
 		return job;

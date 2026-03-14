@@ -5,6 +5,8 @@
 #include <signal.h>
 #include <memory>
 
+using namespace std;
+
 /*====================
        Service
 ====================*/
@@ -43,7 +45,7 @@ void	Service::EraseSession(EpollObjectRef session)
 AuthService::AuthService(const char* ip, int port, const char* certFile, const char* keyFile, SessionFactory factory) :
 	Service(ip, port, factory)
 {
-	_ctx = std::make_shared<SslCtx>(true);
+	_ctx = make_shared<SslCtx>(true);
 	_ctx->SetCrt(certFile);
 	_ctx->SetKey(keyFile);
 }
@@ -73,7 +75,7 @@ int	AuthService::Start()
 ClientService::ClientService(const char* ip, int port, SessionFactory factory, int clientCount) :
 	Service(ip, port, factory), _clientCount(clientCount)
 {
-	_ctx = std::make_shared<SslCtx>(false);
+	_ctx = make_shared<SslCtx>(false);
 }
 
 ClientService::~ClientService() {}
@@ -101,7 +103,7 @@ int	ClientService::Start()
 
 void	ClientService::broadcastfortest(WriteBufferRef writebuffer)
 {
-	std::lock_guard<std::mutex>	lock(_m);
+	lock_guard<mutex>	lock(_m);
 	for (auto session : _sessions)
 	{
 		static_pointer_cast<Session>(session)->Send(writebuffer);
@@ -112,14 +114,14 @@ void	ClientService::broadcastfortest(WriteBufferRef writebuffer)
 
 SessionRef	ClientService::GetRandomSession()
 {
-	std::random_device rd;
-	std::mt19937	gen(rd());
-	std::lock_guard<std::mutex>	lock(_m);
-	std::set<EpollObjectRef>::iterator it = _sessions.begin();
+	random_device rd;
+	mt19937	gen(rd());
+	lock_guard<mutex>	lock(_m);
+	set<EpollObjectRef>::iterator it = _sessions.begin();
 	int	session_count = _sessions.size();
 	if (session_count == 0)
 		return nullptr;	
-	std::uniform_int_distribution<int> dis(0, session_count - 1);
+	uniform_int_distribution<int> dis(0, session_count - 1);
 	int idx = dis(gen);
 	for (int i = 0; i < idx; i++)
 		++it;

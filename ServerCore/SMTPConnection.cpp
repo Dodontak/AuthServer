@@ -220,7 +220,7 @@ void	SMTPConnection::SendMail(const string& emailTo, const string& subject, cons
 	_writeBuffer.clear();
 
 	/*========== subject ==========*/
-	std::string msgId = std::to_string(time(nullptr)) + "-dodontak@gmail.com";
+	string msgId = to_string(time(nullptr)) + "-dodontak@gmail.com";
 	_ssl.Read(_readBuffer, READ_SIZE, &readLen);
 	_readBuffer[readLen] = 0;
 	// cout << _readBuffer << endl;

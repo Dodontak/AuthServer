@@ -24,5 +24,5 @@ public:
 private:
 	PGconn* 			_connection = nullptr;
 	PGresult*			_result = nullptr;
-	vector<std::string>	_values;
+	std::vector<std::string>	_values;
 };

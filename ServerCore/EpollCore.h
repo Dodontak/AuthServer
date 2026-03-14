@@ -7,7 +7,7 @@
 #include <sys/epoll.h>
 #include <array>
 
-class EpollCore : public enable_shared_from_this<EpollCore>
+class EpollCore : public std::enable_shared_from_this<EpollCore>
 {
 	enum { MAX_WATCH_EVENT = 10 };
 public:
@@ -25,6 +25,6 @@ private:
 	struct epoll_event	CreateEv(EpollObjectRef epollObject, EventType type);
 
 private:
-	array<struct epoll_event, MAX_WATCH_EVENT>	_epEvents;
+	std::array<struct epoll_event, MAX_WATCH_EVENT>	_epEvents;
 	int											_epfd;
 };

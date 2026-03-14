@@ -1,5 +1,7 @@
 #include "DBConnectionPool.h"
 
+using namespace std;
+
 bool	DBConnectionPool::Init(int maxRedis, const char* redisIp, int redisPort,
 				int maxPostgres, const char* pgConString)
 {
@@ -31,14 +33,14 @@ bool	DBConnectionPool::Init(int maxRedis, const char* redisIp, int redisPort,
 
 void	DBConnectionPool::Push(PGConnection** conn)
 {
-	std::lock_guard<std::mutex>	lock(_mPostgres);
+	lock_guard<mutex>	lock(_mPostgres);
 	_postgresConnections.push_back(*conn);
 	*conn = nullptr;
 }
 
 void	DBConnectionPool::Push(RedisConnection** conn)
 {
-	std::lock_guard<std::mutex>	lock(_mRedis);
+	lock_guard<mutex>	lock(_mRedis);
 	_redisConnections.push_back(*conn);
 	*conn = nullptr;
 }
@@ -47,7 +49,7 @@ void	DBConnectionPool::Push(RedisConnection** conn)
 PGConnection*	DBConnectionPool::PopPG()
 {
 	PGConnection*	connection;
-	std::lock_guard<std::mutex>	lock(_mPostgres);
+	lock_guard<mutex>	lock(_mPostgres);
 	if (_postgresConnections.empty())
 		return nullptr;
 	connection = _postgresConnections.back();
@@ -58,7 +60,7 @@ PGConnection*	DBConnectionPool::PopPG()
 RedisConnection*	DBConnectionPool::PopRedis()
 {
 	RedisConnection*	connection;
-	std::lock_guard<std::mutex>	lock(_mRedis);
+	lock_guard<mutex>	lock(_mRedis);
 	if (_redisConnections.empty())
 		return nullptr;
 	connection = _redisConnections.back();

@@ -6,8 +6,6 @@
 #include <string>
 #include <iostream>
 
-using namespace std;
-
 class SocketUtil
 {
 public:
@@ -18,3 +16,5 @@ public:
 
 void 		handle_error(const char* err_str, int rtn);
 std::string	GetTempId(int len);
+std::string CreateAccessToken(const std::string& user_id, const std::string& nickname);
+bool VerifyAccessToken(const std::string& token, std::string& out_user_id);

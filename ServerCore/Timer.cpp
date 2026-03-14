@@ -1,18 +1,20 @@
 #include "Timer.h"
 #include "EpollCore.h"
 
-Timer::Timer(std::function<void()> callback, int sec, ServiceRef service) : _callback(callback), _service(service)
+using namespace std;
+
+Timer::Timer(function<void()> callback, int sec, ServiceRef service) : _callback(callback), _service(service)
 {
 	_tfd = timerfd_create(CLOCK_MONOTONIC, TFD_NONBLOCK);
 	_ts.it_value.tv_sec = sec;
 	_ts.it_value.tv_nsec = 0;
-	std::cout << "Timer " << _tfd << " constructed." << std::endl;
+	cout << "Timer " << _tfd << " constructed." << endl;
 	timerfd_settime(_tfd, 0, &_ts, nullptr);
 }
 
 Timer::~Timer()
 {
-	std::cout << "Timer " << _tfd << " distructed." << std::endl;
+	cout << "Timer " << _tfd << " distructed." << endl;
 }
 
 void	Timer::Dispatch(uint32_t events)

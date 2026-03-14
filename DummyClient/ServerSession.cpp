@@ -6,6 +6,8 @@
 #include <functional>
 #include <iostream>
 
+using namespace std;
+
 ServerSession::ServerSession(int clientSocket, struct sockaddr_in addr, ServiceRef service)
 	: PacketSession(clientSocket, addr, service)
 {
@@ -25,12 +27,12 @@ void	ServerSession::OnWrite(int len)
 
 void	ServerSession::OnReadPacket(BYTE* buffer, int len)
 {
-	std::function<void()>	callback;
-	PacketSessionRef	session = std::static_pointer_cast<PacketSession>(shared_from_this());
+	function<void()>	callback;
+	PacketSessionRef	session = static_pointer_cast<PacketSession>(shared_from_this());
 	bool	success = ServerPacketHandler::PacketHandler(callback, session, buffer, len);
 	if (success)
 	{
-		JobRef	job = std::make_shared<Job>(callback);
+		JobRef	job = make_shared<Job>(callback);
 		
 		GJobQueue->PushJob(job);
 		GThreadManager->_workerCv.notify_one();

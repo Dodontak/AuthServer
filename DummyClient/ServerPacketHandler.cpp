@@ -1,34 +1,10 @@
 #include "ServerPacketHandler.h"
 #include <thread>
-#include <jwt-cpp/jwt.h>
 
 using namespace std;
 
 function<bool(function<void()>&, PacketSessionRef&, BYTE*, int32)> GPacketHandler[UINT16_MAX];
 
-bool VerifyAccessToken(const string& token, string& out_user_id)
-{
-    const string SECRET_KEY = getenv("JWT_SECRET_KEY");
-    
-    try
-    {
-        auto verifier = jwt::verify()
-            .allow_algorithm(jwt::algorithm::hs256{SECRET_KEY})
-            .with_issuer("auth_server");    // 발급자 확인
-        
-        auto decoded = jwt::decode(token);
-        verifier.verify(decoded);           // 서명 + 만료시간 자동 검증
-        
-        out_user_id = decoded.get_payload_claim("user_id").as_string();
-        return true;
-    }
-    catch (const exception& e)
-    {
-		cout << "exeption" << endl;
-        // 서명 불일치, 만료, 형식 오류 전부 여기로 떨어짐
-        return false;
-    }
-}
 
 bool Handle_INVALID(function<void()>& outFunc, PacketSessionRef session, BYTE* buffer, int32 len)
 {

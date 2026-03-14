@@ -1,5 +1,7 @@
 #include "PGConnection.h"
 
+using namespace std;
+
 PGConnection::~PGConnection()
 {
 	PQfinish(_connection);
@@ -24,7 +26,7 @@ void	PGConnection::Clear()
 	}
 }
 
-void	PGConnection::AddValue(const std::string& val)
+void	PGConnection::AddValue(const string& val)
 {
 	_values.push_back(val);
 }
@@ -34,9 +36,9 @@ void	PGConnection::ClearValues()
 	_values.resize(0);
 }
 
-bool	PGConnection::ExecuteSQL(const std::string& sql)
+bool	PGConnection::ExecuteSQL(const string& sql)
 {
-	std::vector<const char*>	value_ptrs(_values.size());
+	vector<const char*>	value_ptrs(_values.size());
 	for (int i = 0; i < _values.size(); ++i)
 		value_ptrs[i] = _values[i].c_str();
 	_result = PQexecParams(
@@ -54,7 +56,7 @@ bool	PGConnection::ExecuteSQL(const std::string& sql)
 	ExecStatusType	ret = PQresultStatus(_result);
 	if (ret != PGRES_COMMAND_OK && ret != PGRES_TUPLES_OK)//실패했다면
 	{
-		std::cout << PQerrorMessage(_connection) << endl;
+		cout << PQerrorMessage(_connection) << endl;
 		Clear();
 		return false;
 	}
@@ -66,7 +68,7 @@ int	PGConnection::GetRowCount()
 	return PQntuples(_result);
 }
 
-std::string	PGConnection::GetValue(int row, int col)
+string	PGConnection::GetValue(int row, int col)
 {
 	return PQgetvalue(_result, row, col);
 }

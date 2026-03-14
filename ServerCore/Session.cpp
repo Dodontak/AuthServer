@@ -8,6 +8,8 @@
 #include <unistd.h>
 #include <sys/uio.h>
 
+using namespace std;
+
 /*====================
         Session
 ====================*/
@@ -21,7 +23,7 @@ Session::Session(int socket, struct sockaddr_in addr, ServiceRef service) :
 
 Session::~Session()
 {
-	std::cout << "Session " << _socket << " Distructed." << std::endl;
+	cout << "Session " << _socket << " Distructed." << endl;
 	close(_socket);
 	delete _epollEvent;
 }
@@ -74,7 +76,7 @@ void	Session::Disconnect()
 		EpollCoreRef	epollCore = service->GetEpollCore();
 
 		{//현재 이벤트 타입이 이미 disconnect면 다른스레드에서 disconnect 실행한거니까 함수 중단.
-			std::lock_guard<std::mutex>	lock(_m);
+			lock_guard<mutex>	lock(_m);
 			if (_epollEvent->GetEventType() == EventType::Disconnect)
 				return;
 			ModEvent(EventType::Disconnect);
@@ -87,9 +89,9 @@ void	Session::Disconnect()
 			{// 정상|비정상 종료. 상대 클로즈노티 대기.하다가 세션 disconnect
 				// 2초 디스커넥트 타이머
 				TimerRef	timer = make_shared<Timer>(
-					[self_weak = std::weak_ptr<Session>(shared_from_this())]()
+					[self_weak = weak_ptr<Session>(shared_from_this())]()
 					{
-						if (std::shared_ptr<Session> session = self_weak.lock())
+						if (shared_ptr<Session> session = self_weak.lock())
 							session->ProcessDisconnect(true);
 					},
 					2,
@@ -107,7 +109,7 @@ void	Session::Send(WriteBufferRef writeBuffer)
 {
 	if (ServiceRef service = _service.lock())
 	{
-		std::lock_guard<std::mutex>	lock(_m);
+		lock_guard<mutex>	lock(_m);
 
 		_writeBuffers.push_back(writeBuffer);
 		ModEvent(EventType::Write);
@@ -129,7 +131,7 @@ void	Session::ProcessDisconnect(bool isCanSslShutdown)
 	if (ServiceRef service = _service.lock())
 	{
 		EpollCoreRef	epollCore = service->GetEpollCore();
-		std::lock_guard<std::mutex>	lock(_m);
+		lock_guard<mutex>	lock(_m);
 		if (_epollEvent)
 		{
 			service->EraseSession(shared_from_this());
@@ -176,7 +178,7 @@ void	Session::ProcessWrite()
 		int				dataLen;
 
 		{
-			std::lock_guard<std::mutex>	lock(_m);
+			lock_guard<mutex>	lock(_m);
 
 			writeBuffer = _writeBuffers.front();
 			buffer = writeBuffer->GetBuffer();
@@ -195,7 +197,7 @@ void	Session::ProcessWrite()
 				return;
 			}
 			{
-				std::lock_guard<std::mutex>	lock(_m);
+				lock_guard<mutex>	lock(_m);
 				_writeBuffers.push_front(writeBuffer);
 			}
 			return;

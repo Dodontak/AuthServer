@@ -117,7 +117,7 @@ $(SERVER_CORE_OBJ_DIR) :
 	mkdir -p $(SERVER_CORE_OBJ_DIR)
 
 $(SERVER_CORE_OBJ_DIR)/%.o : $(SERVER_CORE_DIR)/%.cpp
-	$(CXX) $(CXXFLAGS) -MF $(@:.o=.d) -o $@ -c $<
+	$(CXX) $(CXXFLAGS) $(INC) -MF $(@:.o=.d) -o $@ -c $<
 #======= ServerCore ========#
 
 #======= PacketHandler ========#

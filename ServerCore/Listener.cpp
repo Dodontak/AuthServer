@@ -9,6 +9,8 @@
 #include <netinet/in.h>
 #include <unistd.h>
 
+using namespace std;
+
 Listener::Listener(ServiceRef service, int port) : _service(service)
 {
 	_listenSocket = SocketUtil::CreateSocket();

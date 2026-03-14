@@ -3,6 +3,8 @@
 #include <iostream>
 #include <atomic>
 
+using namespace std;
+
 ThreadManager::ThreadManager()
 {
 	InitTLS();
@@ -13,9 +15,9 @@ ThreadManager::~ThreadManager()
 	Join();
 }
 
-void	ThreadManager::Launch(std::function<void()> callback)
+void	ThreadManager::Launch(function<void()> callback)
 {
-	_workerThreads.push_back(std::thread([=](){
+	_workerThreads.push_back(thread([=](){
 		InitTLS();
 		callback();
 		DestroyTLS();
@@ -33,7 +35,7 @@ void	ThreadManager::Join()
 
 void	ThreadManager::InitTLS()
 {
-	static std::atomic<int>	SThreadId = 1;
+	static atomic<int>	SThreadId = 1;
 	LThreadId = SThreadId.fetch_add(1);
 }
 

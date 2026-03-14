@@ -23,7 +23,7 @@ void	WorkerThread()
 	{
 		JobRef job = nullptr;
 		{
-			std::unique_lock<std::mutex> lock(GThreadManager->_workerMutex);
+			unique_lock<mutex> lock(GThreadManager->_workerMutex);
 			GThreadManager->_workerCv.wait(lock, []() { return !GJobQueue->Empty(); });
 			job = GJobQueue->PopJob();
 		}
@@ -38,7 +38,7 @@ void	MailThread()
 	{
 		shared_ptr<Mail> mail = nullptr;
 		{
-			std::unique_lock<std::mutex> lock(GThreadManager->_mailMutex);
+			unique_lock<mutex> lock(GThreadManager->_mailMutex);
 			GThreadManager->_mailCv.wait(lock, []() { return !GSMTPManager->Empty(); });
 			mail = GSMTPManager->PopMail();
 		}
@@ -68,7 +68,7 @@ int main(int ac, char** av)
 		"TLS/server.crt",
 		"TLS/server.key",
 		[](int clientSocket, sockaddr_in addr, ServiceRef service) {
-        	return std::make_shared<CAuthSession>(clientSocket, addr, service);
+        	return make_shared<CAuthSession>(clientSocket, addr, service);
     	}
 	);
 	service->Start();

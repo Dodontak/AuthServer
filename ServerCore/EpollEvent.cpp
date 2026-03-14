@@ -1,6 +1,8 @@
 #include "EpollEvent.h"
 #include "EpollCore.h"
 
+using namespace std;
+
 EpollEvent::EpollEvent(EpollObjectRef owner, EventType type) : _owner(owner), _type(type)
 {
 	cout << "EpollEvent constructed." << endl;

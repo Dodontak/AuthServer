@@ -10,9 +10,9 @@
 #include <mutex>
 #include <functional>
 
-using SessionFactory = function<SessionRef(int, struct sockaddr_in, ServiceRef)>;
+using SessionFactory = std::function<SessionRef(int, struct sockaddr_in, ServiceRef)>;
 
-class Service : public enable_shared_from_this<Service>
+class Service : public std::enable_shared_from_this<Service>
 {
 public:
 	Service(const char* ip, int port, SessionFactory factory);
