@@ -1,0 +1,524 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/CoreGlobal.o",
+      "ServerCore/CoreGlobal.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/CoreGlobal.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/CoreGlobal.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/CoreTLS.o",
+      "ServerCore/CoreTLS.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/CoreTLS.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/CoreTLS.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/DBConnectionPool.o",
+      "ServerCore/DBConnectionPool.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/DBConnectionPool.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/DBConnectionPool.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/EpollCore.o",
+      "ServerCore/EpollCore.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/EpollCore.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/EpollCore.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/EpollEvent.o",
+      "ServerCore/EpollEvent.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/EpollEvent.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/EpollEvent.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/EpollObject.o",
+      "ServerCore/EpollObject.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/EpollObject.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/EpollObject.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/JobQueue.o",
+      "ServerCore/JobQueue.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/JobQueue.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/JobQueue.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/Listener.o",
+      "ServerCore/Listener.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/Listener.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/Listener.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/NetAddress.o",
+      "ServerCore/NetAddress.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/NetAddress.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/NetAddress.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/PGConnection.o",
+      "ServerCore/PGConnection.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/PGConnection.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/PGConnection.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/ReadBuffer.o",
+      "ServerCore/ReadBuffer.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/ReadBuffer.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/ReadBuffer.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/RedisConnection.o",
+      "ServerCore/RedisConnection.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/RedisConnection.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/RedisConnection.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/Service.o",
+      "ServerCore/Service.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/Service.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/Service.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/Session.o",
+      "ServerCore/Session.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/Session.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/Session.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/SMTPConnection.o",
+      "ServerCore/SMTPConnection.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/SMTPConnection.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/SMTPConnection.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/SslCtx.o",
+      "ServerCore/SslCtx.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/SslCtx.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/SslCtx.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/SslObject.o",
+      "ServerCore/SslObject.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/SslObject.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/SslObject.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/ThreadManager.o",
+      "ServerCore/ThreadManager.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/ThreadManager.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/ThreadManager.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/Timer.o",
+      "ServerCore/Timer.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/Timer.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/Timer.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/Utils.o",
+      "ServerCore/Utils.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/Utils.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/Utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "ServerCore/ObjectFiles/WriteBuffer.o",
+      "ServerCore/WriteBuffer.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/ServerCore/WriteBuffer.cpp",
+    "output": "/home/server/ServerCore/ObjectFiles/WriteBuffer.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "AuthServer/ObjectFiles/AuthServer.o",
+      "AuthServer/AuthServer.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/AuthServer/AuthServer.cpp",
+    "output": "/home/server/AuthServer/ObjectFiles/AuthServer.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "AuthServer/ObjectFiles/CAuthSession.o",
+      "AuthServer/CAuthSession.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/AuthServer/CAuthSession.cpp",
+    "output": "/home/server/AuthServer/ObjectFiles/CAuthSession.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "AuthServer/ObjectFiles/ClientPacketHandler.o",
+      "AuthServer/ClientPacketHandler.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/AuthServer/ClientPacketHandler.cpp",
+    "output": "/home/server/AuthServer/ObjectFiles/ClientPacketHandler.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "AuthServer/ObjectFiles/Protocol.pb.o",
+      "AuthServer/Protocol.pb.cc"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/AuthServer/Protocol.pb.cc",
+    "output": "/home/server/AuthServer/ObjectFiles/Protocol.pb.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "DummyClient/ObjectFiles/DummyClient.o",
+      "DummyClient/DummyClient.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/DummyClient/DummyClient.cpp",
+    "output": "/home/server/DummyClient/ObjectFiles/DummyClient.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "DummyClient/ObjectFiles/ServerPacketHandler.o",
+      "DummyClient/ServerPacketHandler.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/DummyClient/ServerPacketHandler.cpp",
+    "output": "/home/server/DummyClient/ObjectFiles/ServerPacketHandler.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "DummyClient/ObjectFiles/ServerSession.o",
+      "DummyClient/ServerSession.cpp"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/DummyClient/ServerSession.cpp",
+    "output": "/home/server/DummyClient/ObjectFiles/ServerSession.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-IServerCore",
+      "-IServerCore/jwt",
+      "-c",
+      "-I",
+      "/usr/include/hiredis",
+      "-I",
+      "/usr/include/postgresql",
+      "-o",
+      "DummyClient/ObjectFiles/Protocol.pb.o",
+      "DummyClient/Protocol.pb.cc"
+    ],
+    "directory": "/home/server",
+    "file": "/home/server/DummyClient/Protocol.pb.cc",
+    "output": "/home/server/DummyClient/ObjectFiles/Protocol.pb.o"
+  }
+]

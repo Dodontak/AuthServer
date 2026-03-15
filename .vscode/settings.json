@@ -1,0 +1,8 @@
+{
+    "C_Cpp.intelliSenseEngine": "disabled",  // 기본 IntelliSense 끄기
+    "clangd.fallbackFlags": ["-std=c++17"],
+	"clangd.path": "/usr/bin/clangd",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": false
+}

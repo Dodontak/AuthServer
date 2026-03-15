@@ -46,7 +46,7 @@ void	Handle_C_SIGNUP(const PacketSessionRef& session, const Protocol::C_SIGNUP& 
 
 	GDBConnectionPool->Push(&pg);
 
-	if (rowCount == 0)// ID,email 중복 없음 생성가능
+	if (true/*rowCount == 0*/)// ID,email 중복 없음 생성가능
 	{
 		string	hashedPassword = BCrypt::generateHash(pkt.password(), 10);
 		string	temp_id = GetTempId(32);

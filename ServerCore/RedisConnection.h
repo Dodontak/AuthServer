@@ -15,7 +15,6 @@ public:
 	std::string	GetStr() { return _reply->str; }
 	size_t		GetStrLen() { return _reply->len; }
 	long long	GetInt() { return _reply->integer; }
-	double		GetFloat() { return _reply->dval; }
 	bool		IsNull() { return _reply->type == REDIS_REPLY_NIL; }
 	//elements는 어떻게 할까 흠. 일단 인증서버에선 안씀.
 

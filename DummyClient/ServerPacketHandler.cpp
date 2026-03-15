@@ -13,6 +13,7 @@ bool Handle_INVALID(function<void()>& outFunc, PacketSessionRef session, BYTE* b
 
 void	Handle_S_SIGNUP(const PacketSessionRef& session, const Protocol::S_SIGNUP& pkt)
 {
+    cout << "Handle_S_SIGNUP" << endl;
 	Protocol::C_VERIFY_MAIL_REQ	response;
 	bool	success = pkt.success();
 	string	temp_id = pkt.temp_id();
@@ -30,6 +31,7 @@ void	Handle_S_SIGNUP(const PacketSessionRef& session, const Protocol::S_SIGNUP& 
 
 void	Handle_S_VERIFY_MAIL_REQ(const PacketSessionRef& session, const Protocol::S_VERIFY_MAIL_REQ& pkt)
 {
+    cout << "Handle_S_VERIFY_MAIL_REQ" << endl;
 	Protocol::C_VERIFY_EMAIL_CODE	response;
 	bool	success = pkt.success();
 	string	temp_id = pkt.temp_id();
@@ -48,6 +50,7 @@ void	Handle_S_VERIFY_MAIL_REQ(const PacketSessionRef& session, const Protocol::S
 
 void	Handle_S_VERIFY_EMAIL_CODE(const PacketSessionRef& session, const Protocol::S_VERIFY_EMAIL_CODE& pkt)
 {
+    cout << "Handle_S_VERIFY_EMAIL_CODE" << endl;
 	Protocol::C_LOGIN	response;
 	bool	success = pkt.success();
 	bool	expired = pkt.expired();
@@ -76,6 +79,7 @@ void	Handle_S_VERIFY_EMAIL_CODE(const PacketSessionRef& session, const Protocol:
 
 void	Handle_S_LOGIN(const PacketSessionRef& session, const Protocol::S_LOGIN& pkt)
 {
+    cout << "Handle_S_LOGIN" << endl;
 	bool	success = pkt.success();
 	if (success)
 	{
