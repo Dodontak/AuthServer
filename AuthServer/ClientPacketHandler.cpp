@@ -328,10 +328,18 @@ void	Handle_C_LOGIN(const PacketSessionRef& session, const Protocol::C_LOGIN& pk
 		redis->Clear();
 		if (fail_count >= 5)
 		{
-			string pgBlockSql = "UPDATE auth.users SET is_block = true WHERE nickname = $1";
+            response.set_is_block(true);
+			string pgBlockSQL = "UPDATE auth.users SET is_block = true WHERE nickname = $1";
 	        PGConnection*	pg = GDBConnectionPool->PopPG();
             pg->AddValue(nickname);
-            pg->ExecuteSQL(pgBlockSql);
+            if(pg->ExecuteSQL(pgBlockSQL) == false)
+            {
+                cout << "Fail To pgBlockSQL in Handle_C_LOGIN" << endl;
+                pg->Clear();
+                GDBConnectionPool->Push(&pg);
+                session->Send(ClientPacketHandler::MakeWriteBuffer(response));
+                return;
+            }
             pg->Clear();
             GDBConnectionPool->Push(&pg);
 		}
