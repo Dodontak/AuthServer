@@ -332,6 +332,8 @@ void	Handle_C_LOGIN(const PacketSessionRef& session, const Protocol::C_LOGIN& pk
 	        PGConnection*	pg = GDBConnectionPool->PopPG();
             pg->AddValue(nickname);
             pg->ExecuteSQL(pgBlockSql);
+            pg->Clear();
+            GDBConnectionPool->Push(&pg);
 		}
 	}
     session->Send(ClientPacketHandler::MakeWriteBuffer(response));
