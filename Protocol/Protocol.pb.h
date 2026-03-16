@@ -731,6 +731,7 @@ class S_VERIFY_MAIL_REQ final :
   enum : int {
     kTempIdFieldNumber = 2,
     kSuccessFieldNumber = 1,
+    kExpiredFieldNumber = 3,
   };
   // string temp_id = 2;
   void clear_temp_id();
@@ -755,6 +756,15 @@ class S_VERIFY_MAIL_REQ final :
   void _internal_set_success(bool value);
   public:
 
+  // bool expired = 3;
+  void clear_expired();
+  bool expired() const;
+  void set_expired(bool value);
+  private:
+  bool _internal_expired() const;
+  void _internal_set_expired(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:Protocol.S_VERIFY_MAIL_REQ)
  private:
   class _Internal;
@@ -765,6 +775,7 @@ class S_VERIFY_MAIL_REQ final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr temp_id_;
     bool success_;
+    bool expired_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1859,6 +1870,26 @@ inline void S_VERIFY_MAIL_REQ::set_allocated_temp_id(std::string* temp_id) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:Protocol.S_VERIFY_MAIL_REQ.temp_id)
+}
+
+// bool expired = 3;
+inline void S_VERIFY_MAIL_REQ::clear_expired() {
+  _impl_.expired_ = false;
+}
+inline bool S_VERIFY_MAIL_REQ::_internal_expired() const {
+  return _impl_.expired_;
+}
+inline bool S_VERIFY_MAIL_REQ::expired() const {
+  // @@protoc_insertion_point(field_get:Protocol.S_VERIFY_MAIL_REQ.expired)
+  return _internal_expired();
+}
+inline void S_VERIFY_MAIL_REQ::_internal_set_expired(bool value) {
+  
+  _impl_.expired_ = value;
+}
+inline void S_VERIFY_MAIL_REQ::set_expired(bool value) {
+  _internal_set_expired(value);
+  // @@protoc_insertion_point(field_set:Protocol.S_VERIFY_MAIL_REQ.expired)
 }
 
 // -------------------------------------------------------------------

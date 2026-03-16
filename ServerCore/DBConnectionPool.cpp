@@ -17,7 +17,7 @@ bool	DBConnectionPool::Init(int maxRedis, const char* redisIp, int redisPort,
 		PGConnection*	conn = new PGConnection();
 		if (conn->Connect(_pgConString.c_str()) == false)
 			handle_error("PGConnect Error", 1);
-		_postgresConnections.push_back(conn);		
+		_postgresConnections.push_back(conn);
 	}
 
 	_redisConnections.reserve(maxRedis);
@@ -26,7 +26,7 @@ bool	DBConnectionPool::Init(int maxRedis, const char* redisIp, int redisPort,
 		RedisConnection*	conn = new RedisConnection();
 		if (conn->Connect(_redisIp.c_str(), _redisPort) == false)
 			handle_error("RedisConnect Error", 1);
-		_redisConnections.push_back(conn);		
+		_redisConnections.push_back(conn);
 	}
 	return true;
 }

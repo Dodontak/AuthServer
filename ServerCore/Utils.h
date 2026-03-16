@@ -5,13 +5,16 @@
 #include <unistd.h>
 #include <string>
 #include <iostream>
+#include "NetAddress.h"
 
 class SocketUtil
 {
 public:
-	static void	MakeSocketNonblock(int sock);
-	static int	CreateSocket();
-	static void	CloseSocket(int socket);
+    static int	CreateSocket();
+    static void	CloseSocket(int socket);
+    static bool	MakeSocketNonblock(int sock);
+    static bool Bind(int socket, NetAddress addr);
+    static bool SetReuseAddress(int socket, bool flag);
 };
 
 void 		handle_error(const char* err_str, int rtn);

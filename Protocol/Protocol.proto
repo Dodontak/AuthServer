@@ -23,6 +23,7 @@ message C_VERIFY_MAIL_REQ {
 message S_VERIFY_MAIL_REQ {
 	bool success = 1;
 	string temp_id = 2;
+    bool expired = 3;
 }
 
 // 3. 이메일 인증 확인 요청

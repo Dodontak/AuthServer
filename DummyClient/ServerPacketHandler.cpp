@@ -17,8 +17,15 @@ void	Handle_S_SIGNUP(const PacketSessionRef& session, const Protocol::S_SIGNUP& 
 	Protocol::C_VERIFY_MAIL_REQ	response;
 	bool	success = pkt.success();
 	string	temp_id = pkt.temp_id();
+    bool    skip_email = pkt.skip_email();
+
 	if (success)
 	{
+        if (skip_email)
+        {//이메일 스킵이면 계정 등록 성공이니 disconnect
+            session->Disconnect();
+            return;
+        }
 		response.set_temp_id(temp_id);
 		session->Send(ServerPacketHandler::MakeWriteBuffer(response));
 	}

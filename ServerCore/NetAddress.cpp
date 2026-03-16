@@ -12,10 +12,13 @@ NetAddress::NetAddress(string ip, uint16 port)
 
 	_sockAddr.sin_family = AF_INET;
 	_sockAddr.sin_port = htons(port);
-	if (ip == "localhost")
+	if (ip == "localhost") {
 		inet_pton(AF_INET, "127.0.0.1", &_sockAddr.sin_addr);
-	else
+    } else if (ip.empty()) {
+        _sockAddr.sin_addr.s_addr = htonl(INADDR_ANY);
+    } else {
 		inet_pton(AF_INET, ip.c_str(), &_sockAddr.sin_addr);
+    }
 }
 
 

@@ -69,6 +69,7 @@ PROTOBUF_CONSTEXPR S_VERIFY_MAIL_REQ::S_VERIFY_MAIL_REQ(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.temp_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.success_)*/false
+  , /*decltype(_impl_.expired_)*/false
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct S_VERIFY_MAIL_REQDefaultTypeInternal {
   PROTOBUF_CONSTEXPR S_VERIFY_MAIL_REQDefaultTypeInternal()
@@ -177,6 +178,7 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::Protocol::S_VERIFY_MAIL_REQ, _impl_.success_),
   PROTOBUF_FIELD_OFFSET(::Protocol::S_VERIFY_MAIL_REQ, _impl_.temp_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_VERIFY_MAIL_REQ, _impl_.expired_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::C_VERIFY_EMAIL_CODE, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -217,10 +219,10 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 10, -1, -1, sizeof(::Protocol::S_SIGNUP)},
   { 19, -1, -1, sizeof(::Protocol::C_VERIFY_MAIL_REQ)},
   { 26, -1, -1, sizeof(::Protocol::S_VERIFY_MAIL_REQ)},
-  { 34, -1, -1, sizeof(::Protocol::C_VERIFY_EMAIL_CODE)},
-  { 42, -1, -1, sizeof(::Protocol::S_VERIFY_EMAIL_CODE)},
-  { 51, -1, -1, sizeof(::Protocol::C_LOGIN)},
-  { 59, -1, -1, sizeof(::Protocol::S_LOGIN)},
+  { 35, -1, -1, sizeof(::Protocol::C_VERIFY_EMAIL_CODE)},
+  { 43, -1, -1, sizeof(::Protocol::S_VERIFY_EMAIL_CODE)},
+  { 52, -1, -1, sizeof(::Protocol::C_LOGIN)},
+  { 60, -1, -1, sizeof(::Protocol::S_LOGIN)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -240,18 +242,19 @@ const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "ail\030\003 \001(\t\022\022\n\nskip_email\030\004 \001(\010\"@\n\010S_SIGNU"
   "P\022\017\n\007success\030\001 \001(\010\022\022\n\nskip_email\030\002 \001(\010\022\017"
   "\n\007temp_id\030\003 \001(\t\"$\n\021C_VERIFY_MAIL_REQ\022\017\n\007"
-  "temp_id\030\001 \001(\t\"5\n\021S_VERIFY_MAIL_REQ\022\017\n\007su"
-  "ccess\030\001 \001(\010\022\017\n\007temp_id\030\002 \001(\t\";\n\023C_VERIFY"
-  "_EMAIL_CODE\022\017\n\007temp_id\030\001 \001(\t\022\023\n\013verify_c"
-  "ode\030\002 \001(\t\"I\n\023S_VERIFY_EMAIL_CODE\022\017\n\007succ"
-  "ess\030\001 \001(\010\022\017\n\007expired\030\002 \001(\010\022\020\n\010nickname\030\003"
-  " \001(\t\"-\n\007C_LOGIN\022\020\n\010nickname\030\001 \001(\t\022\020\n\010pas"
-  "sword\030\002 \001(\t\";\n\007S_LOGIN\022\017\n\007success\030\001 \001(\010\022"
-  "\020\n\010is_block\030\002 \001(\010\022\r\n\005token\030\003 \001(\tb\006proto3"
+  "temp_id\030\001 \001(\t\"F\n\021S_VERIFY_MAIL_REQ\022\017\n\007su"
+  "ccess\030\001 \001(\010\022\017\n\007temp_id\030\002 \001(\t\022\017\n\007expired\030"
+  "\003 \001(\010\";\n\023C_VERIFY_EMAIL_CODE\022\017\n\007temp_id\030"
+  "\001 \001(\t\022\023\n\013verify_code\030\002 \001(\t\"I\n\023S_VERIFY_E"
+  "MAIL_CODE\022\017\n\007success\030\001 \001(\010\022\017\n\007expired\030\002 "
+  "\001(\010\022\020\n\010nickname\030\003 \001(\t\"-\n\007C_LOGIN\022\020\n\010nick"
+  "name\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\";\n\007S_LOGIN\022"
+  "\017\n\007success\030\001 \001(\010\022\020\n\010is_block\030\002 \001(\010\022\r\n\005to"
+  "ken\030\003 \001(\tb\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 520, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 537, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
     &descriptor_table_Protocol_2eproto_once, nullptr, 0, 8,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
@@ -1080,6 +1083,7 @@ S_VERIFY_MAIL_REQ::S_VERIFY_MAIL_REQ(const S_VERIFY_MAIL_REQ& from)
   new (&_impl_) Impl_{
       decltype(_impl_.temp_id_){}
     , decltype(_impl_.success_){}
+    , decltype(_impl_.expired_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -1091,7 +1095,9 @@ S_VERIFY_MAIL_REQ::S_VERIFY_MAIL_REQ(const S_VERIFY_MAIL_REQ& from)
     _this->_impl_.temp_id_.Set(from._internal_temp_id(), 
       _this->GetArenaForAllocation());
   }
-  _this->_impl_.success_ = from._impl_.success_;
+  ::memcpy(&_impl_.success_, &from._impl_.success_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.expired_) -
+    reinterpret_cast<char*>(&_impl_.success_)) + sizeof(_impl_.expired_));
   // @@protoc_insertion_point(copy_constructor:Protocol.S_VERIFY_MAIL_REQ)
 }
 
@@ -1102,6 +1108,7 @@ inline void S_VERIFY_MAIL_REQ::SharedCtor(
   new (&_impl_) Impl_{
       decltype(_impl_.temp_id_){}
     , decltype(_impl_.success_){false}
+    , decltype(_impl_.expired_){false}
     , /*decltype(_impl_._cached_size_)*/{}
   };
   _impl_.temp_id_.InitDefault();
@@ -1135,7 +1142,9 @@ void S_VERIFY_MAIL_REQ::Clear() {
   (void) cached_has_bits;
 
   _impl_.temp_id_.ClearToEmpty();
-  _impl_.success_ = false;
+  ::memset(&_impl_.success_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.expired_) -
+      reinterpret_cast<char*>(&_impl_.success_)) + sizeof(_impl_.expired_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1160,6 +1169,14 @@ const char* S_VERIFY_MAIL_REQ::_InternalParse(const char* ptr, ::_pbi::ParseCont
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "Protocol.S_VERIFY_MAIL_REQ.temp_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // bool expired = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          _impl_.expired_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -1208,6 +1225,12 @@ uint8_t* S_VERIFY_MAIL_REQ::_InternalSerialize(
         2, this->_internal_temp_id(), target);
   }
 
+  // bool expired = 3;
+  if (this->_internal_expired() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(3, this->_internal_expired(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1236,6 +1259,11 @@ size_t S_VERIFY_MAIL_REQ::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
+  // bool expired = 3;
+  if (this->_internal_expired() != 0) {
+    total_size += 1 + 1;
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -1260,6 +1288,9 @@ void S_VERIFY_MAIL_REQ::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, cons
   if (from._internal_success() != 0) {
     _this->_internal_set_success(from._internal_success());
   }
+  if (from._internal_expired() != 0) {
+    _this->_internal_set_expired(from._internal_expired());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1283,7 +1314,12 @@ void S_VERIFY_MAIL_REQ::InternalSwap(S_VERIFY_MAIL_REQ* other) {
       &_impl_.temp_id_, lhs_arena,
       &other->_impl_.temp_id_, rhs_arena
   );
-  swap(_impl_.success_, other->_impl_.success_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(S_VERIFY_MAIL_REQ, _impl_.expired_)
+      + sizeof(S_VERIFY_MAIL_REQ::_impl_.expired_)
+      - PROTOBUF_FIELD_OFFSET(S_VERIFY_MAIL_REQ, _impl_.success_)>(
+          reinterpret_cast<char*>(&_impl_.success_),
+          reinterpret_cast<char*>(&other->_impl_.success_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata S_VERIFY_MAIL_REQ::GetMetadata() const {

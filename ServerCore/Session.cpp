@@ -35,9 +35,6 @@ void	Session::Dispatch(uint32_t events)
 		case EventType::Connect :
 			ProcessConnect();
 			return;
-		case EventType::Disconnect :
-			ProcessDisconnect(true);
-			return;
 		case EventType::HandShakingRead :
 		case EventType::HandShakingWrite :
 			ProcessHandShaking();
@@ -48,8 +45,10 @@ void	Session::Dispatch(uint32_t events)
 			if (events & EPOLLIN)
 				ProcessRead();
 			return;
+		default : //EventType::Disconnect 혹은 다른것들
+			ProcessDisconnect(true);
+			return;
 	}
-	ProcessDisconnect(false);
 }
 
 bool	Session::Connect()
@@ -98,7 +97,6 @@ void	Session::Disconnect()
 					service
 				);
 				EpollEvent*	timerEvent = new EpollEvent(timer, EventType::Timer);
-				timer->SetEpollEvent(timerEvent);
 				epollCore->Register(timerEvent);
 			}
 		}
@@ -165,7 +163,11 @@ void	Session::ProcessRead()
 	} while (_sslObject->HasPendingData());//복호화 할 수 있는 데이터 남아있으면 반복
 
 	int	processLen = OnRead(_readBuffer.ReadPos(), _readBuffer.DataSize());
-	_readBuffer.OnRead(processLen);
+	if (_readBuffer.OnRead(processLen) == false)
+    {
+        ProcessDisconnect(true);
+        return;
+    }
 	_readBuffer.Clean();
 }
 

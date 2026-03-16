@@ -4,6 +4,7 @@
 #include <string>
 #include <openssl/rand.h>
 #include <jwt-cpp/jwt.h>
+#include <sys/socket.h>
 
 using namespace std;
 
@@ -13,13 +14,29 @@ void handle_error(const char* err_str, int rtn)
 	exit(rtn);
 }
 
-void SocketUtil::MakeSocketNonblock(int sock)
+bool SocketUtil::MakeSocketNonblock(int sock)
 {
 	int flags = fcntl(sock, F_GETFL, 0);
 	if (flags == -1)
-		handle_error("fcntl F_GETFL error", 1);
+        return false;
 	if (fcntl(sock, F_SETFL, flags | O_NONBLOCK) == -1)
-		handle_error("fcntl NONBLOCK error", 1);
+		return false;
+    return true;
+}
+
+bool SocketUtil::Bind(int socket, NetAddress addr)
+{
+    if (0 != bind(socket, (struct sockaddr *)&addr.GetAddr(), sizeof(addr.GetAddr())))
+        return false;
+    return true;
+}
+
+bool SocketUtil::SetReuseAddress(int socket, bool flag)
+{
+    int optval = (flag ? 1 : 0);
+    if (setsockopt(socket, SOL_SOCKET, SO_REUSEADDR, (unsigned char *)&optval, sizeof(optval)) == -1)
+        return false;
+	return true;
 }
 
 int	SocketUtil::CreateSocket()

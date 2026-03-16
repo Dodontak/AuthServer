@@ -56,7 +56,7 @@ int main(int ac, char **av) {
     for (int i = 0; i < 3; i++) GThreadManager->Launch(MailThread);
 
     ServiceRef service = make_shared<AuthService>(
-        "127.0.0.1", stoi(av[1]), "TLS/server.crt", "TLS/server.key",
+        NetAddress("", stoi(av[1])), "TLS/server.crt", "TLS/server.key",
         [](int clientSocket, sockaddr_in addr, ServiceRef service) {
             return make_shared<CAuthSession>(clientSocket, addr, service);
         });

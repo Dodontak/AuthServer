@@ -22,23 +22,59 @@ bool	Handle_INVALID(function<void()>& outFunc, PacketSessionRef session, BYTE* b
 	return false;
 }
 
+bool    SignupToPG(string nickname, string pw, string email, bool skip_email)
+{
+    string	pgSetUserDataSQL;
+    if (!skip_email)
+        pgSetUserDataSQL = "INSERT INTO auth.users (nickname, password, email) VALUES ($1, $2, $3)";
+    else 
+        pgSetUserDataSQL = "INSERT INTO auth.users (nickname, password) VALUES ($1, $2)";
+	PGConnection*	pg = GDBConnectionPool->PopPG();
+
+	pg->AddValue(nickname);
+	pg->AddValue(pw);
+    if (!skip_email)
+	    pg->AddValue(email);
+
+	if(pg->ExecuteSQL(pgSetUserDataSQL) == false)
+	{
+		cout << "Fail To ExecuteSQL in Handle_C_VERIFY_EMAIL_CODE" << endl;
+		pg->Clear();
+		GDBConnectionPool->Push(&pg);
+		return false;
+	}
+	pg->Clear();
+	GDBConnectionPool->Push(&pg);
+    return true;
+}
+
 void	Handle_C_SIGNUP(const PacketSessionRef& session, const Protocol::C_SIGNUP& pkt)
 {
 	cout << "Handle_C_SIGNUP" << endl;
 	Protocol::S_SIGNUP	response;
+    response.set_success(false);
 	string	nickname = pkt.nickname();
 	string	email = pkt.email();
 	bool	skip_email = pkt.skip_email();
+    response.set_skip_email(skip_email);
 	
-	string	pgGetUserIdSQL = "SELECT user_id FROM auth.users WHERE nickname = $1 OR email = $2";
+	string	pgGetUserIdSQL;
+    if (!skip_email)
+        pgGetUserIdSQL = "SELECT user_id FROM auth.users WHERE nickname = $1 OR email = $2";
+    else
+        pgGetUserIdSQL = "SELECT user_id FROM auth.users WHERE nickname = $1";
+
 	PGConnection*	pg = GDBConnectionPool->PopPG();
 
 	pg->AddValue(nickname);
-	pg->AddValue(email);
-	if(pg->ExecuteSQL(pgGetUserIdSQL) == false)
-	{//TODO 실행실패 제대로 처리
+    if (!skip_email)
+	    pg->AddValue(email);
+    
+	if (pg->ExecuteSQL(pgGetUserIdSQL) == false)
+	{
 		cout << "Fail To ExecuteSQL in Handle_C_SIGNUP" << endl;
 		GDBConnectionPool->Push(&pg);
+        session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 		return;
 	}
 	int	rowCount = pg->GetRowCount();
@@ -46,9 +82,15 @@ void	Handle_C_SIGNUP(const PacketSessionRef& session, const Protocol::C_SIGNUP& 
 
 	GDBConnectionPool->Push(&pg);
 
-	if (true/*rowCount == 0*/)// ID,email 중복 없음 생성가능
+	if (rowCount == 0)// ID,email 중복 없음 생성가능
 	{
 		string	hashedPassword = BCrypt::generateHash(pkt.password(), 10);
+        if (skip_email) {//이메일 스킵했으면 바로 pg에 계정 등록시도하고 response 전달
+            if (true == SignupToPG(nickname, hashedPassword, email, skip_email))
+                response.set_success(true);
+            session->Send(ClientPacketHandler::MakeWriteBuffer(response));
+            return;
+        }
 		string	temp_id = GetTempId(32);
 	
 		string	redisSetNickname = "SET %s:nickname %s EX 300";
@@ -61,6 +103,7 @@ void	Handle_C_SIGNUP(const PacketSessionRef& session, const Protocol::C_SIGNUP& 
 		{
 			redis->Clear();
 			GDBConnectionPool->Push(&redis);
+            session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 			return;
 		}
 		redis->Clear();
@@ -69,6 +112,7 @@ void	Handle_C_SIGNUP(const PacketSessionRef& session, const Protocol::C_SIGNUP& 
 		{
 			redis->Clear();
 			GDBConnectionPool->Push(&redis);
+            session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 			return;
 		}
 		redis->Clear();
@@ -77,59 +121,55 @@ void	Handle_C_SIGNUP(const PacketSessionRef& session, const Protocol::C_SIGNUP& 
 		{
 			redis->Clear();
 			GDBConnectionPool->Push(&redis);
+            session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 			return;
 		}
 		redis->Clear();
 		GDBConnectionPool->Push(&redis);
 
 		response.set_success(true);
-		response.set_skip_email(skip_email);
 		response.set_temp_id(temp_id);
-		session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 	}
-	else// ID,email 중복 있음 생성 불가능
-	{
-		response.set_success(false);
-		response.set_skip_email(skip_email);
-		response.set_temp_id("");
-		session->Send(ClientPacketHandler::MakeWriteBuffer(response));
-	}
+    session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 }
 
 void	Handle_C_VERIFY_MAIL_REQ(const PacketSessionRef& session, const Protocol::C_VERIFY_MAIL_REQ& pkt)
 {
 	cout << "Handle_C_VERIFY_MAIL_REQ" << endl;
 	Protocol::S_VERIFY_MAIL_REQ	response;
+    response.set_success(false);
 
 	string	temp_id = pkt.temp_id();//TODO 임시id 유효성 검사
-	string	verfiy_code = "12341234";//GetTempId(8); 더미클라이언트 테스트용 고정코드
-
+	string	verfiy_code = GetTempId(8);// "12341234" 더미클라이언트 테스트용 고정코드
 
 	string	redisGetEmail = "GET %s:email";
 	string	redisSetVerifyCode = "SET %s:verify_code %s EX 180";
 
 	RedisConnection* redis = GDBConnectionPool->PopRedis();
 
-	if (false == redis->Execute(redisGetEmail, temp_id.c_str()))//아까 등록한 이메일 레디스에서 가져오기
+	if (false == redis->Execute(redisGetEmail, temp_id.c_str()) || redis->IsNull())
 	{
 		redis->Clear();
+        if (redis->IsNull())
+		    response.set_expired(true);
 		GDBConnectionPool->Push(&redis);
+	    session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 		return;
 	}
 	string	a1_email = redis->GetStr();
 	redis->Clear();
 
-	if (false == redis->Execute(redisSetVerifyCode, temp_id.c_str(), verfiy_code.c_str()))//인증코드 레디스에 저장
+	if (false == redis->Execute(redisSetVerifyCode, temp_id.c_str(), verfiy_code.c_str()))
 	{
 		redis->Clear();
 		GDBConnectionPool->Push(&redis);
+	    session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 		return;
 	}
 	string	a2_status = redis->GetStr();
 	redis->Clear();
 
 	GDBConnectionPool->Push(&redis);
-	//TODO EmailAPI로 이메일 보내기, 실패시 처리
 	GSMTPManager->PushMail(make_shared<Mail>(a1_email, "Verify Code From AuthServer", verfiy_code));
 	GThreadManager->_mailCv.notify_one();
 	
@@ -142,6 +182,8 @@ void	Handle_C_VERIFY_EMAIL_CODE(const PacketSessionRef& session, const Protocol:
 {
 	cout << "Handle_C_VERIFY_EMAIL_CODE" << endl;
 	Protocol::S_VERIFY_EMAIL_CODE	response;
+	response.set_success(false);
+    response.set_expired(false);
 
 	string	temp_id = pkt.temp_id();//TODO 임시id 유효성 검사
 	string	verify_code = pkt.verify_code();
@@ -153,19 +195,12 @@ void	Handle_C_VERIFY_EMAIL_CODE(const PacketSessionRef& session, const Protocol:
 
 	RedisConnection* redis = GDBConnectionPool->PopRedis();
 
-	if (false == redis->Execute(redisGetVerifyCode, temp_id.c_str()))
-	{
+	if (false == redis->Execute(redisGetVerifyCode, temp_id.c_str()) || redis->IsNull())
+	{//레디스 실패했거나 만료됐다면
 		redis->Clear();
+        if (redis->IsNull())// 만료된거면
+		    response.set_expired(true);
 		GDBConnectionPool->Push(&redis);
-		return;
-	}
-
-	if (redis->IsNull() == REDIS_REPLY_NIL)
-	{//인증코드가 만료됐을 경우
-		redis->Clear();
-		GDBConnectionPool->Push(&redis);
-		response.set_success(false);
-		response.set_expired(true);
 		session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 		return;
 	}
@@ -175,35 +210,43 @@ void	Handle_C_VERIFY_EMAIL_CODE(const PacketSessionRef& session, const Protocol:
 	if (verify_code != a1_verify_code)
 	{//인증코드가 틀렸을 경우
 		GDBConnectionPool->Push(&redis);
-		response.set_success(false);
 		response.set_expired(false);
 		session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 		return;
 	}
 
 	/* 인증코드가 맞았을 경우 */
-	if (false == redis->Execute(redisGetNickname, temp_id.c_str()))
+	if (false == redis->Execute(redisGetNickname, temp_id.c_str()) || redis->IsNull())
 	{
 		redis->Clear();
+        if (redis->IsNull())// 만료된거면
+		    response.set_expired(true);
 		GDBConnectionPool->Push(&redis);
+	    session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 		return;
 	}
 	string	a2_nickname = redis->GetStr();
 	redis->Clear();
 
-	if (false == redis->Execute(redisGetPassword, temp_id.c_str()))
+	if (false == redis->Execute(redisGetPassword, temp_id.c_str()) || redis->IsNull())
 	{
 		redis->Clear();
+        if (redis->IsNull())// 만료된거면
+		    response.set_expired(true);
 		GDBConnectionPool->Push(&redis);
+	    session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 		return;
 	}
 	string	a3_password = redis->GetStr();
 	redis->Clear();
 
-	if (false == redis->Execute(redisGetEmail, temp_id.c_str()))
+	if (false == redis->Execute(redisGetEmail, temp_id.c_str()) || redis->IsNull())
 	{
 		redis->Clear();
+        if (redis->IsNull())// 만료된거면
+		    response.set_expired(true);
 		GDBConnectionPool->Push(&redis);
+	    session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 		return;
 	}
 	string	a4_email = redis->GetStr();
@@ -211,26 +254,10 @@ void	Handle_C_VERIFY_EMAIL_CODE(const PacketSessionRef& session, const Protocol:
 	
 	GDBConnectionPool->Push(&redis);
 
-	string	pgSetUserDataSQL = "INSERT INTO auth.users (nickname, password, email) VALUES ($1, $2, $3)";
-	PGConnection*	pg = GDBConnectionPool->PopPG();
-
-	pg->AddValue(a2_nickname);
-	pg->AddValue(a3_password);
-	pg->AddValue(a4_email);
-
-	if(pg->ExecuteSQL(pgSetUserDataSQL) == false)
-	{//TODO 실행실패 제대로 처리
-		cout << "Fail To ExecuteSQL in Handle_C_VERIFY_EMAIL_CODE" << endl;
-		pg->Clear();
-		GDBConnectionPool->Push(&pg);
-		return;
-	}
-	pg->Clear();
-	GDBConnectionPool->Push(&pg);
-
-	response.set_success(true);
-	response.set_expired(false);
-	response.set_nickname(a2_nickname);
+    if (SignupToPG(a2_nickname, a3_password, a4_email, false)) {
+	    response.set_success(true);
+        response.set_nickname(a2_nickname);//더미클라이언트 닉네임은 안보내도 되는데 테스트용
+    }
 	session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 }
 
@@ -238,6 +265,8 @@ void	Handle_C_LOGIN(const PacketSessionRef& session, const Protocol::C_LOGIN& pk
 {
 	cout << "Handle_C_LOGIN" << endl;
 	Protocol::S_LOGIN	response;
+    response.set_success(false);
+
 	string			nickname = pkt.nickname();
 	string			password = pkt.password();
 
@@ -247,17 +276,17 @@ void	Handle_C_LOGIN(const PacketSessionRef& session, const Protocol::C_LOGIN& pk
 	pg->AddValue(nickname);
 
 	if(pg->ExecuteSQL(pgGetUserData) == false)
-	{//TODO 실행실패 제대로 처리
+	{
 		cout << "Fail To ExecuteSQL in Handle_C_LOGIN" << endl;
 		pg->Clear();
 		GDBConnectionPool->Push(&pg);
+		session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 		return;
 	}
 
 	if (pg->GetRowCount() == 0)
 	{//존재하지 않는 nickname
 		pg->Clear();
-		response.set_success(false);
 		session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 		return;
 	}
@@ -273,16 +302,16 @@ void	Handle_C_LOGIN(const PacketSessionRef& session, const Protocol::C_LOGIN& pk
 		string	token = CreateAccessToken(a_user_id, nickname);
 		response.set_success(true);
 		response.set_token(token);
-		session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 	}
 	else
-	{//비밀번호 틀림
+	{//비밀번호 틀림 레디스에 실패횟수 기록
 		string	redisIncrFailCount = "INCR %s:fail_count EX 600";
 		RedisConnection*	redis = GDBConnectionPool->PopRedis();
 		if(false == redis->Execute(redisIncrFailCount, nickname.c_str()))
 		{
 			redis->Clear();
 			GDBConnectionPool->Push(&redis);
+            session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 			return;
 		}
 		int	fail_count = redis->GetInt();
@@ -291,7 +320,6 @@ void	Handle_C_LOGIN(const PacketSessionRef& session, const Protocol::C_LOGIN& pk
 		{
 			//TODO 차단
 		}
-		response.set_success(false);
-		session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 	}
+    session->Send(ClientPacketHandler::MakeWriteBuffer(response));
 }

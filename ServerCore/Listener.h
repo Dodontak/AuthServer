@@ -13,7 +13,7 @@
 class Listener : public EpollObject
 {
 public:
-	Listener(ServiceRef service, int port);
+	Listener(ServiceRef service);
 	virtual ~Listener();
 
 	void	Accept();
@@ -26,7 +26,7 @@ public:
 
 private:
 	int				_listenSocket = -1;
-	NetAddress		_addr;
+	NetAddress		_address;
 	ServiceRef		_service = nullptr;
 	EpollEvent*		_epollEvent = nullptr;
 };

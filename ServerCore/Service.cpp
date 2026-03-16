@@ -1,4 +1,5 @@
 #include "Service.h"
+#include "NetAddress.h"
 #include "SslCtx.h"
 #include "Listener.h"
 #include "Session.h"
@@ -11,8 +12,8 @@ using namespace std;
        Service
 ====================*/
 
-Service::Service(const char* ip, int port, SessionFactory factory)
-	: _addr(ip, port), _sessionFactory(factory)
+Service::Service(NetAddress addr, SessionFactory factory)
+	: _addr(addr), _sessionFactory(factory)
 {
 }
 
@@ -42,23 +43,20 @@ void	Service::EraseSession(EpollObjectRef session)
      AuthService
 ====================*/
 
-AuthService::AuthService(const char* ip, int port, const char* certFile, const char* keyFile, SessionFactory factory) :
-	Service(ip, port, factory)
+AuthService::AuthService(NetAddress addr, const char* certFile, const char* keyFile, SessionFactory factory) :
+	Service(addr, factory)
 {
 	_ctx = make_shared<SslCtx>(true);
 	_ctx->SetCrt(certFile);
 	_ctx->SetKey(keyFile);
 }
 
-AuthService::~AuthService()
-{
-
-}
+AuthService::~AuthService() {}
 
 int	AuthService::Start()
 {
 	signal(SIGPIPE, SIG_IGN);
-	ListenerRef		listener = make_shared<Listener>(shared_from_this(), _addr.GetPort());
+	ListenerRef		listener = make_shared<Listener>(shared_from_this());
 	EpollEvent*		listenEvent = new EpollEvent(listener, EventType::Accept);
 
 	_epollCore = make_shared<EpollCore>();
@@ -72,8 +70,8 @@ int	AuthService::Start()
 ====================*/
 
 
-ClientService::ClientService(const char* ip, int port, SessionFactory factory, int clientCount) :
-	Service(ip, port, factory), _clientCount(clientCount)
+ClientService::ClientService(NetAddress addr, SessionFactory factory, int clientCount) :
+	Service(addr, factory), _clientCount(clientCount)
 {
 	_ctx = make_shared<SslCtx>(false);
 }
@@ -91,7 +89,8 @@ int	ClientService::Start()
 		int	addrlen = sizeof(sockaddr_in);
 		SessionRef		session = _sessionFactory(socket, _addr.GetAddr(), shared_from_this());
 		EpollEvent*		epollEvent = new EpollEvent(session, EventType::Connect);
-		SocketUtil::MakeSocketNonblock(socket);
+		if (false == SocketUtil::MakeSocketNonblock(socket))
+            handle_error("ClientService Start MakeSocketNonblock error", 1);
 
 		session->Connect();
 		_epollCore->Register(epollEvent);

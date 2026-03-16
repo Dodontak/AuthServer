@@ -14,12 +14,10 @@ CAuthSession::CAuthSession(int clientSocket, struct sockaddr_in addr, ServiceRef
 	_isClient = true;
 }
 
-
 CAuthSession::~CAuthSession()
 {
 
 }
-
 
 void	CAuthSession::OnWrite(int len)
 {

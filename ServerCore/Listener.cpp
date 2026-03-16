@@ -1,5 +1,6 @@
 #include "Listener.h"
 
+#include "NetAddress.h"
 #include "Service.h"
 #include "Utils.h"
 #include "EpollEvent.h"
@@ -11,25 +12,24 @@
 
 using namespace std;
 
-Listener::Listener(ServiceRef service, int port) : _service(service)
+Listener::Listener(ServiceRef service) : _service(move(service)), _address(service->GetNetAddress())
 {
 	_listenSocket = SocketUtil::CreateSocket();
 	if (_listenSocket == -1)
 		handle_error("socket error", 1);
 
-	SocketUtil::MakeSocketNonblock(_listenSocket);
-	struct sockaddr_in sock_addr = service->GetNetAddress().GetAddr();
+	if (false == SocketUtil::MakeSocketNonblock(_listenSocket))
+        handle_error("Listener MakeSocketNonblock error", 1);
+    
+    if (false == SocketUtil::SetReuseAddress(_listenSocket, true))
+        handle_error("Listener SetReuseAddress error", 1);
 
-	memset(&sock_addr, 0, sizeof(sock_addr));
-	sock_addr.sin_family = AF_INET;
-	sock_addr.sin_port = htons(port);
-	sock_addr.sin_addr.s_addr = INADDR_ANY;
-
-	if (bind(_listenSocket, (struct sockaddr *)&sock_addr, sizeof(sock_addr)) == -1)
-		handle_error("bind error", 1);
+    if (false == SocketUtil::Bind(_listenSocket, _address))
+        handle_error("Listener Bind error", 1);
 
 	if (listen(_listenSocket, LISTEN_BACKLOG) == -1)
 		handle_error("listen error", 1);
+
 	cout << "Listener constructed." << endl;
 }
 
@@ -49,7 +49,12 @@ void	Listener::Accept()
 			return;
 		handle_error("accept error", 1);
 	}
-	SocketUtil::MakeSocketNonblock(clientSocket);
+    
+	if (SocketUtil::MakeSocketNonblock(clientSocket) == false)
+    {
+        SocketUtil::CloseSocket(clientSocket);
+        return;
+    }
 
 	SessionRef		session = _service->MakeSession(clientSocket, client_addr, _service);
 	EpollEvent*		epollEvent = new EpollEvent(session, EventType::HandShakingRead);
