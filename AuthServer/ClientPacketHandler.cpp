@@ -266,6 +266,7 @@ void	Handle_C_LOGIN(const PacketSessionRef& session, const Protocol::C_LOGIN& pk
 	cout << "Handle_C_LOGIN" << endl;
 	Protocol::S_LOGIN	response;
     response.set_success(false);
+    response.set_is_block(false);
 
 	string			nickname = pkt.nickname();
 	string			password = pkt.password();
@@ -293,9 +294,17 @@ void	Handle_C_LOGIN(const PacketSessionRef& session, const Protocol::C_LOGIN& pk
 
 	string	a_user_id = pg->GetValue(0, 0);
 	string	a_password = pg->GetValue(0, 1);
+	string	a_is_block = pg->GetValue(0, 2);
 	pg->Clear();
 	
 	GDBConnectionPool->Push(&pg);
+
+    if (a_is_block == "t")
+    {//블록된 유저라면
+        response.set_is_block(true);
+        session->Send(ClientPacketHandler::MakeWriteBuffer(response));
+        return;
+    }
 
 	if (BCrypt::validatePassword(password, a_password))
 	{//로그인 성공
@@ -315,10 +324,14 @@ void	Handle_C_LOGIN(const PacketSessionRef& session, const Protocol::C_LOGIN& pk
 			return;
 		}
 		int	fail_count = redis->GetInt();
+        response.set_fail_count(fail_count);
 		redis->Clear();
 		if (fail_count >= 5)
 		{
-			//TODO 차단
+			string pgBlockSql = "UPDATE auth.users SET is_block = true WHERE nickname = $1";
+	        PGConnection*	pg = GDBConnectionPool->PopPG();
+            pg->AddValue(nickname);
+            pg->ExecuteSQL(pgBlockSql);
 		}
 	}
     session->Send(ClientPacketHandler::MakeWriteBuffer(response));

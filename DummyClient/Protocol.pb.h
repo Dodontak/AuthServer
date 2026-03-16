@@ -1417,11 +1417,12 @@ class S_LOGIN final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kTokenFieldNumber = 3,
+    kTokenFieldNumber = 4,
     kSuccessFieldNumber = 1,
     kIsBlockFieldNumber = 2,
+    kFailCountFieldNumber = 3,
   };
-  // string token = 3;
+  // string token = 4;
   void clear_token();
   const std::string& token() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -1453,6 +1454,15 @@ class S_LOGIN final :
   void _internal_set_is_block(bool value);
   public:
 
+  // int32 fail_count = 3;
+  void clear_fail_count();
+  int32_t fail_count() const;
+  void set_fail_count(int32_t value);
+  private:
+  int32_t _internal_fail_count() const;
+  void _internal_set_fail_count(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:Protocol.S_LOGIN)
  private:
   class _Internal;
@@ -1464,6 +1474,7 @@ class S_LOGIN final :
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
     bool success_;
     bool is_block_;
+    int32_t fail_count_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -2238,7 +2249,27 @@ inline void S_LOGIN::set_is_block(bool value) {
   // @@protoc_insertion_point(field_set:Protocol.S_LOGIN.is_block)
 }
 
-// string token = 3;
+// int32 fail_count = 3;
+inline void S_LOGIN::clear_fail_count() {
+  _impl_.fail_count_ = 0;
+}
+inline int32_t S_LOGIN::_internal_fail_count() const {
+  return _impl_.fail_count_;
+}
+inline int32_t S_LOGIN::fail_count() const {
+  // @@protoc_insertion_point(field_get:Protocol.S_LOGIN.fail_count)
+  return _internal_fail_count();
+}
+inline void S_LOGIN::_internal_set_fail_count(int32_t value) {
+  
+  _impl_.fail_count_ = value;
+}
+inline void S_LOGIN::set_fail_count(int32_t value) {
+  _internal_set_fail_count(value);
+  // @@protoc_insertion_point(field_set:Protocol.S_LOGIN.fail_count)
+}
+
+// string token = 4;
 inline void S_LOGIN::clear_token() {
   _impl_.token_.ClearToEmpty();
 }

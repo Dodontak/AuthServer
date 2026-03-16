@@ -128,6 +128,7 @@ PROTOBUF_CONSTEXPR S_LOGIN::S_LOGIN(
     /*decltype(_impl_.token_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.success_)*/false
   , /*decltype(_impl_.is_block_)*/false
+  , /*decltype(_impl_.fail_count_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct S_LOGINDefaultTypeInternal {
   PROTOBUF_CONSTEXPR S_LOGINDefaultTypeInternal()
@@ -212,6 +213,7 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::Protocol::S_LOGIN, _impl_.success_),
   PROTOBUF_FIELD_OFFSET(::Protocol::S_LOGIN, _impl_.is_block_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_LOGIN, _impl_.fail_count_),
   PROTOBUF_FIELD_OFFSET(::Protocol::S_LOGIN, _impl_.token_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -248,13 +250,13 @@ const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "\001 \001(\t\022\023\n\013verify_code\030\002 \001(\t\"I\n\023S_VERIFY_E"
   "MAIL_CODE\022\017\n\007success\030\001 \001(\010\022\017\n\007expired\030\002 "
   "\001(\010\022\020\n\010nickname\030\003 \001(\t\"-\n\007C_LOGIN\022\020\n\010nick"
-  "name\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\";\n\007S_LOGIN\022"
-  "\017\n\007success\030\001 \001(\010\022\020\n\010is_block\030\002 \001(\010\022\r\n\005to"
-  "ken\030\003 \001(\tb\006proto3"
+  "name\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"O\n\007S_LOGIN\022"
+  "\017\n\007success\030\001 \001(\010\022\020\n\010is_block\030\002 \001(\010\022\022\n\nfa"
+  "il_count\030\003 \001(\005\022\r\n\005token\030\004 \001(\tb\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 537, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 557, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
     &descriptor_table_Protocol_2eproto_once, nullptr, 0, 8,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
@@ -2116,6 +2118,7 @@ S_LOGIN::S_LOGIN(const S_LOGIN& from)
       decltype(_impl_.token_){}
     , decltype(_impl_.success_){}
     , decltype(_impl_.is_block_){}
+    , decltype(_impl_.fail_count_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -2128,8 +2131,8 @@ S_LOGIN::S_LOGIN(const S_LOGIN& from)
       _this->GetArenaForAllocation());
   }
   ::memcpy(&_impl_.success_, &from._impl_.success_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.is_block_) -
-    reinterpret_cast<char*>(&_impl_.success_)) + sizeof(_impl_.is_block_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.fail_count_) -
+    reinterpret_cast<char*>(&_impl_.success_)) + sizeof(_impl_.fail_count_));
   // @@protoc_insertion_point(copy_constructor:Protocol.S_LOGIN)
 }
 
@@ -2141,6 +2144,7 @@ inline void S_LOGIN::SharedCtor(
       decltype(_impl_.token_){}
     , decltype(_impl_.success_){false}
     , decltype(_impl_.is_block_){false}
+    , decltype(_impl_.fail_count_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
   _impl_.token_.InitDefault();
@@ -2175,8 +2179,8 @@ void S_LOGIN::Clear() {
 
   _impl_.token_.ClearToEmpty();
   ::memset(&_impl_.success_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.is_block_) -
-      reinterpret_cast<char*>(&_impl_.success_)) + sizeof(_impl_.is_block_));
+      reinterpret_cast<char*>(&_impl_.fail_count_) -
+      reinterpret_cast<char*>(&_impl_.success_)) + sizeof(_impl_.fail_count_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2202,9 +2206,17 @@ const char* S_LOGIN::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
         } else
           goto handle_unusual;
         continue;
-      // string token = 3;
+      // int32 fail_count = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          _impl_.fail_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string token = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
           auto str = _internal_mutable_token();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
@@ -2253,14 +2265,20 @@ uint8_t* S_LOGIN::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_is_block(), target);
   }
 
-  // string token = 3;
+  // int32 fail_count = 3;
+  if (this->_internal_fail_count() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_fail_count(), target);
+  }
+
+  // string token = 4;
   if (!this->_internal_token().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_token().data(), static_cast<int>(this->_internal_token().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "Protocol.S_LOGIN.token");
     target = stream->WriteStringMaybeAliased(
-        3, this->_internal_token(), target);
+        4, this->_internal_token(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2279,7 +2297,7 @@ size_t S_LOGIN::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string token = 3;
+  // string token = 4;
   if (!this->_internal_token().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
@@ -2294,6 +2312,11 @@ size_t S_LOGIN::ByteSizeLong() const {
   // bool is_block = 2;
   if (this->_internal_is_block() != 0) {
     total_size += 1 + 1;
+  }
+
+  // int32 fail_count = 3;
+  if (this->_internal_fail_count() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_fail_count());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -2323,6 +2346,9 @@ void S_LOGIN::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOB
   if (from._internal_is_block() != 0) {
     _this->_internal_set_is_block(from._internal_is_block());
   }
+  if (from._internal_fail_count() != 0) {
+    _this->_internal_set_fail_count(from._internal_fail_count());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -2347,8 +2373,8 @@ void S_LOGIN::InternalSwap(S_LOGIN* other) {
       &other->_impl_.token_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(S_LOGIN, _impl_.is_block_)
-      + sizeof(S_LOGIN::_impl_.is_block_)
+      PROTOBUF_FIELD_OFFSET(S_LOGIN, _impl_.fail_count_)
+      + sizeof(S_LOGIN::_impl_.fail_count_)
       - PROTOBUF_FIELD_OFFSET(S_LOGIN, _impl_.success_)>(
           reinterpret_cast<char*>(&_impl_.success_),
           reinterpret_cast<char*>(&other->_impl_.success_));
