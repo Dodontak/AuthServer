@@ -8,13 +8,8 @@
 
 using namespace std;
 
-void handle_error(const char* err_str, int rtn)
-{
-	cerr << err_str << endl;
-	exit(rtn);
-}
 
-bool SocketUtil::MakeSocketNonblock(int sock)
+bool SocketUtils::MakeSocketNonblock(int sock)
 {
 	int flags = fcntl(sock, F_GETFL, 0);
 	if (flags == -1)
@@ -24,14 +19,14 @@ bool SocketUtil::MakeSocketNonblock(int sock)
     return true;
 }
 
-bool SocketUtil::Bind(int socket, NetAddress addr)
+bool SocketUtils::Bind(int socket, NetAddress addr)
 {
     if (0 != bind(socket, (struct sockaddr *)&addr.GetAddr(), sizeof(addr.GetAddr())))
         return false;
     return true;
 }
 
-bool SocketUtil::SetReuseAddress(int socket, bool flag)
+bool SocketUtils::SetReuseAddress(int socket, bool flag)
 {
     int optval = (flag ? 1 : 0);
     if (setsockopt(socket, SOL_SOCKET, SO_REUSEADDR, (unsigned char *)&optval, sizeof(optval)) == -1)
@@ -39,17 +34,24 @@ bool SocketUtil::SetReuseAddress(int socket, bool flag)
 	return true;
 }
 
-int	SocketUtil::CreateSocket()
+int	SocketUtils::CreateSocket()
 {
 	return socket(AF_INET, SOCK_STREAM, 0);
 }
 
-void	SocketUtil::CloseSocket(int socket)
+void	SocketUtils::CloseSocket(int socket)
 {
 	close(socket);
 }
 
-string	GetTempId(int len)
+void Utils::ErrorExit(const char* err_str)
+{
+	cerr << err_str << endl;
+	exit(1);
+}
+
+//len 만큼의 랜덤바이트 배열 만들고, 각 바이트 16진수로 변환. len*2길이로 나옴.
+string	Utils::GetRandomStr(int len)
 {
 	vector<unsigned char>	buffer(len);
 	if (RAND_bytes(buffer.data(), buffer.size()) != 1)
@@ -63,7 +65,7 @@ string	GetTempId(int len)
 	return ss.str();
 }
 
-string CreateAccessToken(const string& user_id, const string& nickname)
+string Utils::CreateAccessToken(const string& user_id, const string& nickname)
 {
     // JWT 시그니처용 비밀키는 환경변수에 저장해둠.
     const string SECRET_KEY = getenv("JWT_SECRET_KEY");
@@ -81,7 +83,7 @@ string CreateAccessToken(const string& user_id, const string& nickname)
     return token;
 }
 
-bool VerifyAccessToken(const string& token, string& out_user_id)
+bool Utils::VerifyAccessToken(const string& token, string& out_user_id)
 {
 	// JWT 시그니처용 비밀키는 환경변수에 저장해둠.
     const string SECRET_KEY = getenv("JWT_SECRET_KEY");

@@ -91,7 +91,7 @@ void	Handle_C_SIGNUP(const PacketSessionRef& session, const Protocol::C_SIGNUP& 
             session->Send(ClientPacketHandler::MakeWriteBuffer(response));
             return;
         }
-		string	temp_id = GetTempId(32);
+		string	temp_id = Utils::GetRandomStr(32);
 	
 		string	redisSetNickname = "SET %s:nickname %s EX 300";
 		string	redisSetPassword = "SET %s:password %s EX 300";
@@ -140,7 +140,7 @@ void	Handle_C_VERIFY_MAIL_REQ(const PacketSessionRef& session, const Protocol::C
     response.set_success(false);
 
 	string	temp_id = pkt.temp_id();//TODO 임시id 유효성 검사
-	string	verfiy_code = GetTempId(8);// "12341234" 더미클라이언트 테스트용 고정코드
+	string	verfiy_code = Utils::GetRandomStr(8);// "12341234" 더미클라이언트 테스트용 고정코드
 
 	string	redisGetEmail = "GET %s:email";
 	string	redisSetVerifyCode = "SET %s:verify_code %s EX 180";
@@ -299,7 +299,7 @@ void	Handle_C_LOGIN(const PacketSessionRef& session, const Protocol::C_LOGIN& pk
 
 	if (BCrypt::validatePassword(password, a_password))
 	{//로그인 성공
-		string	token = CreateAccessToken(a_user_id, nickname);
+		string	token = Utils::CreateAccessToken(a_user_id, nickname);
 		response.set_success(true);
 		response.set_token(token);
 	}

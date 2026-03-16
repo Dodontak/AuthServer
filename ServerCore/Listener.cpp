@@ -14,21 +14,21 @@ using namespace std;
 
 Listener::Listener(ServiceRef service) : _service(move(service)), _address(service->GetNetAddress())
 {
-	_listenSocket = SocketUtil::CreateSocket();
+	_listenSocket = SocketUtils::CreateSocket();
 	if (_listenSocket == -1)
-		handle_error("socket error", 1);
+		Utils::ErrorExit("socket error");
 
-	if (false == SocketUtil::MakeSocketNonblock(_listenSocket))
-        handle_error("Listener MakeSocketNonblock error", 1);
+	if (false == SocketUtils::MakeSocketNonblock(_listenSocket))
+        Utils::ErrorExit("Listener MakeSocketNonblock error");
     
-    if (false == SocketUtil::SetReuseAddress(_listenSocket, true))
-        handle_error("Listener SetReuseAddress error", 1);
+    if (false == SocketUtils::SetReuseAddress(_listenSocket, true))
+        Utils::ErrorExit("Listener SetReuseAddress error");
 
-    if (false == SocketUtil::Bind(_listenSocket, _address))
-        handle_error("Listener Bind error", 1);
+    if (false == SocketUtils::Bind(_listenSocket, _address))
+        Utils::ErrorExit("Listener Bind error");
 
 	if (listen(_listenSocket, LISTEN_BACKLOG) == -1)
-		handle_error("listen error", 1);
+		Utils::ErrorExit("listen error");
 
 	cout << "Listener constructed." << endl;
 }
@@ -47,12 +47,12 @@ void	Listener::Accept()
 	{
 		if (errno == EAGAIN)
 			return;
-		handle_error("accept error", 1);
+		Utils::ErrorExit("accept error");
 	}
     
-	if (SocketUtil::MakeSocketNonblock(clientSocket) == false)
+	if (SocketUtils::MakeSocketNonblock(clientSocket) == false)
     {
-        SocketUtil::CloseSocket(clientSocket);
+        SocketUtils::CloseSocket(clientSocket);
         return;
     }
 
@@ -66,6 +66,6 @@ void	Listener::Accept()
 void	Listener::Dispatch(uint32_t events)
 {
 	if (events != EPOLLIN)
-		handle_error("Listener Dispatch events error", 1);
+		Utils::ErrorExit("Listener Dispatch events error");
 	Accept();
 }

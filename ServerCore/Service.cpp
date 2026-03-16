@@ -85,12 +85,12 @@ int	ClientService::Start()
 	_epollCore = make_shared<EpollCore>();
 	for (int i = 0; i < _clientCount; ++i)
 	{
-		int	socket = SocketUtil::CreateSocket();
+		int	socket = SocketUtils::CreateSocket();
 		int	addrlen = sizeof(sockaddr_in);
 		SessionRef		session = _sessionFactory(socket, _addr.GetAddr(), shared_from_this());
 		EpollEvent*		epollEvent = new EpollEvent(session, EventType::Connect);
-		if (false == SocketUtil::MakeSocketNonblock(socket))
-            handle_error("ClientService Start MakeSocketNonblock error", 1);
+		if (false == SocketUtils::MakeSocketNonblock(socket))
+            Utils::ErrorExit("ClientService Start MakeSocketNonblock error");
 
 		session->Connect();
 		_epollCore->Register(epollEvent);

@@ -43,7 +43,7 @@ void	SMTPManager::Init(string emailFrom)
 
 SMTPConnectionRef	SMTPManager::GetConnection()
 {
-	int	serverSock = SocketUtil::CreateSocket();
+	int	serverSock = SocketUtils::CreateSocket();
 	if (serverSock < 0)
 	{
 		cerr << "SMTPManager GerConnection CeateSocket\n";
@@ -56,7 +56,7 @@ SMTPConnectionRef	SMTPManager::GetConnection()
 	if (host == nullptr)
 	{
 		cerr << "SMTPManager GerConnection gethostbyname error\n";
-		SocketUtil::CloseSocket(serverSock);
+		SocketUtils::CloseSocket(serverSock);
 		return nullptr;
 	}
 	memcpy(&(mailServerAddr.sin_addr), host->h_addr_list[0], host->h_length);
@@ -67,13 +67,13 @@ SMTPConnectionRef	SMTPManager::GetConnection()
 	if (result == -1)
 	{
 		cerr << "SMTPManager GerConnection connect error\n";
-		SocketUtil::CloseSocket(serverSock);
+		SocketUtils::CloseSocket(serverSock);
 		return nullptr;
 	}
 	SMTPConnectionRef conn = make_shared<SMTPConnection>(_ctx.GetCtx(), serverSock, _DNSAddress,
 		_emailFrom, _STMPServer);
 	if (conn == nullptr)
-		SocketUtil::CloseSocket(serverSock);
+		SocketUtils::CloseSocket(serverSock);
 	return conn;
 }
 
@@ -110,7 +110,7 @@ SMTPConnection::SMTPConnection(SSL_CTX* ctx, int fd, string DNSAddress, string e
 
 SMTPConnection::~SMTPConnection()
 {
-	SocketUtil::CloseSocket(_socket);
+	SocketUtils::CloseSocket(_socket);
 }
 
 void	SMTPConnection::SendMail(shared_ptr<Mail> mail)

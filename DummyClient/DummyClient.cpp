@@ -18,11 +18,11 @@ using namespace std;
 void SignUp(SessionRef session) {
     Protocol::C_SIGNUP pkt;
     string email, nickname, password;
-    email = GetTempId(10) + '@' + GetTempId(3) + ".com";
+    email = Utils::GetRandomStr(10) + '@' + Utils::GetRandomStr(3) + ".com";
     pkt.set_email(email);
-    nickname = GetTempId(10);
+    nickname = Utils::GetRandomStr(10);
     pkt.set_nickname(nickname);
-    password = GetTempId(20);
+    password = Utils::GetRandomStr(20);
     pkt.set_password(password);
     pkt.set_skip_email(true);
     session->Send(ServerPacketHandler::MakeWriteBuffer(pkt));

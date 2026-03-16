@@ -45,7 +45,7 @@ void MailThread() {
 }
 
 int main(int ac, char **av) {
-    if (ac != 2) handle_error((string(av[0]) + " [port]").c_str(), 1);
+    if (ac != 2) Utils::ErrorExit((string(av[0]) + " [port]").c_str());
     GDBConnectionPool->Init(10, "redis", 6379, 10,
                             "host=postgres user=postgres port=5432 "
                             "dbname=postgres password=password "

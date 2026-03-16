@@ -6,7 +6,7 @@ EpollCore::EpollCore()
 {
 	_epfd = epoll_create1(0);
 	if (_epfd == -1)
-		handle_error("epoll_create1 error", 1);
+		Utils::ErrorExit("epoll_create1 error");
 }
 
 EpollCore::~EpollCore()

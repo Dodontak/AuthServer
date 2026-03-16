@@ -10,20 +10,20 @@ SslCtx::SslCtx(bool serverMethod)
 		method = TLS_client_method();
 	_ctx = SSL_CTX_new(method);
 	if (!_ctx)
-		handle_error("SSL_CTX_new error", 1);
+		Utils::ErrorExit("SSL_CTX_new error");
 
 }
 
 void	SslCtx::SetCrt(const char* crt)
 {
     if (SSL_CTX_use_certificate_file(_ctx, crt, SSL_FILETYPE_PEM) <= 0)
-    	handle_error("SSL_CTX_use_certificate_file error", 1);
+    	Utils::ErrorExit("SSL_CTX_use_certificate_file error");
 }
 
 void	SslCtx::SetKey(const char* key)
 {
     if (SSL_CTX_use_PrivateKey_file(_ctx, key, SSL_FILETYPE_PEM) <= 0)
-    	handle_error("SSL_CTX_use_PrivateKey_file error", 1);
+    	Utils::ErrorExit("SSL_CTX_use_PrivateKey_file error");
 }
 
 SslCtx::~SslCtx()
