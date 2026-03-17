@@ -16,7 +16,7 @@
 using namespace std;
 
 void WorkerThread() {
-    while (true) {
+    while (GThreadManager->IsRunning()) {
         JobRef job = nullptr;
         {
             unique_lock<mutex> lock(GThreadManager->_workerMutex);
@@ -29,7 +29,7 @@ void WorkerThread() {
 }
 
 void MailThread() {
-    while (true) {
+    while (GThreadManager->IsRunning()) {
         shared_ptr<Mail> mail = nullptr;
         {
             unique_lock<mutex> lock(GThreadManager->_mailMutex);

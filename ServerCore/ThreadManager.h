@@ -16,6 +16,8 @@ public:
 	
 	void	Launch(std::function<void()> callback);
 	void	Join();
+
+    bool    IsRunning() { return _running; }
 	
 	std::mutex				_workerMutex;
 	std::condition_variable	_workerCv;
@@ -25,6 +27,7 @@ public:
 private:
 	static void	InitTLS();
 	static void	DestroyTLS();
+    bool        _running;
 
 	std::vector<std::thread>		_workerThreads;
 	std::vector<std::thread>		_mailThreads;

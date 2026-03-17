@@ -5,7 +5,7 @@
 
 using namespace std;
 
-ThreadManager::ThreadManager()
+ThreadManager::ThreadManager() : _running(true)
 {
 	InitTLS();
 }
@@ -35,7 +35,7 @@ void	ThreadManager::Join()
 
 void	ThreadManager::InitTLS()
 {
-	static atomic<int>	SThreadId = 1;
+	static atomic<int>	SThreadId(1);
 	LThreadId = SThreadId.fetch_add(1);
 }
 
