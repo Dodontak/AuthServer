@@ -402,6 +402,7 @@ class S_SIGNUP final :
 
   enum : int {
     kTempIdFieldNumber = 3,
+    kReasonFieldNumber = 4,
     kSuccessFieldNumber = 1,
     kSkipEmailFieldNumber = 2,
   };
@@ -417,6 +418,20 @@ class S_SIGNUP final :
   const std::string& _internal_temp_id() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_temp_id(const std::string& value);
   std::string* _internal_mutable_temp_id();
+  public:
+
+  // string reason = 4;
+  void clear_reason();
+  const std::string& reason() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_reason(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_reason();
+  PROTOBUF_NODISCARD std::string* release_reason();
+  void set_allocated_reason(std::string* reason);
+  private:
+  const std::string& _internal_reason() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_reason(const std::string& value);
+  std::string* _internal_mutable_reason();
   public:
 
   // bool success = 1;
@@ -446,6 +461,7 @@ class S_SIGNUP final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr temp_id_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr reason_;
     bool success_;
     bool skip_email_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -730,6 +746,7 @@ class S_VERIFY_MAIL_REQ final :
 
   enum : int {
     kTempIdFieldNumber = 2,
+    kReasonFieldNumber = 4,
     kSuccessFieldNumber = 1,
     kExpiredFieldNumber = 3,
   };
@@ -745,6 +762,20 @@ class S_VERIFY_MAIL_REQ final :
   const std::string& _internal_temp_id() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_temp_id(const std::string& value);
   std::string* _internal_mutable_temp_id();
+  public:
+
+  // string reason = 4;
+  void clear_reason();
+  const std::string& reason() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_reason(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_reason();
+  PROTOBUF_NODISCARD std::string* release_reason();
+  void set_allocated_reason(std::string* reason);
+  private:
+  const std::string& _internal_reason() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_reason(const std::string& value);
+  std::string* _internal_mutable_reason();
   public:
 
   // bool success = 1;
@@ -774,6 +805,7 @@ class S_VERIFY_MAIL_REQ final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr temp_id_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr reason_;
     bool success_;
     bool expired_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -1074,6 +1106,7 @@ class S_VERIFY_EMAIL_CODE final :
 
   enum : int {
     kNicknameFieldNumber = 3,
+    kReasonFieldNumber = 4,
     kSuccessFieldNumber = 1,
     kExpiredFieldNumber = 2,
   };
@@ -1089,6 +1122,20 @@ class S_VERIFY_EMAIL_CODE final :
   const std::string& _internal_nickname() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_nickname(const std::string& value);
   std::string* _internal_mutable_nickname();
+  public:
+
+  // string reason = 4;
+  void clear_reason();
+  const std::string& reason() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_reason(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_reason();
+  PROTOBUF_NODISCARD std::string* release_reason();
+  void set_allocated_reason(std::string* reason);
+  private:
+  const std::string& _internal_reason() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_reason(const std::string& value);
+  std::string* _internal_mutable_reason();
   public:
 
   // bool success = 1;
@@ -1118,6 +1165,7 @@ class S_VERIFY_EMAIL_CODE final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr nickname_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr reason_;
     bool success_;
     bool expired_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -1418,6 +1466,7 @@ class S_LOGIN final :
 
   enum : int {
     kTokenFieldNumber = 4,
+    kReasonFieldNumber = 5,
     kSuccessFieldNumber = 1,
     kIsBlockFieldNumber = 2,
     kFailCountFieldNumber = 3,
@@ -1434,6 +1483,20 @@ class S_LOGIN final :
   const std::string& _internal_token() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_token(const std::string& value);
   std::string* _internal_mutable_token();
+  public:
+
+  // string reason = 5;
+  void clear_reason();
+  const std::string& reason() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_reason(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_reason();
+  PROTOBUF_NODISCARD std::string* release_reason();
+  void set_allocated_reason(std::string* reason);
+  private:
+  const std::string& _internal_reason() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_reason(const std::string& value);
+  std::string* _internal_mutable_reason();
   public:
 
   // bool success = 1;
@@ -1472,6 +1535,7 @@ class S_LOGIN final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr reason_;
     bool success_;
     bool is_block_;
     int32_t fail_count_;
@@ -1755,6 +1819,56 @@ inline void S_SIGNUP::set_allocated_temp_id(std::string* temp_id) {
   // @@protoc_insertion_point(field_set_allocated:Protocol.S_SIGNUP.temp_id)
 }
 
+// string reason = 4;
+inline void S_SIGNUP::clear_reason() {
+  _impl_.reason_.ClearToEmpty();
+}
+inline const std::string& S_SIGNUP::reason() const {
+  // @@protoc_insertion_point(field_get:Protocol.S_SIGNUP.reason)
+  return _internal_reason();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void S_SIGNUP::set_reason(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.reason_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Protocol.S_SIGNUP.reason)
+}
+inline std::string* S_SIGNUP::mutable_reason() {
+  std::string* _s = _internal_mutable_reason();
+  // @@protoc_insertion_point(field_mutable:Protocol.S_SIGNUP.reason)
+  return _s;
+}
+inline const std::string& S_SIGNUP::_internal_reason() const {
+  return _impl_.reason_.Get();
+}
+inline void S_SIGNUP::_internal_set_reason(const std::string& value) {
+  
+  _impl_.reason_.Set(value, GetArenaForAllocation());
+}
+inline std::string* S_SIGNUP::_internal_mutable_reason() {
+  
+  return _impl_.reason_.Mutable(GetArenaForAllocation());
+}
+inline std::string* S_SIGNUP::release_reason() {
+  // @@protoc_insertion_point(field_release:Protocol.S_SIGNUP.reason)
+  return _impl_.reason_.Release();
+}
+inline void S_SIGNUP::set_allocated_reason(std::string* reason) {
+  if (reason != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.reason_.SetAllocated(reason, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.reason_.IsDefault()) {
+    _impl_.reason_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Protocol.S_SIGNUP.reason)
+}
+
 // -------------------------------------------------------------------
 
 // C_VERIFY_MAIL_REQ
@@ -1901,6 +2015,56 @@ inline void S_VERIFY_MAIL_REQ::_internal_set_expired(bool value) {
 inline void S_VERIFY_MAIL_REQ::set_expired(bool value) {
   _internal_set_expired(value);
   // @@protoc_insertion_point(field_set:Protocol.S_VERIFY_MAIL_REQ.expired)
+}
+
+// string reason = 4;
+inline void S_VERIFY_MAIL_REQ::clear_reason() {
+  _impl_.reason_.ClearToEmpty();
+}
+inline const std::string& S_VERIFY_MAIL_REQ::reason() const {
+  // @@protoc_insertion_point(field_get:Protocol.S_VERIFY_MAIL_REQ.reason)
+  return _internal_reason();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void S_VERIFY_MAIL_REQ::set_reason(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.reason_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Protocol.S_VERIFY_MAIL_REQ.reason)
+}
+inline std::string* S_VERIFY_MAIL_REQ::mutable_reason() {
+  std::string* _s = _internal_mutable_reason();
+  // @@protoc_insertion_point(field_mutable:Protocol.S_VERIFY_MAIL_REQ.reason)
+  return _s;
+}
+inline const std::string& S_VERIFY_MAIL_REQ::_internal_reason() const {
+  return _impl_.reason_.Get();
+}
+inline void S_VERIFY_MAIL_REQ::_internal_set_reason(const std::string& value) {
+  
+  _impl_.reason_.Set(value, GetArenaForAllocation());
+}
+inline std::string* S_VERIFY_MAIL_REQ::_internal_mutable_reason() {
+  
+  return _impl_.reason_.Mutable(GetArenaForAllocation());
+}
+inline std::string* S_VERIFY_MAIL_REQ::release_reason() {
+  // @@protoc_insertion_point(field_release:Protocol.S_VERIFY_MAIL_REQ.reason)
+  return _impl_.reason_.Release();
+}
+inline void S_VERIFY_MAIL_REQ::set_allocated_reason(std::string* reason) {
+  if (reason != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.reason_.SetAllocated(reason, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.reason_.IsDefault()) {
+    _impl_.reason_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Protocol.S_VERIFY_MAIL_REQ.reason)
 }
 
 // -------------------------------------------------------------------
@@ -2099,6 +2263,56 @@ inline void S_VERIFY_EMAIL_CODE::set_allocated_nickname(std::string* nickname) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:Protocol.S_VERIFY_EMAIL_CODE.nickname)
+}
+
+// string reason = 4;
+inline void S_VERIFY_EMAIL_CODE::clear_reason() {
+  _impl_.reason_.ClearToEmpty();
+}
+inline const std::string& S_VERIFY_EMAIL_CODE::reason() const {
+  // @@protoc_insertion_point(field_get:Protocol.S_VERIFY_EMAIL_CODE.reason)
+  return _internal_reason();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void S_VERIFY_EMAIL_CODE::set_reason(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.reason_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Protocol.S_VERIFY_EMAIL_CODE.reason)
+}
+inline std::string* S_VERIFY_EMAIL_CODE::mutable_reason() {
+  std::string* _s = _internal_mutable_reason();
+  // @@protoc_insertion_point(field_mutable:Protocol.S_VERIFY_EMAIL_CODE.reason)
+  return _s;
+}
+inline const std::string& S_VERIFY_EMAIL_CODE::_internal_reason() const {
+  return _impl_.reason_.Get();
+}
+inline void S_VERIFY_EMAIL_CODE::_internal_set_reason(const std::string& value) {
+  
+  _impl_.reason_.Set(value, GetArenaForAllocation());
+}
+inline std::string* S_VERIFY_EMAIL_CODE::_internal_mutable_reason() {
+  
+  return _impl_.reason_.Mutable(GetArenaForAllocation());
+}
+inline std::string* S_VERIFY_EMAIL_CODE::release_reason() {
+  // @@protoc_insertion_point(field_release:Protocol.S_VERIFY_EMAIL_CODE.reason)
+  return _impl_.reason_.Release();
+}
+inline void S_VERIFY_EMAIL_CODE::set_allocated_reason(std::string* reason) {
+  if (reason != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.reason_.SetAllocated(reason, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.reason_.IsDefault()) {
+    _impl_.reason_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Protocol.S_VERIFY_EMAIL_CODE.reason)
 }
 
 // -------------------------------------------------------------------
@@ -2317,6 +2531,56 @@ inline void S_LOGIN::set_allocated_token(std::string* token) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:Protocol.S_LOGIN.token)
+}
+
+// string reason = 5;
+inline void S_LOGIN::clear_reason() {
+  _impl_.reason_.ClearToEmpty();
+}
+inline const std::string& S_LOGIN::reason() const {
+  // @@protoc_insertion_point(field_get:Protocol.S_LOGIN.reason)
+  return _internal_reason();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void S_LOGIN::set_reason(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.reason_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Protocol.S_LOGIN.reason)
+}
+inline std::string* S_LOGIN::mutable_reason() {
+  std::string* _s = _internal_mutable_reason();
+  // @@protoc_insertion_point(field_mutable:Protocol.S_LOGIN.reason)
+  return _s;
+}
+inline const std::string& S_LOGIN::_internal_reason() const {
+  return _impl_.reason_.Get();
+}
+inline void S_LOGIN::_internal_set_reason(const std::string& value) {
+  
+  _impl_.reason_.Set(value, GetArenaForAllocation());
+}
+inline std::string* S_LOGIN::_internal_mutable_reason() {
+  
+  return _impl_.reason_.Mutable(GetArenaForAllocation());
+}
+inline std::string* S_LOGIN::release_reason() {
+  // @@protoc_insertion_point(field_release:Protocol.S_LOGIN.reason)
+  return _impl_.reason_.Release();
+}
+inline void S_LOGIN::set_allocated_reason(std::string* reason) {
+  if (reason != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.reason_.SetAllocated(reason, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.reason_.IsDefault()) {
+    _impl_.reason_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Protocol.S_LOGIN.reason)
 }
 
 #ifdef __GNUC__

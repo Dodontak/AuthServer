@@ -8,9 +8,11 @@
 
 using namespace std;
 
-/*====================
-       Service
-====================*/
+/*============================================================================*\
+|                                                                              |
+|                                 Service                                      |
+|                                                                              |
+\*============================================================================*/
 
 Service::Service(NetAddress addr, SessionFactory factory)
 	: _addr(addr), _sessionFactory(factory)
@@ -39,9 +41,11 @@ void	Service::EraseSession(EpollObjectRef session)
 		_sessions.erase(session);
 }
 
-/*====================
-     AuthService
-====================*/
+/*============================================================================*\
+|                                                                              |
+|                              AuthService                                     |
+|                                                                              |
+\*============================================================================*/
 
 AuthService::AuthService(NetAddress addr, const char* certFile, const char* keyFile, SessionFactory factory) :
 	Service(addr, factory)
@@ -65,9 +69,11 @@ int	AuthService::Start()
 	return 1;
 }
 
-/*====================
-     ClientService
-====================*/
+/*============================================================================*\
+|                                                                              |
+|                             ClientService                                    |
+|                                                                              |
+\*============================================================================*/
 
 
 ClientService::ClientService(NetAddress addr, SessionFactory factory, int clientCount) :

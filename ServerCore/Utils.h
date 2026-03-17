@@ -24,4 +24,6 @@ public:
     static std::string	GetRandomStr(int len);
     static std::string  CreateAccessToken(const std::string& user_id, const std::string& nickname);
     static bool         VerifyAccessToken(const std::string& token, std::string& out_user_id);
+    static bool         VerifyEmail(const std::string& email);
+    static bool         VerifyNickname(const std::string& nickname);
 };

@@ -25,9 +25,11 @@ string Base64Encode(const string& input)
     return result;
 }
 
-/*===================
-     SMTPManager
-===================*/
+/*============================================================================*\
+|                                                                              |
+|                              SMTPManager                                     |
+|                                                                              |
+\*============================================================================*/
 
 SMTPManager::SMTPManager() : _ctx(false), _DNSAddress("google.co.kr"),
 	_STMPServer("smtp.gmail.com"), _serverPort(587)
@@ -98,9 +100,11 @@ shared_ptr<Mail>	SMTPManager::PopMail()
 	return ret;
 }
 
-/*===================
-    SMTPConnection
-===================*/
+/*============================================================================*\
+|                                                                              |
+|                             SMTPConnection                                   |
+|                                                                              |
+\*============================================================================*/
 
 SMTPConnection::SMTPConnection(SSL_CTX* ctx, int fd, string DNSAddress, string emailFrom, string STMPServer)
 	: _ssl(ctx, fd), _socket(fd), _DNSAddress(DNSAddress), _emailFrom(emailFrom), _STMPServer(STMPServer)
@@ -125,7 +129,9 @@ void	SMTPConnection::Ehlo()
 {
 	size_t	readLen = 0;
 	size_t	writeLen = 0;
-	/*========== ehlo ==========*/
+/*----------------------------------------------------------------------------*\
+|                                  ehlo                                        |
+\*----------------------------------------------------------------------------*/
 	readLen = read(_socket, _readBuffer, READ_SIZE);
 	_readBuffer[readLen] = 0;
 	// cout << _readBuffer << endl;
@@ -134,7 +140,9 @@ void	SMTPConnection::Ehlo()
 	write(_socket, (BYTE*)_writeBuffer.data(), _writeBuffer.length());
 	_writeBuffer.clear();
 
-	/*========== START TLS ==========*/
+/*----------------------------------------------------------------------------*\
+|                                 START TLS                                    |
+\*----------------------------------------------------------------------------*/
 	readLen = read(_socket, _readBuffer, READ_SIZE);
 	_readBuffer[readLen] = 0;
 	// cout << _readBuffer << endl;
@@ -143,7 +151,9 @@ void	SMTPConnection::Ehlo()
 	write(_socket, (BYTE*)_writeBuffer.data(), _writeBuffer.length());
 	_writeBuffer.clear();
 
-	/*========== TLS ehlo ==========*/
+/*----------------------------------------------------------------------------*\
+|                                  TLS ehlo                                    |
+\*----------------------------------------------------------------------------*/
 	readLen = read(_socket, _readBuffer, READ_SIZE);
 	_readBuffer[readLen] = 0;
 	// cout << _readBuffer << endl;
@@ -158,7 +168,9 @@ void	SMTPConnection::AuthLogin()
 {
 	size_t	readLen = 0;
 	size_t	writeLen = 0;
-	/*========== AUTH LOGIN ==========*/
+/*----------------------------------------------------------------------------*\
+|                                AUTH LOGIN                                    |
+\*----------------------------------------------------------------------------*/
 	_ssl.Read(_readBuffer, READ_SIZE, &readLen);
 	_readBuffer[readLen] = 0;
 	// cout << _readBuffer << endl;
@@ -167,7 +179,9 @@ void	SMTPConnection::AuthLogin()
 	_ssl.Write((BYTE*)_writeBuffer.data(), _writeBuffer.length(), &writeLen);
 	_writeBuffer.clear();
 
-	/*========== encodedEmail ==========*/
+/*----------------------------------------------------------------------------*\
+|                               encodedEmail                                   |
+\*----------------------------------------------------------------------------*/
 	string	encodedEmail = Base64Encode(_emailFrom);
 	_ssl.Read(_readBuffer, READ_SIZE, &readLen);
 	_readBuffer[readLen] = 0;
@@ -177,7 +191,9 @@ void	SMTPConnection::AuthLogin()
 	_ssl.Write((BYTE*)_writeBuffer.data(), _writeBuffer.length(), &writeLen);
 	_writeBuffer.clear();
 
-	/*========== encodedPw ==========*/
+/*----------------------------------------------------------------------------*\
+|                                 encodedPw                                    |
+\*----------------------------------------------------------------------------*/
 	string	encodedPw = Base64Encode(getenv("SMTP_APP_PASSWORD"));
 	_ssl.Read(_readBuffer, READ_SIZE, &readLen);
 	_readBuffer[readLen] = 0;
@@ -192,7 +208,9 @@ void	SMTPConnection::SendMail(const string& emailTo, const string& subject, cons
 {
 	size_t	readLen;
 	size_t	writeLen;
-	/*========== mail ==========*/
+/*----------------------------------------------------------------------------*\
+|                                    mail                                      |
+\*----------------------------------------------------------------------------*/
 	_ssl.Read(_readBuffer, READ_SIZE, &readLen);
 	_readBuffer[readLen] = 0;
 	// cout << _readBuffer << endl;
@@ -201,7 +219,9 @@ void	SMTPConnection::SendMail(const string& emailTo, const string& subject, cons
 	_ssl.Write((BYTE*)_writeBuffer.data(), _writeBuffer.length(), &writeLen);
 	_writeBuffer.clear();
 
-	/*========== rcpt ==========*/
+/*----------------------------------------------------------------------------*\
+|                                    rcpt                                      |
+\*----------------------------------------------------------------------------*/
 	_ssl.Read(_readBuffer, READ_SIZE, &readLen);
 	_readBuffer[readLen] = 0;
 	// cout << _readBuffer << endl;
@@ -210,7 +230,9 @@ void	SMTPConnection::SendMail(const string& emailTo, const string& subject, cons
 	_ssl.Write((BYTE*)_writeBuffer.data(), _writeBuffer.length(), &writeLen);
 	_writeBuffer.clear();
 
-	/*========== data ==========*/
+/*----------------------------------------------------------------------------*\
+|                                    data                                      |
+\*----------------------------------------------------------------------------*/
 	_ssl.Read(_readBuffer, READ_SIZE, &readLen);
 	_readBuffer[readLen] = 0;
 	// cout << _readBuffer << endl;
@@ -219,7 +241,9 @@ void	SMTPConnection::SendMail(const string& emailTo, const string& subject, cons
 	_ssl.Write((BYTE*)_writeBuffer.data(), _writeBuffer.length(), &writeLen);
 	_writeBuffer.clear();
 
-	/*========== subject ==========*/
+/*----------------------------------------------------------------------------*\
+|                                  subject                                     |
+\*----------------------------------------------------------------------------*/
 	string msgId = to_string(time(nullptr)) + "-" + _emailFrom;
 	_ssl.Read(_readBuffer, READ_SIZE, &readLen);
 	_readBuffer[readLen] = 0;
@@ -238,7 +262,9 @@ void	SMTPConnection::Quit()
 {
 	size_t	readLen = 0;
 	size_t	writeLen = 0;
-	/*========== quit ==========*/
+/*----------------------------------------------------------------------------*\
+|                                    quit                                      |
+\*----------------------------------------------------------------------------*/
 	_ssl.Read(_readBuffer, READ_SIZE, &readLen);
 	_readBuffer[readLen] = 0;
 	// cout << _readBuffer << endl;

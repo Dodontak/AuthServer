@@ -13,6 +13,7 @@ message S_SIGNUP {
 	bool success = 1;
 	bool skip_email = 2;
 	string temp_id = 3;
+    string reason = 4;
 }
 
 // 2. 이메일 인증 코드 요청
@@ -24,6 +25,7 @@ message S_VERIFY_MAIL_REQ {
 	bool success = 1;
 	string temp_id = 2;
     bool expired = 3;
+    string reason = 4;
 }
 
 // 3. 이메일 인증 확인 요청
@@ -36,6 +38,7 @@ message S_VERIFY_EMAIL_CODE {
 	bool success = 1;
 	bool expired = 2;
 	string nickname = 3;//더미클라 테스트용
+    string reason = 4;
 }
 
 // 4. 로그인 요청
@@ -49,4 +52,5 @@ message S_LOGIN {
 	bool is_block = 2;
     int32 fail_count = 3;
 	string token = 4;
+    string reason = 5;
 }

@@ -5,9 +5,15 @@
 #include <openssl/rand.h>
 #include <jwt-cpp/jwt.h>
 #include <sys/socket.h>
+#include <regex>
 
 using namespace std;
 
+/*============================================================================*\
+|                                                                              |
+|                               SocketUtils                                    |
+|                                                                              |
+\*============================================================================*/
 
 bool SocketUtils::MakeSocketNonblock(int sock)
 {
@@ -43,6 +49,12 @@ void	SocketUtils::CloseSocket(int socket)
 {
 	close(socket);
 }
+
+/*============================================================================*\
+|                                                                              |
+|                                   Utils                                      |
+|                                                                              |
+\*============================================================================*/
 
 void Utils::ErrorExit(const char* err_str)
 {
@@ -106,4 +118,18 @@ bool Utils::VerifyAccessToken(const string& token, string& out_user_id)
         // 서명 불일치, 만료, 형식 오류 전부 여기로 떨어짐
         return false;
     }
+}
+
+bool    Utils::VerifyEmail(const string& email)
+{
+    if (email.length() > 100)
+        return false;
+    const regex pattern(R"([a-zA-Z0-9]+@[a-zA-Z0-9]+(\.[a-zA-Z]{2,}){1,2})");
+    return regex_match(email, pattern);
+}
+
+bool    Utils::VerifyNickname(const string& nickname)
+{
+    const regex pattern(R"([a-zA-Z0-9]{2,20})");
+    return regex_match(nickname, pattern);
 }

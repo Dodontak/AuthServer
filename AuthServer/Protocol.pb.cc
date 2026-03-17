@@ -40,6 +40,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR S_SIGNUP::S_SIGNUP(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.temp_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.reason_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.success_)*/false
   , /*decltype(_impl_.skip_email_)*/false
   , /*decltype(_impl_._cached_size_)*/{}} {}
@@ -68,6 +69,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR S_VERIFY_MAIL_REQ::S_VERIFY_MAIL_REQ(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.temp_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.reason_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.success_)*/false
   , /*decltype(_impl_.expired_)*/false
   , /*decltype(_impl_._cached_size_)*/{}} {}
@@ -97,6 +99,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR S_VERIFY_EMAIL_CODE::S_VERIFY_EMAIL_CODE(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.nickname_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.reason_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.success_)*/false
   , /*decltype(_impl_.expired_)*/false
   , /*decltype(_impl_._cached_size_)*/{}} {}
@@ -126,6 +129,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR S_LOGIN::S_LOGIN(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.token_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.reason_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.success_)*/false
   , /*decltype(_impl_.is_block_)*/false
   , /*decltype(_impl_.fail_count_)*/0
@@ -164,6 +168,7 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   PROTOBUF_FIELD_OFFSET(::Protocol::S_SIGNUP, _impl_.success_),
   PROTOBUF_FIELD_OFFSET(::Protocol::S_SIGNUP, _impl_.skip_email_),
   PROTOBUF_FIELD_OFFSET(::Protocol::S_SIGNUP, _impl_.temp_id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_SIGNUP, _impl_.reason_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::C_VERIFY_MAIL_REQ, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -180,6 +185,7 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   PROTOBUF_FIELD_OFFSET(::Protocol::S_VERIFY_MAIL_REQ, _impl_.success_),
   PROTOBUF_FIELD_OFFSET(::Protocol::S_VERIFY_MAIL_REQ, _impl_.temp_id_),
   PROTOBUF_FIELD_OFFSET(::Protocol::S_VERIFY_MAIL_REQ, _impl_.expired_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_VERIFY_MAIL_REQ, _impl_.reason_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::C_VERIFY_EMAIL_CODE, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -197,6 +203,7 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   PROTOBUF_FIELD_OFFSET(::Protocol::S_VERIFY_EMAIL_CODE, _impl_.success_),
   PROTOBUF_FIELD_OFFSET(::Protocol::S_VERIFY_EMAIL_CODE, _impl_.expired_),
   PROTOBUF_FIELD_OFFSET(::Protocol::S_VERIFY_EMAIL_CODE, _impl_.nickname_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_VERIFY_EMAIL_CODE, _impl_.reason_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::C_LOGIN, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -215,16 +222,17 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   PROTOBUF_FIELD_OFFSET(::Protocol::S_LOGIN, _impl_.is_block_),
   PROTOBUF_FIELD_OFFSET(::Protocol::S_LOGIN, _impl_.fail_count_),
   PROTOBUF_FIELD_OFFSET(::Protocol::S_LOGIN, _impl_.token_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::S_LOGIN, _impl_.reason_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::Protocol::C_SIGNUP)},
   { 10, -1, -1, sizeof(::Protocol::S_SIGNUP)},
-  { 19, -1, -1, sizeof(::Protocol::C_VERIFY_MAIL_REQ)},
-  { 26, -1, -1, sizeof(::Protocol::S_VERIFY_MAIL_REQ)},
-  { 35, -1, -1, sizeof(::Protocol::C_VERIFY_EMAIL_CODE)},
-  { 43, -1, -1, sizeof(::Protocol::S_VERIFY_EMAIL_CODE)},
-  { 52, -1, -1, sizeof(::Protocol::C_LOGIN)},
-  { 60, -1, -1, sizeof(::Protocol::S_LOGIN)},
+  { 20, -1, -1, sizeof(::Protocol::C_VERIFY_MAIL_REQ)},
+  { 27, -1, -1, sizeof(::Protocol::S_VERIFY_MAIL_REQ)},
+  { 37, -1, -1, sizeof(::Protocol::C_VERIFY_EMAIL_CODE)},
+  { 45, -1, -1, sizeof(::Protocol::S_VERIFY_EMAIL_CODE)},
+  { 55, -1, -1, sizeof(::Protocol::C_LOGIN)},
+  { 63, -1, -1, sizeof(::Protocol::S_LOGIN)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -241,22 +249,24 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\016Protocol.proto\022\010Protocol\"Q\n\010C_SIGNUP\022\020"
   "\n\010nickname\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\r\n\005em"
-  "ail\030\003 \001(\t\022\022\n\nskip_email\030\004 \001(\010\"@\n\010S_SIGNU"
+  "ail\030\003 \001(\t\022\022\n\nskip_email\030\004 \001(\010\"P\n\010S_SIGNU"
   "P\022\017\n\007success\030\001 \001(\010\022\022\n\nskip_email\030\002 \001(\010\022\017"
-  "\n\007temp_id\030\003 \001(\t\"$\n\021C_VERIFY_MAIL_REQ\022\017\n\007"
-  "temp_id\030\001 \001(\t\"F\n\021S_VERIFY_MAIL_REQ\022\017\n\007su"
-  "ccess\030\001 \001(\010\022\017\n\007temp_id\030\002 \001(\t\022\017\n\007expired\030"
-  "\003 \001(\010\";\n\023C_VERIFY_EMAIL_CODE\022\017\n\007temp_id\030"
-  "\001 \001(\t\022\023\n\013verify_code\030\002 \001(\t\"I\n\023S_VERIFY_E"
-  "MAIL_CODE\022\017\n\007success\030\001 \001(\010\022\017\n\007expired\030\002 "
-  "\001(\010\022\020\n\010nickname\030\003 \001(\t\"-\n\007C_LOGIN\022\020\n\010nick"
-  "name\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"O\n\007S_LOGIN\022"
-  "\017\n\007success\030\001 \001(\010\022\020\n\010is_block\030\002 \001(\010\022\022\n\nfa"
-  "il_count\030\003 \001(\005\022\r\n\005token\030\004 \001(\tb\006proto3"
+  "\n\007temp_id\030\003 \001(\t\022\016\n\006reason\030\004 \001(\t\"$\n\021C_VER"
+  "IFY_MAIL_REQ\022\017\n\007temp_id\030\001 \001(\t\"V\n\021S_VERIF"
+  "Y_MAIL_REQ\022\017\n\007success\030\001 \001(\010\022\017\n\007temp_id\030\002"
+  " \001(\t\022\017\n\007expired\030\003 \001(\010\022\016\n\006reason\030\004 \001(\t\";\n"
+  "\023C_VERIFY_EMAIL_CODE\022\017\n\007temp_id\030\001 \001(\t\022\023\n"
+  "\013verify_code\030\002 \001(\t\"Y\n\023S_VERIFY_EMAIL_COD"
+  "E\022\017\n\007success\030\001 \001(\010\022\017\n\007expired\030\002 \001(\010\022\020\n\010n"
+  "ickname\030\003 \001(\t\022\016\n\006reason\030\004 \001(\t\"-\n\007C_LOGIN"
+  "\022\020\n\010nickname\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"_\n\007"
+  "S_LOGIN\022\017\n\007success\030\001 \001(\010\022\020\n\010is_block\030\002 \001"
+  "(\010\022\022\n\nfail_count\030\003 \001(\005\022\r\n\005token\030\004 \001(\t\022\016\n"
+  "\006reason\030\005 \001(\tb\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 557, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 621, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
     &descriptor_table_Protocol_2eproto_once, nullptr, 0, 8,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
@@ -618,6 +628,7 @@ S_SIGNUP::S_SIGNUP(const S_SIGNUP& from)
   S_SIGNUP* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.temp_id_){}
+    , decltype(_impl_.reason_){}
     , decltype(_impl_.success_){}
     , decltype(_impl_.skip_email_){}
     , /*decltype(_impl_._cached_size_)*/{}};
@@ -629,6 +640,14 @@ S_SIGNUP::S_SIGNUP(const S_SIGNUP& from)
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_temp_id().empty()) {
     _this->_impl_.temp_id_.Set(from._internal_temp_id(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.reason_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.reason_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_reason().empty()) {
+    _this->_impl_.reason_.Set(from._internal_reason(), 
       _this->GetArenaForAllocation());
   }
   ::memcpy(&_impl_.success_, &from._impl_.success_,
@@ -643,6 +662,7 @@ inline void S_SIGNUP::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.temp_id_){}
+    , decltype(_impl_.reason_){}
     , decltype(_impl_.success_){false}
     , decltype(_impl_.skip_email_){false}
     , /*decltype(_impl_._cached_size_)*/{}
@@ -650,6 +670,10 @@ inline void S_SIGNUP::SharedCtor(
   _impl_.temp_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     _impl_.temp_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.reason_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.reason_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
@@ -665,6 +689,7 @@ S_SIGNUP::~S_SIGNUP() {
 inline void S_SIGNUP::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.temp_id_.Destroy();
+  _impl_.reason_.Destroy();
 }
 
 void S_SIGNUP::SetCachedSize(int size) const {
@@ -678,6 +703,7 @@ void S_SIGNUP::Clear() {
   (void) cached_has_bits;
 
   _impl_.temp_id_.ClearToEmpty();
+  _impl_.reason_.ClearToEmpty();
   ::memset(&_impl_.success_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_impl_.skip_email_) -
       reinterpret_cast<char*>(&_impl_.success_)) + sizeof(_impl_.skip_email_));
@@ -713,6 +739,16 @@ const char* S_SIGNUP::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "Protocol.S_SIGNUP.temp_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string reason = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_reason();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "Protocol.S_SIGNUP.reason"));
         } else
           goto handle_unusual;
         continue;
@@ -767,6 +803,16 @@ uint8_t* S_SIGNUP::_InternalSerialize(
         3, this->_internal_temp_id(), target);
   }
 
+  // string reason = 4;
+  if (!this->_internal_reason().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_reason().data(), static_cast<int>(this->_internal_reason().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_SIGNUP.reason");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_reason(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -788,6 +834,13 @@ size_t S_SIGNUP::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_temp_id());
+  }
+
+  // string reason = 4;
+  if (!this->_internal_reason().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_reason());
   }
 
   // bool success = 1;
@@ -821,6 +874,9 @@ void S_SIGNUP::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTO
   if (!from._internal_temp_id().empty()) {
     _this->_internal_set_temp_id(from._internal_temp_id());
   }
+  if (!from._internal_reason().empty()) {
+    _this->_internal_set_reason(from._internal_reason());
+  }
   if (from._internal_success() != 0) {
     _this->_internal_set_success(from._internal_success());
   }
@@ -849,6 +905,10 @@ void S_SIGNUP::InternalSwap(S_SIGNUP* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &_impl_.temp_id_, lhs_arena,
       &other->_impl_.temp_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.reason_, lhs_arena,
+      &other->_impl_.reason_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(S_SIGNUP, _impl_.skip_email_)
@@ -1084,6 +1144,7 @@ S_VERIFY_MAIL_REQ::S_VERIFY_MAIL_REQ(const S_VERIFY_MAIL_REQ& from)
   S_VERIFY_MAIL_REQ* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.temp_id_){}
+    , decltype(_impl_.reason_){}
     , decltype(_impl_.success_){}
     , decltype(_impl_.expired_){}
     , /*decltype(_impl_._cached_size_)*/{}};
@@ -1095,6 +1156,14 @@ S_VERIFY_MAIL_REQ::S_VERIFY_MAIL_REQ(const S_VERIFY_MAIL_REQ& from)
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_temp_id().empty()) {
     _this->_impl_.temp_id_.Set(from._internal_temp_id(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.reason_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.reason_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_reason().empty()) {
+    _this->_impl_.reason_.Set(from._internal_reason(), 
       _this->GetArenaForAllocation());
   }
   ::memcpy(&_impl_.success_, &from._impl_.success_,
@@ -1109,6 +1178,7 @@ inline void S_VERIFY_MAIL_REQ::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.temp_id_){}
+    , decltype(_impl_.reason_){}
     , decltype(_impl_.success_){false}
     , decltype(_impl_.expired_){false}
     , /*decltype(_impl_._cached_size_)*/{}
@@ -1116,6 +1186,10 @@ inline void S_VERIFY_MAIL_REQ::SharedCtor(
   _impl_.temp_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     _impl_.temp_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.reason_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.reason_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
@@ -1131,6 +1205,7 @@ S_VERIFY_MAIL_REQ::~S_VERIFY_MAIL_REQ() {
 inline void S_VERIFY_MAIL_REQ::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.temp_id_.Destroy();
+  _impl_.reason_.Destroy();
 }
 
 void S_VERIFY_MAIL_REQ::SetCachedSize(int size) const {
@@ -1144,6 +1219,7 @@ void S_VERIFY_MAIL_REQ::Clear() {
   (void) cached_has_bits;
 
   _impl_.temp_id_.ClearToEmpty();
+  _impl_.reason_.ClearToEmpty();
   ::memset(&_impl_.success_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_impl_.expired_) -
       reinterpret_cast<char*>(&_impl_.success_)) + sizeof(_impl_.expired_));
@@ -1179,6 +1255,16 @@ const char* S_VERIFY_MAIL_REQ::_InternalParse(const char* ptr, ::_pbi::ParseCont
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
           _impl_.expired_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string reason = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_reason();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "Protocol.S_VERIFY_MAIL_REQ.reason"));
         } else
           goto handle_unusual;
         continue;
@@ -1233,6 +1319,16 @@ uint8_t* S_VERIFY_MAIL_REQ::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteBoolToArray(3, this->_internal_expired(), target);
   }
 
+  // string reason = 4;
+  if (!this->_internal_reason().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_reason().data(), static_cast<int>(this->_internal_reason().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_VERIFY_MAIL_REQ.reason");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_reason(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1254,6 +1350,13 @@ size_t S_VERIFY_MAIL_REQ::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_temp_id());
+  }
+
+  // string reason = 4;
+  if (!this->_internal_reason().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_reason());
   }
 
   // bool success = 1;
@@ -1287,6 +1390,9 @@ void S_VERIFY_MAIL_REQ::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, cons
   if (!from._internal_temp_id().empty()) {
     _this->_internal_set_temp_id(from._internal_temp_id());
   }
+  if (!from._internal_reason().empty()) {
+    _this->_internal_set_reason(from._internal_reason());
+  }
   if (from._internal_success() != 0) {
     _this->_internal_set_success(from._internal_success());
   }
@@ -1315,6 +1421,10 @@ void S_VERIFY_MAIL_REQ::InternalSwap(S_VERIFY_MAIL_REQ* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &_impl_.temp_id_, lhs_arena,
       &other->_impl_.temp_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.reason_, lhs_arena,
+      &other->_impl_.reason_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(S_VERIFY_MAIL_REQ, _impl_.expired_)
@@ -1600,6 +1710,7 @@ S_VERIFY_EMAIL_CODE::S_VERIFY_EMAIL_CODE(const S_VERIFY_EMAIL_CODE& from)
   S_VERIFY_EMAIL_CODE* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.nickname_){}
+    , decltype(_impl_.reason_){}
     , decltype(_impl_.success_){}
     , decltype(_impl_.expired_){}
     , /*decltype(_impl_._cached_size_)*/{}};
@@ -1611,6 +1722,14 @@ S_VERIFY_EMAIL_CODE::S_VERIFY_EMAIL_CODE(const S_VERIFY_EMAIL_CODE& from)
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_nickname().empty()) {
     _this->_impl_.nickname_.Set(from._internal_nickname(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.reason_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.reason_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_reason().empty()) {
+    _this->_impl_.reason_.Set(from._internal_reason(), 
       _this->GetArenaForAllocation());
   }
   ::memcpy(&_impl_.success_, &from._impl_.success_,
@@ -1625,6 +1744,7 @@ inline void S_VERIFY_EMAIL_CODE::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.nickname_){}
+    , decltype(_impl_.reason_){}
     , decltype(_impl_.success_){false}
     , decltype(_impl_.expired_){false}
     , /*decltype(_impl_._cached_size_)*/{}
@@ -1632,6 +1752,10 @@ inline void S_VERIFY_EMAIL_CODE::SharedCtor(
   _impl_.nickname_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     _impl_.nickname_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.reason_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.reason_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
@@ -1647,6 +1771,7 @@ S_VERIFY_EMAIL_CODE::~S_VERIFY_EMAIL_CODE() {
 inline void S_VERIFY_EMAIL_CODE::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.nickname_.Destroy();
+  _impl_.reason_.Destroy();
 }
 
 void S_VERIFY_EMAIL_CODE::SetCachedSize(int size) const {
@@ -1660,6 +1785,7 @@ void S_VERIFY_EMAIL_CODE::Clear() {
   (void) cached_has_bits;
 
   _impl_.nickname_.ClearToEmpty();
+  _impl_.reason_.ClearToEmpty();
   ::memset(&_impl_.success_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_impl_.expired_) -
       reinterpret_cast<char*>(&_impl_.success_)) + sizeof(_impl_.expired_));
@@ -1695,6 +1821,16 @@ const char* S_VERIFY_EMAIL_CODE::_InternalParse(const char* ptr, ::_pbi::ParseCo
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "Protocol.S_VERIFY_EMAIL_CODE.nickname"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string reason = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_reason();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "Protocol.S_VERIFY_EMAIL_CODE.reason"));
         } else
           goto handle_unusual;
         continue;
@@ -1749,6 +1885,16 @@ uint8_t* S_VERIFY_EMAIL_CODE::_InternalSerialize(
         3, this->_internal_nickname(), target);
   }
 
+  // string reason = 4;
+  if (!this->_internal_reason().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_reason().data(), static_cast<int>(this->_internal_reason().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_VERIFY_EMAIL_CODE.reason");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_reason(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1770,6 +1916,13 @@ size_t S_VERIFY_EMAIL_CODE::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_nickname());
+  }
+
+  // string reason = 4;
+  if (!this->_internal_reason().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_reason());
   }
 
   // bool success = 1;
@@ -1803,6 +1956,9 @@ void S_VERIFY_EMAIL_CODE::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, co
   if (!from._internal_nickname().empty()) {
     _this->_internal_set_nickname(from._internal_nickname());
   }
+  if (!from._internal_reason().empty()) {
+    _this->_internal_set_reason(from._internal_reason());
+  }
   if (from._internal_success() != 0) {
     _this->_internal_set_success(from._internal_success());
   }
@@ -1831,6 +1987,10 @@ void S_VERIFY_EMAIL_CODE::InternalSwap(S_VERIFY_EMAIL_CODE* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &_impl_.nickname_, lhs_arena,
       &other->_impl_.nickname_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.reason_, lhs_arena,
+      &other->_impl_.reason_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(S_VERIFY_EMAIL_CODE, _impl_.expired_)
@@ -2116,6 +2276,7 @@ S_LOGIN::S_LOGIN(const S_LOGIN& from)
   S_LOGIN* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.token_){}
+    , decltype(_impl_.reason_){}
     , decltype(_impl_.success_){}
     , decltype(_impl_.is_block_){}
     , decltype(_impl_.fail_count_){}
@@ -2130,6 +2291,14 @@ S_LOGIN::S_LOGIN(const S_LOGIN& from)
     _this->_impl_.token_.Set(from._internal_token(), 
       _this->GetArenaForAllocation());
   }
+  _impl_.reason_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.reason_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_reason().empty()) {
+    _this->_impl_.reason_.Set(from._internal_reason(), 
+      _this->GetArenaForAllocation());
+  }
   ::memcpy(&_impl_.success_, &from._impl_.success_,
     static_cast<size_t>(reinterpret_cast<char*>(&_impl_.fail_count_) -
     reinterpret_cast<char*>(&_impl_.success_)) + sizeof(_impl_.fail_count_));
@@ -2142,6 +2311,7 @@ inline void S_LOGIN::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.token_){}
+    , decltype(_impl_.reason_){}
     , decltype(_impl_.success_){false}
     , decltype(_impl_.is_block_){false}
     , decltype(_impl_.fail_count_){0}
@@ -2150,6 +2320,10 @@ inline void S_LOGIN::SharedCtor(
   _impl_.token_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     _impl_.token_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.reason_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.reason_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
@@ -2165,6 +2339,7 @@ S_LOGIN::~S_LOGIN() {
 inline void S_LOGIN::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.token_.Destroy();
+  _impl_.reason_.Destroy();
 }
 
 void S_LOGIN::SetCachedSize(int size) const {
@@ -2178,6 +2353,7 @@ void S_LOGIN::Clear() {
   (void) cached_has_bits;
 
   _impl_.token_.ClearToEmpty();
+  _impl_.reason_.ClearToEmpty();
   ::memset(&_impl_.success_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_impl_.fail_count_) -
       reinterpret_cast<char*>(&_impl_.success_)) + sizeof(_impl_.fail_count_));
@@ -2221,6 +2397,16 @@ const char* S_LOGIN::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "Protocol.S_LOGIN.token"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string reason = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_reason();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "Protocol.S_LOGIN.reason"));
         } else
           goto handle_unusual;
         continue;
@@ -2281,6 +2467,16 @@ uint8_t* S_LOGIN::_InternalSerialize(
         4, this->_internal_token(), target);
   }
 
+  // string reason = 5;
+  if (!this->_internal_reason().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_reason().data(), static_cast<int>(this->_internal_reason().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Protocol.S_LOGIN.reason");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_reason(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2302,6 +2498,13 @@ size_t S_LOGIN::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_token());
+  }
+
+  // string reason = 5;
+  if (!this->_internal_reason().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_reason());
   }
 
   // bool success = 1;
@@ -2340,6 +2543,9 @@ void S_LOGIN::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOB
   if (!from._internal_token().empty()) {
     _this->_internal_set_token(from._internal_token());
   }
+  if (!from._internal_reason().empty()) {
+    _this->_internal_set_reason(from._internal_reason());
+  }
   if (from._internal_success() != 0) {
     _this->_internal_set_success(from._internal_success());
   }
@@ -2371,6 +2577,10 @@ void S_LOGIN::InternalSwap(S_LOGIN* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &_impl_.token_, lhs_arena,
       &other->_impl_.token_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.reason_, lhs_arena,
+      &other->_impl_.reason_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(S_LOGIN, _impl_.fail_count_)

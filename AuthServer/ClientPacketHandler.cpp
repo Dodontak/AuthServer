@@ -3,6 +3,7 @@
 #include "DBConnectionPool.h"
 #include "Types.h"
 #include "Timer.h"
+#include "Utils.h"
 #include "bcrypt/BCrypt.hpp"
 #include "SMTPConnection.h"
 #include "ThreadManager.h"
@@ -57,7 +58,14 @@ void	Handle_C_SIGNUP(const PacketSessionRef& session, const Protocol::C_SIGNUP& 
 	string	email = pkt.email();
 	bool	skip_email = pkt.skip_email();
     response.set_skip_email(skip_email);
-	
+
+    if (Utils::VerifyEmail(email) == false || Utils::VerifyNickname(nickname) == false)
+    {
+        response.set_reason("invalid email or nickname");
+        session->Send(ClientPacketHandler::MakeWriteBuffer(response));
+		return;
+    }
+
 	string	pgGetUserIdSQL;
     if (!skip_email)
         pgGetUserIdSQL = "SELECT user_id FROM auth.users WHERE nickname = $1 OR email = $2";

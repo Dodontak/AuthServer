@@ -10,9 +10,11 @@
 
 using namespace std;
 
-/*====================
-        Session
-====================*/
+/*============================================================================*\
+|                                                                              |
+|                                Session                                       |
+|                                                                              |
+\*============================================================================*/
 
 Session::Session(int socket, struct sockaddr_in addr, ServiceRef service) :
 	_socket(socket), _address(addr), _service(service), _readBuffer(BUFFER_SIZE)
@@ -274,9 +276,11 @@ void	Session::ModEvent(EventType type)
 	}
 }
 
-/*====================
-    PacketSession
-====================*/
+/*============================================================================*\
+|                                                                              |
+|                             PacketSession                                    |
+|                                                                              |
+\*============================================================================*/
 
 PacketSession::PacketSession(int clinetSocket, struct sockaddr_in addr, ServiceRef service)
 	: Session(clinetSocket, addr, service) {}
