@@ -41,6 +41,7 @@
 *.dwo
 
 *.swp
+.DS_Store
 server.crt
 server.key
 .gitconfig

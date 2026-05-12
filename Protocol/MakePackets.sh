@@ -3,8 +3,8 @@ cd "$(dirname "$0")"
 
 protoc --cpp_out=. Protocol.proto
 
-./GenPackets --path=./Protocol.proto --output=ClientPacketHandler --recv=C_ --send=S_
-./GenPackets --path=./Protocol.proto --output=ServerPacketHandler --recv=S_ --send=C_
+./GenPackets --path=./Protocol.proto --output=ClientPacketHandler --recv=AC_ --send=AS_
+./GenPackets --path=./Protocol.proto --output=ServerPacketHandler --recv=AS_ --send=AC_
 
 cp Protocol.pb.cc Protocol.pb.h ../AuthServer
 mv ClientPacketHandler.h ../AuthServer

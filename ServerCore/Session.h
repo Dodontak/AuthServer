@@ -66,8 +66,8 @@ protected:
 
 struct PacketHeader
 {
-	uint16	size;
 	uint16	id;
+	uint16	size;
 };
 
 class PacketSession : public Session

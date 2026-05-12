@@ -163,8 +163,8 @@ void	Session::ProcessRead()
 			}
 		}
 	} while (_sslObject->HasPendingData());//복호화 할 수 있는 데이터 남아있으면 반복
-
-	int	processLen = OnRead(_readBuffer.ReadPos(), _readBuffer.DataSize());
+	
+    int	processLen = OnRead(_readBuffer.ReadPos(), _readBuffer.DataSize());
 	if (_readBuffer.OnRead(processLen) == false)
     {
         ProcessDisconnect(true);
@@ -305,6 +305,5 @@ int	PacketSession::OnRead(BYTE* buffer, int len)
 		
 		processLen += header->size;
 	}
-
 	return processLen;
 }

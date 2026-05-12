@@ -45,63 +45,63 @@ struct TableStruct_Protocol_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Protocol_2eproto;
 namespace Protocol {
-class C_LOGIN;
-struct C_LOGINDefaultTypeInternal;
-extern C_LOGINDefaultTypeInternal _C_LOGIN_default_instance_;
-class C_SIGNUP;
-struct C_SIGNUPDefaultTypeInternal;
-extern C_SIGNUPDefaultTypeInternal _C_SIGNUP_default_instance_;
-class C_VERIFY_EMAIL_CODE;
-struct C_VERIFY_EMAIL_CODEDefaultTypeInternal;
-extern C_VERIFY_EMAIL_CODEDefaultTypeInternal _C_VERIFY_EMAIL_CODE_default_instance_;
-class C_VERIFY_MAIL_REQ;
-struct C_VERIFY_MAIL_REQDefaultTypeInternal;
-extern C_VERIFY_MAIL_REQDefaultTypeInternal _C_VERIFY_MAIL_REQ_default_instance_;
-class S_LOGIN;
-struct S_LOGINDefaultTypeInternal;
-extern S_LOGINDefaultTypeInternal _S_LOGIN_default_instance_;
-class S_SIGNUP;
-struct S_SIGNUPDefaultTypeInternal;
-extern S_SIGNUPDefaultTypeInternal _S_SIGNUP_default_instance_;
-class S_VERIFY_EMAIL_CODE;
-struct S_VERIFY_EMAIL_CODEDefaultTypeInternal;
-extern S_VERIFY_EMAIL_CODEDefaultTypeInternal _S_VERIFY_EMAIL_CODE_default_instance_;
-class S_VERIFY_MAIL_REQ;
-struct S_VERIFY_MAIL_REQDefaultTypeInternal;
-extern S_VERIFY_MAIL_REQDefaultTypeInternal _S_VERIFY_MAIL_REQ_default_instance_;
+class AC_LOGIN;
+struct AC_LOGINDefaultTypeInternal;
+extern AC_LOGINDefaultTypeInternal _AC_LOGIN_default_instance_;
+class AC_SIGNUP;
+struct AC_SIGNUPDefaultTypeInternal;
+extern AC_SIGNUPDefaultTypeInternal _AC_SIGNUP_default_instance_;
+class AC_VERIFY_EMAIL_CODE;
+struct AC_VERIFY_EMAIL_CODEDefaultTypeInternal;
+extern AC_VERIFY_EMAIL_CODEDefaultTypeInternal _AC_VERIFY_EMAIL_CODE_default_instance_;
+class AC_VERIFY_MAIL_REQ;
+struct AC_VERIFY_MAIL_REQDefaultTypeInternal;
+extern AC_VERIFY_MAIL_REQDefaultTypeInternal _AC_VERIFY_MAIL_REQ_default_instance_;
+class AS_LOGIN;
+struct AS_LOGINDefaultTypeInternal;
+extern AS_LOGINDefaultTypeInternal _AS_LOGIN_default_instance_;
+class AS_SIGNUP;
+struct AS_SIGNUPDefaultTypeInternal;
+extern AS_SIGNUPDefaultTypeInternal _AS_SIGNUP_default_instance_;
+class AS_VERIFY_EMAIL_CODE;
+struct AS_VERIFY_EMAIL_CODEDefaultTypeInternal;
+extern AS_VERIFY_EMAIL_CODEDefaultTypeInternal _AS_VERIFY_EMAIL_CODE_default_instance_;
+class AS_VERIFY_MAIL_REQ;
+struct AS_VERIFY_MAIL_REQDefaultTypeInternal;
+extern AS_VERIFY_MAIL_REQDefaultTypeInternal _AS_VERIFY_MAIL_REQ_default_instance_;
 }  // namespace Protocol
 PROTOBUF_NAMESPACE_OPEN
-template<> ::Protocol::C_LOGIN* Arena::CreateMaybeMessage<::Protocol::C_LOGIN>(Arena*);
-template<> ::Protocol::C_SIGNUP* Arena::CreateMaybeMessage<::Protocol::C_SIGNUP>(Arena*);
-template<> ::Protocol::C_VERIFY_EMAIL_CODE* Arena::CreateMaybeMessage<::Protocol::C_VERIFY_EMAIL_CODE>(Arena*);
-template<> ::Protocol::C_VERIFY_MAIL_REQ* Arena::CreateMaybeMessage<::Protocol::C_VERIFY_MAIL_REQ>(Arena*);
-template<> ::Protocol::S_LOGIN* Arena::CreateMaybeMessage<::Protocol::S_LOGIN>(Arena*);
-template<> ::Protocol::S_SIGNUP* Arena::CreateMaybeMessage<::Protocol::S_SIGNUP>(Arena*);
-template<> ::Protocol::S_VERIFY_EMAIL_CODE* Arena::CreateMaybeMessage<::Protocol::S_VERIFY_EMAIL_CODE>(Arena*);
-template<> ::Protocol::S_VERIFY_MAIL_REQ* Arena::CreateMaybeMessage<::Protocol::S_VERIFY_MAIL_REQ>(Arena*);
+template<> ::Protocol::AC_LOGIN* Arena::CreateMaybeMessage<::Protocol::AC_LOGIN>(Arena*);
+template<> ::Protocol::AC_SIGNUP* Arena::CreateMaybeMessage<::Protocol::AC_SIGNUP>(Arena*);
+template<> ::Protocol::AC_VERIFY_EMAIL_CODE* Arena::CreateMaybeMessage<::Protocol::AC_VERIFY_EMAIL_CODE>(Arena*);
+template<> ::Protocol::AC_VERIFY_MAIL_REQ* Arena::CreateMaybeMessage<::Protocol::AC_VERIFY_MAIL_REQ>(Arena*);
+template<> ::Protocol::AS_LOGIN* Arena::CreateMaybeMessage<::Protocol::AS_LOGIN>(Arena*);
+template<> ::Protocol::AS_SIGNUP* Arena::CreateMaybeMessage<::Protocol::AS_SIGNUP>(Arena*);
+template<> ::Protocol::AS_VERIFY_EMAIL_CODE* Arena::CreateMaybeMessage<::Protocol::AS_VERIFY_EMAIL_CODE>(Arena*);
+template<> ::Protocol::AS_VERIFY_MAIL_REQ* Arena::CreateMaybeMessage<::Protocol::AS_VERIFY_MAIL_REQ>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace Protocol {
 
 // ===================================================================
 
-class C_SIGNUP final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.C_SIGNUP) */ {
+class AC_SIGNUP final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.AC_SIGNUP) */ {
  public:
-  inline C_SIGNUP() : C_SIGNUP(nullptr) {}
-  ~C_SIGNUP() override;
-  explicit PROTOBUF_CONSTEXPR C_SIGNUP(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline AC_SIGNUP() : AC_SIGNUP(nullptr) {}
+  ~AC_SIGNUP() override;
+  explicit PROTOBUF_CONSTEXPR AC_SIGNUP(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  C_SIGNUP(const C_SIGNUP& from);
-  C_SIGNUP(C_SIGNUP&& from) noexcept
-    : C_SIGNUP() {
+  AC_SIGNUP(const AC_SIGNUP& from);
+  AC_SIGNUP(AC_SIGNUP&& from) noexcept
+    : AC_SIGNUP() {
     *this = ::std::move(from);
   }
 
-  inline C_SIGNUP& operator=(const C_SIGNUP& from) {
+  inline AC_SIGNUP& operator=(const AC_SIGNUP& from) {
     CopyFrom(from);
     return *this;
   }
-  inline C_SIGNUP& operator=(C_SIGNUP&& from) noexcept {
+  inline AC_SIGNUP& operator=(AC_SIGNUP&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -124,20 +124,20 @@ class C_SIGNUP final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const C_SIGNUP& default_instance() {
+  static const AC_SIGNUP& default_instance() {
     return *internal_default_instance();
   }
-  static inline const C_SIGNUP* internal_default_instance() {
-    return reinterpret_cast<const C_SIGNUP*>(
-               &_C_SIGNUP_default_instance_);
+  static inline const AC_SIGNUP* internal_default_instance() {
+    return reinterpret_cast<const AC_SIGNUP*>(
+               &_AC_SIGNUP_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(C_SIGNUP& a, C_SIGNUP& b) {
+  friend void swap(AC_SIGNUP& a, AC_SIGNUP& b) {
     a.Swap(&b);
   }
-  inline void Swap(C_SIGNUP* other) {
+  inline void Swap(AC_SIGNUP* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -150,7 +150,7 @@ class C_SIGNUP final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(C_SIGNUP* other) {
+  void UnsafeArenaSwap(AC_SIGNUP* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -158,14 +158,14 @@ class C_SIGNUP final :
 
   // implements Message ----------------------------------------------
 
-  C_SIGNUP* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<C_SIGNUP>(arena);
+  AC_SIGNUP* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AC_SIGNUP>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const C_SIGNUP& from);
+  void CopyFrom(const AC_SIGNUP& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const C_SIGNUP& from) {
-    C_SIGNUP::MergeImpl(*this, from);
+  void MergeFrom( const AC_SIGNUP& from) {
+    AC_SIGNUP::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -183,15 +183,15 @@ class C_SIGNUP final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(C_SIGNUP* other);
+  void InternalSwap(AC_SIGNUP* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Protocol.C_SIGNUP";
+    return "Protocol.AC_SIGNUP";
   }
   protected:
-  explicit C_SIGNUP(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit AC_SIGNUP(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -261,7 +261,7 @@ class C_SIGNUP final :
   void _internal_set_skip_email(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:Protocol.C_SIGNUP)
+  // @@protoc_insertion_point(class_scope:Protocol.AC_SIGNUP)
  private:
   class _Internal;
 
@@ -280,24 +280,24 @@ class C_SIGNUP final :
 };
 // -------------------------------------------------------------------
 
-class S_SIGNUP final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.S_SIGNUP) */ {
+class AS_SIGNUP final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.AS_SIGNUP) */ {
  public:
-  inline S_SIGNUP() : S_SIGNUP(nullptr) {}
-  ~S_SIGNUP() override;
-  explicit PROTOBUF_CONSTEXPR S_SIGNUP(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline AS_SIGNUP() : AS_SIGNUP(nullptr) {}
+  ~AS_SIGNUP() override;
+  explicit PROTOBUF_CONSTEXPR AS_SIGNUP(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  S_SIGNUP(const S_SIGNUP& from);
-  S_SIGNUP(S_SIGNUP&& from) noexcept
-    : S_SIGNUP() {
+  AS_SIGNUP(const AS_SIGNUP& from);
+  AS_SIGNUP(AS_SIGNUP&& from) noexcept
+    : AS_SIGNUP() {
     *this = ::std::move(from);
   }
 
-  inline S_SIGNUP& operator=(const S_SIGNUP& from) {
+  inline AS_SIGNUP& operator=(const AS_SIGNUP& from) {
     CopyFrom(from);
     return *this;
   }
-  inline S_SIGNUP& operator=(S_SIGNUP&& from) noexcept {
+  inline AS_SIGNUP& operator=(AS_SIGNUP&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -320,20 +320,20 @@ class S_SIGNUP final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const S_SIGNUP& default_instance() {
+  static const AS_SIGNUP& default_instance() {
     return *internal_default_instance();
   }
-  static inline const S_SIGNUP* internal_default_instance() {
-    return reinterpret_cast<const S_SIGNUP*>(
-               &_S_SIGNUP_default_instance_);
+  static inline const AS_SIGNUP* internal_default_instance() {
+    return reinterpret_cast<const AS_SIGNUP*>(
+               &_AS_SIGNUP_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(S_SIGNUP& a, S_SIGNUP& b) {
+  friend void swap(AS_SIGNUP& a, AS_SIGNUP& b) {
     a.Swap(&b);
   }
-  inline void Swap(S_SIGNUP* other) {
+  inline void Swap(AS_SIGNUP* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -346,7 +346,7 @@ class S_SIGNUP final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(S_SIGNUP* other) {
+  void UnsafeArenaSwap(AS_SIGNUP* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -354,14 +354,14 @@ class S_SIGNUP final :
 
   // implements Message ----------------------------------------------
 
-  S_SIGNUP* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<S_SIGNUP>(arena);
+  AS_SIGNUP* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AS_SIGNUP>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const S_SIGNUP& from);
+  void CopyFrom(const AS_SIGNUP& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const S_SIGNUP& from) {
-    S_SIGNUP::MergeImpl(*this, from);
+  void MergeFrom( const AS_SIGNUP& from) {
+    AS_SIGNUP::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -379,15 +379,15 @@ class S_SIGNUP final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(S_SIGNUP* other);
+  void InternalSwap(AS_SIGNUP* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Protocol.S_SIGNUP";
+    return "Protocol.AS_SIGNUP";
   }
   protected:
-  explicit S_SIGNUP(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit AS_SIGNUP(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -452,7 +452,7 @@ class S_SIGNUP final :
   void _internal_set_skip_email(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:Protocol.S_SIGNUP)
+  // @@protoc_insertion_point(class_scope:Protocol.AS_SIGNUP)
  private:
   class _Internal;
 
@@ -471,24 +471,24 @@ class S_SIGNUP final :
 };
 // -------------------------------------------------------------------
 
-class C_VERIFY_MAIL_REQ final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.C_VERIFY_MAIL_REQ) */ {
+class AC_VERIFY_MAIL_REQ final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.AC_VERIFY_MAIL_REQ) */ {
  public:
-  inline C_VERIFY_MAIL_REQ() : C_VERIFY_MAIL_REQ(nullptr) {}
-  ~C_VERIFY_MAIL_REQ() override;
-  explicit PROTOBUF_CONSTEXPR C_VERIFY_MAIL_REQ(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline AC_VERIFY_MAIL_REQ() : AC_VERIFY_MAIL_REQ(nullptr) {}
+  ~AC_VERIFY_MAIL_REQ() override;
+  explicit PROTOBUF_CONSTEXPR AC_VERIFY_MAIL_REQ(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  C_VERIFY_MAIL_REQ(const C_VERIFY_MAIL_REQ& from);
-  C_VERIFY_MAIL_REQ(C_VERIFY_MAIL_REQ&& from) noexcept
-    : C_VERIFY_MAIL_REQ() {
+  AC_VERIFY_MAIL_REQ(const AC_VERIFY_MAIL_REQ& from);
+  AC_VERIFY_MAIL_REQ(AC_VERIFY_MAIL_REQ&& from) noexcept
+    : AC_VERIFY_MAIL_REQ() {
     *this = ::std::move(from);
   }
 
-  inline C_VERIFY_MAIL_REQ& operator=(const C_VERIFY_MAIL_REQ& from) {
+  inline AC_VERIFY_MAIL_REQ& operator=(const AC_VERIFY_MAIL_REQ& from) {
     CopyFrom(from);
     return *this;
   }
-  inline C_VERIFY_MAIL_REQ& operator=(C_VERIFY_MAIL_REQ&& from) noexcept {
+  inline AC_VERIFY_MAIL_REQ& operator=(AC_VERIFY_MAIL_REQ&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -511,20 +511,20 @@ class C_VERIFY_MAIL_REQ final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const C_VERIFY_MAIL_REQ& default_instance() {
+  static const AC_VERIFY_MAIL_REQ& default_instance() {
     return *internal_default_instance();
   }
-  static inline const C_VERIFY_MAIL_REQ* internal_default_instance() {
-    return reinterpret_cast<const C_VERIFY_MAIL_REQ*>(
-               &_C_VERIFY_MAIL_REQ_default_instance_);
+  static inline const AC_VERIFY_MAIL_REQ* internal_default_instance() {
+    return reinterpret_cast<const AC_VERIFY_MAIL_REQ*>(
+               &_AC_VERIFY_MAIL_REQ_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     2;
 
-  friend void swap(C_VERIFY_MAIL_REQ& a, C_VERIFY_MAIL_REQ& b) {
+  friend void swap(AC_VERIFY_MAIL_REQ& a, AC_VERIFY_MAIL_REQ& b) {
     a.Swap(&b);
   }
-  inline void Swap(C_VERIFY_MAIL_REQ* other) {
+  inline void Swap(AC_VERIFY_MAIL_REQ* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -537,7 +537,7 @@ class C_VERIFY_MAIL_REQ final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(C_VERIFY_MAIL_REQ* other) {
+  void UnsafeArenaSwap(AC_VERIFY_MAIL_REQ* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -545,14 +545,14 @@ class C_VERIFY_MAIL_REQ final :
 
   // implements Message ----------------------------------------------
 
-  C_VERIFY_MAIL_REQ* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<C_VERIFY_MAIL_REQ>(arena);
+  AC_VERIFY_MAIL_REQ* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AC_VERIFY_MAIL_REQ>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const C_VERIFY_MAIL_REQ& from);
+  void CopyFrom(const AC_VERIFY_MAIL_REQ& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const C_VERIFY_MAIL_REQ& from) {
-    C_VERIFY_MAIL_REQ::MergeImpl(*this, from);
+  void MergeFrom( const AC_VERIFY_MAIL_REQ& from) {
+    AC_VERIFY_MAIL_REQ::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -570,15 +570,15 @@ class C_VERIFY_MAIL_REQ final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(C_VERIFY_MAIL_REQ* other);
+  void InternalSwap(AC_VERIFY_MAIL_REQ* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Protocol.C_VERIFY_MAIL_REQ";
+    return "Protocol.AC_VERIFY_MAIL_REQ";
   }
   protected:
-  explicit C_VERIFY_MAIL_REQ(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit AC_VERIFY_MAIL_REQ(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -608,7 +608,7 @@ class C_VERIFY_MAIL_REQ final :
   std::string* _internal_mutable_temp_id();
   public:
 
-  // @@protoc_insertion_point(class_scope:Protocol.C_VERIFY_MAIL_REQ)
+  // @@protoc_insertion_point(class_scope:Protocol.AC_VERIFY_MAIL_REQ)
  private:
   class _Internal;
 
@@ -624,24 +624,24 @@ class C_VERIFY_MAIL_REQ final :
 };
 // -------------------------------------------------------------------
 
-class S_VERIFY_MAIL_REQ final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.S_VERIFY_MAIL_REQ) */ {
+class AS_VERIFY_MAIL_REQ final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.AS_VERIFY_MAIL_REQ) */ {
  public:
-  inline S_VERIFY_MAIL_REQ() : S_VERIFY_MAIL_REQ(nullptr) {}
-  ~S_VERIFY_MAIL_REQ() override;
-  explicit PROTOBUF_CONSTEXPR S_VERIFY_MAIL_REQ(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline AS_VERIFY_MAIL_REQ() : AS_VERIFY_MAIL_REQ(nullptr) {}
+  ~AS_VERIFY_MAIL_REQ() override;
+  explicit PROTOBUF_CONSTEXPR AS_VERIFY_MAIL_REQ(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  S_VERIFY_MAIL_REQ(const S_VERIFY_MAIL_REQ& from);
-  S_VERIFY_MAIL_REQ(S_VERIFY_MAIL_REQ&& from) noexcept
-    : S_VERIFY_MAIL_REQ() {
+  AS_VERIFY_MAIL_REQ(const AS_VERIFY_MAIL_REQ& from);
+  AS_VERIFY_MAIL_REQ(AS_VERIFY_MAIL_REQ&& from) noexcept
+    : AS_VERIFY_MAIL_REQ() {
     *this = ::std::move(from);
   }
 
-  inline S_VERIFY_MAIL_REQ& operator=(const S_VERIFY_MAIL_REQ& from) {
+  inline AS_VERIFY_MAIL_REQ& operator=(const AS_VERIFY_MAIL_REQ& from) {
     CopyFrom(from);
     return *this;
   }
-  inline S_VERIFY_MAIL_REQ& operator=(S_VERIFY_MAIL_REQ&& from) noexcept {
+  inline AS_VERIFY_MAIL_REQ& operator=(AS_VERIFY_MAIL_REQ&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -664,20 +664,20 @@ class S_VERIFY_MAIL_REQ final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const S_VERIFY_MAIL_REQ& default_instance() {
+  static const AS_VERIFY_MAIL_REQ& default_instance() {
     return *internal_default_instance();
   }
-  static inline const S_VERIFY_MAIL_REQ* internal_default_instance() {
-    return reinterpret_cast<const S_VERIFY_MAIL_REQ*>(
-               &_S_VERIFY_MAIL_REQ_default_instance_);
+  static inline const AS_VERIFY_MAIL_REQ* internal_default_instance() {
+    return reinterpret_cast<const AS_VERIFY_MAIL_REQ*>(
+               &_AS_VERIFY_MAIL_REQ_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     3;
 
-  friend void swap(S_VERIFY_MAIL_REQ& a, S_VERIFY_MAIL_REQ& b) {
+  friend void swap(AS_VERIFY_MAIL_REQ& a, AS_VERIFY_MAIL_REQ& b) {
     a.Swap(&b);
   }
-  inline void Swap(S_VERIFY_MAIL_REQ* other) {
+  inline void Swap(AS_VERIFY_MAIL_REQ* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -690,7 +690,7 @@ class S_VERIFY_MAIL_REQ final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(S_VERIFY_MAIL_REQ* other) {
+  void UnsafeArenaSwap(AS_VERIFY_MAIL_REQ* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -698,14 +698,14 @@ class S_VERIFY_MAIL_REQ final :
 
   // implements Message ----------------------------------------------
 
-  S_VERIFY_MAIL_REQ* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<S_VERIFY_MAIL_REQ>(arena);
+  AS_VERIFY_MAIL_REQ* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AS_VERIFY_MAIL_REQ>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const S_VERIFY_MAIL_REQ& from);
+  void CopyFrom(const AS_VERIFY_MAIL_REQ& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const S_VERIFY_MAIL_REQ& from) {
-    S_VERIFY_MAIL_REQ::MergeImpl(*this, from);
+  void MergeFrom( const AS_VERIFY_MAIL_REQ& from) {
+    AS_VERIFY_MAIL_REQ::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -723,15 +723,15 @@ class S_VERIFY_MAIL_REQ final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(S_VERIFY_MAIL_REQ* other);
+  void InternalSwap(AS_VERIFY_MAIL_REQ* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Protocol.S_VERIFY_MAIL_REQ";
+    return "Protocol.AS_VERIFY_MAIL_REQ";
   }
   protected:
-  explicit S_VERIFY_MAIL_REQ(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit AS_VERIFY_MAIL_REQ(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -796,7 +796,7 @@ class S_VERIFY_MAIL_REQ final :
   void _internal_set_expired(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:Protocol.S_VERIFY_MAIL_REQ)
+  // @@protoc_insertion_point(class_scope:Protocol.AS_VERIFY_MAIL_REQ)
  private:
   class _Internal;
 
@@ -815,24 +815,24 @@ class S_VERIFY_MAIL_REQ final :
 };
 // -------------------------------------------------------------------
 
-class C_VERIFY_EMAIL_CODE final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.C_VERIFY_EMAIL_CODE) */ {
+class AC_VERIFY_EMAIL_CODE final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.AC_VERIFY_EMAIL_CODE) */ {
  public:
-  inline C_VERIFY_EMAIL_CODE() : C_VERIFY_EMAIL_CODE(nullptr) {}
-  ~C_VERIFY_EMAIL_CODE() override;
-  explicit PROTOBUF_CONSTEXPR C_VERIFY_EMAIL_CODE(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline AC_VERIFY_EMAIL_CODE() : AC_VERIFY_EMAIL_CODE(nullptr) {}
+  ~AC_VERIFY_EMAIL_CODE() override;
+  explicit PROTOBUF_CONSTEXPR AC_VERIFY_EMAIL_CODE(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  C_VERIFY_EMAIL_CODE(const C_VERIFY_EMAIL_CODE& from);
-  C_VERIFY_EMAIL_CODE(C_VERIFY_EMAIL_CODE&& from) noexcept
-    : C_VERIFY_EMAIL_CODE() {
+  AC_VERIFY_EMAIL_CODE(const AC_VERIFY_EMAIL_CODE& from);
+  AC_VERIFY_EMAIL_CODE(AC_VERIFY_EMAIL_CODE&& from) noexcept
+    : AC_VERIFY_EMAIL_CODE() {
     *this = ::std::move(from);
   }
 
-  inline C_VERIFY_EMAIL_CODE& operator=(const C_VERIFY_EMAIL_CODE& from) {
+  inline AC_VERIFY_EMAIL_CODE& operator=(const AC_VERIFY_EMAIL_CODE& from) {
     CopyFrom(from);
     return *this;
   }
-  inline C_VERIFY_EMAIL_CODE& operator=(C_VERIFY_EMAIL_CODE&& from) noexcept {
+  inline AC_VERIFY_EMAIL_CODE& operator=(AC_VERIFY_EMAIL_CODE&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -855,20 +855,20 @@ class C_VERIFY_EMAIL_CODE final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const C_VERIFY_EMAIL_CODE& default_instance() {
+  static const AC_VERIFY_EMAIL_CODE& default_instance() {
     return *internal_default_instance();
   }
-  static inline const C_VERIFY_EMAIL_CODE* internal_default_instance() {
-    return reinterpret_cast<const C_VERIFY_EMAIL_CODE*>(
-               &_C_VERIFY_EMAIL_CODE_default_instance_);
+  static inline const AC_VERIFY_EMAIL_CODE* internal_default_instance() {
+    return reinterpret_cast<const AC_VERIFY_EMAIL_CODE*>(
+               &_AC_VERIFY_EMAIL_CODE_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     4;
 
-  friend void swap(C_VERIFY_EMAIL_CODE& a, C_VERIFY_EMAIL_CODE& b) {
+  friend void swap(AC_VERIFY_EMAIL_CODE& a, AC_VERIFY_EMAIL_CODE& b) {
     a.Swap(&b);
   }
-  inline void Swap(C_VERIFY_EMAIL_CODE* other) {
+  inline void Swap(AC_VERIFY_EMAIL_CODE* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -881,7 +881,7 @@ class C_VERIFY_EMAIL_CODE final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(C_VERIFY_EMAIL_CODE* other) {
+  void UnsafeArenaSwap(AC_VERIFY_EMAIL_CODE* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -889,14 +889,14 @@ class C_VERIFY_EMAIL_CODE final :
 
   // implements Message ----------------------------------------------
 
-  C_VERIFY_EMAIL_CODE* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<C_VERIFY_EMAIL_CODE>(arena);
+  AC_VERIFY_EMAIL_CODE* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AC_VERIFY_EMAIL_CODE>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const C_VERIFY_EMAIL_CODE& from);
+  void CopyFrom(const AC_VERIFY_EMAIL_CODE& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const C_VERIFY_EMAIL_CODE& from) {
-    C_VERIFY_EMAIL_CODE::MergeImpl(*this, from);
+  void MergeFrom( const AC_VERIFY_EMAIL_CODE& from) {
+    AC_VERIFY_EMAIL_CODE::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -914,15 +914,15 @@ class C_VERIFY_EMAIL_CODE final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(C_VERIFY_EMAIL_CODE* other);
+  void InternalSwap(AC_VERIFY_EMAIL_CODE* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Protocol.C_VERIFY_EMAIL_CODE";
+    return "Protocol.AC_VERIFY_EMAIL_CODE";
   }
   protected:
-  explicit C_VERIFY_EMAIL_CODE(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit AC_VERIFY_EMAIL_CODE(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -967,7 +967,7 @@ class C_VERIFY_EMAIL_CODE final :
   std::string* _internal_mutable_verify_code();
   public:
 
-  // @@protoc_insertion_point(class_scope:Protocol.C_VERIFY_EMAIL_CODE)
+  // @@protoc_insertion_point(class_scope:Protocol.AC_VERIFY_EMAIL_CODE)
  private:
   class _Internal;
 
@@ -984,24 +984,24 @@ class C_VERIFY_EMAIL_CODE final :
 };
 // -------------------------------------------------------------------
 
-class S_VERIFY_EMAIL_CODE final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.S_VERIFY_EMAIL_CODE) */ {
+class AS_VERIFY_EMAIL_CODE final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.AS_VERIFY_EMAIL_CODE) */ {
  public:
-  inline S_VERIFY_EMAIL_CODE() : S_VERIFY_EMAIL_CODE(nullptr) {}
-  ~S_VERIFY_EMAIL_CODE() override;
-  explicit PROTOBUF_CONSTEXPR S_VERIFY_EMAIL_CODE(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline AS_VERIFY_EMAIL_CODE() : AS_VERIFY_EMAIL_CODE(nullptr) {}
+  ~AS_VERIFY_EMAIL_CODE() override;
+  explicit PROTOBUF_CONSTEXPR AS_VERIFY_EMAIL_CODE(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  S_VERIFY_EMAIL_CODE(const S_VERIFY_EMAIL_CODE& from);
-  S_VERIFY_EMAIL_CODE(S_VERIFY_EMAIL_CODE&& from) noexcept
-    : S_VERIFY_EMAIL_CODE() {
+  AS_VERIFY_EMAIL_CODE(const AS_VERIFY_EMAIL_CODE& from);
+  AS_VERIFY_EMAIL_CODE(AS_VERIFY_EMAIL_CODE&& from) noexcept
+    : AS_VERIFY_EMAIL_CODE() {
     *this = ::std::move(from);
   }
 
-  inline S_VERIFY_EMAIL_CODE& operator=(const S_VERIFY_EMAIL_CODE& from) {
+  inline AS_VERIFY_EMAIL_CODE& operator=(const AS_VERIFY_EMAIL_CODE& from) {
     CopyFrom(from);
     return *this;
   }
-  inline S_VERIFY_EMAIL_CODE& operator=(S_VERIFY_EMAIL_CODE&& from) noexcept {
+  inline AS_VERIFY_EMAIL_CODE& operator=(AS_VERIFY_EMAIL_CODE&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1024,20 +1024,20 @@ class S_VERIFY_EMAIL_CODE final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const S_VERIFY_EMAIL_CODE& default_instance() {
+  static const AS_VERIFY_EMAIL_CODE& default_instance() {
     return *internal_default_instance();
   }
-  static inline const S_VERIFY_EMAIL_CODE* internal_default_instance() {
-    return reinterpret_cast<const S_VERIFY_EMAIL_CODE*>(
-               &_S_VERIFY_EMAIL_CODE_default_instance_);
+  static inline const AS_VERIFY_EMAIL_CODE* internal_default_instance() {
+    return reinterpret_cast<const AS_VERIFY_EMAIL_CODE*>(
+               &_AS_VERIFY_EMAIL_CODE_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     5;
 
-  friend void swap(S_VERIFY_EMAIL_CODE& a, S_VERIFY_EMAIL_CODE& b) {
+  friend void swap(AS_VERIFY_EMAIL_CODE& a, AS_VERIFY_EMAIL_CODE& b) {
     a.Swap(&b);
   }
-  inline void Swap(S_VERIFY_EMAIL_CODE* other) {
+  inline void Swap(AS_VERIFY_EMAIL_CODE* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -1050,7 +1050,7 @@ class S_VERIFY_EMAIL_CODE final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(S_VERIFY_EMAIL_CODE* other) {
+  void UnsafeArenaSwap(AS_VERIFY_EMAIL_CODE* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -1058,14 +1058,14 @@ class S_VERIFY_EMAIL_CODE final :
 
   // implements Message ----------------------------------------------
 
-  S_VERIFY_EMAIL_CODE* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<S_VERIFY_EMAIL_CODE>(arena);
+  AS_VERIFY_EMAIL_CODE* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AS_VERIFY_EMAIL_CODE>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const S_VERIFY_EMAIL_CODE& from);
+  void CopyFrom(const AS_VERIFY_EMAIL_CODE& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const S_VERIFY_EMAIL_CODE& from) {
-    S_VERIFY_EMAIL_CODE::MergeImpl(*this, from);
+  void MergeFrom( const AS_VERIFY_EMAIL_CODE& from) {
+    AS_VERIFY_EMAIL_CODE::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -1083,15 +1083,15 @@ class S_VERIFY_EMAIL_CODE final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(S_VERIFY_EMAIL_CODE* other);
+  void InternalSwap(AS_VERIFY_EMAIL_CODE* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Protocol.S_VERIFY_EMAIL_CODE";
+    return "Protocol.AS_VERIFY_EMAIL_CODE";
   }
   protected:
-  explicit S_VERIFY_EMAIL_CODE(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit AS_VERIFY_EMAIL_CODE(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -1156,7 +1156,7 @@ class S_VERIFY_EMAIL_CODE final :
   void _internal_set_expired(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:Protocol.S_VERIFY_EMAIL_CODE)
+  // @@protoc_insertion_point(class_scope:Protocol.AS_VERIFY_EMAIL_CODE)
  private:
   class _Internal;
 
@@ -1175,24 +1175,24 @@ class S_VERIFY_EMAIL_CODE final :
 };
 // -------------------------------------------------------------------
 
-class C_LOGIN final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.C_LOGIN) */ {
+class AC_LOGIN final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.AC_LOGIN) */ {
  public:
-  inline C_LOGIN() : C_LOGIN(nullptr) {}
-  ~C_LOGIN() override;
-  explicit PROTOBUF_CONSTEXPR C_LOGIN(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline AC_LOGIN() : AC_LOGIN(nullptr) {}
+  ~AC_LOGIN() override;
+  explicit PROTOBUF_CONSTEXPR AC_LOGIN(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  C_LOGIN(const C_LOGIN& from);
-  C_LOGIN(C_LOGIN&& from) noexcept
-    : C_LOGIN() {
+  AC_LOGIN(const AC_LOGIN& from);
+  AC_LOGIN(AC_LOGIN&& from) noexcept
+    : AC_LOGIN() {
     *this = ::std::move(from);
   }
 
-  inline C_LOGIN& operator=(const C_LOGIN& from) {
+  inline AC_LOGIN& operator=(const AC_LOGIN& from) {
     CopyFrom(from);
     return *this;
   }
-  inline C_LOGIN& operator=(C_LOGIN&& from) noexcept {
+  inline AC_LOGIN& operator=(AC_LOGIN&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1215,20 +1215,20 @@ class C_LOGIN final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const C_LOGIN& default_instance() {
+  static const AC_LOGIN& default_instance() {
     return *internal_default_instance();
   }
-  static inline const C_LOGIN* internal_default_instance() {
-    return reinterpret_cast<const C_LOGIN*>(
-               &_C_LOGIN_default_instance_);
+  static inline const AC_LOGIN* internal_default_instance() {
+    return reinterpret_cast<const AC_LOGIN*>(
+               &_AC_LOGIN_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     6;
 
-  friend void swap(C_LOGIN& a, C_LOGIN& b) {
+  friend void swap(AC_LOGIN& a, AC_LOGIN& b) {
     a.Swap(&b);
   }
-  inline void Swap(C_LOGIN* other) {
+  inline void Swap(AC_LOGIN* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -1241,7 +1241,7 @@ class C_LOGIN final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(C_LOGIN* other) {
+  void UnsafeArenaSwap(AC_LOGIN* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -1249,14 +1249,14 @@ class C_LOGIN final :
 
   // implements Message ----------------------------------------------
 
-  C_LOGIN* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<C_LOGIN>(arena);
+  AC_LOGIN* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AC_LOGIN>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const C_LOGIN& from);
+  void CopyFrom(const AC_LOGIN& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const C_LOGIN& from) {
-    C_LOGIN::MergeImpl(*this, from);
+  void MergeFrom( const AC_LOGIN& from) {
+    AC_LOGIN::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -1274,15 +1274,15 @@ class C_LOGIN final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(C_LOGIN* other);
+  void InternalSwap(AC_LOGIN* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Protocol.C_LOGIN";
+    return "Protocol.AC_LOGIN";
   }
   protected:
-  explicit C_LOGIN(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit AC_LOGIN(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -1327,7 +1327,7 @@ class C_LOGIN final :
   std::string* _internal_mutable_password();
   public:
 
-  // @@protoc_insertion_point(class_scope:Protocol.C_LOGIN)
+  // @@protoc_insertion_point(class_scope:Protocol.AC_LOGIN)
  private:
   class _Internal;
 
@@ -1344,24 +1344,24 @@ class C_LOGIN final :
 };
 // -------------------------------------------------------------------
 
-class S_LOGIN final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.S_LOGIN) */ {
+class AS_LOGIN final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.AS_LOGIN) */ {
  public:
-  inline S_LOGIN() : S_LOGIN(nullptr) {}
-  ~S_LOGIN() override;
-  explicit PROTOBUF_CONSTEXPR S_LOGIN(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline AS_LOGIN() : AS_LOGIN(nullptr) {}
+  ~AS_LOGIN() override;
+  explicit PROTOBUF_CONSTEXPR AS_LOGIN(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  S_LOGIN(const S_LOGIN& from);
-  S_LOGIN(S_LOGIN&& from) noexcept
-    : S_LOGIN() {
+  AS_LOGIN(const AS_LOGIN& from);
+  AS_LOGIN(AS_LOGIN&& from) noexcept
+    : AS_LOGIN() {
     *this = ::std::move(from);
   }
 
-  inline S_LOGIN& operator=(const S_LOGIN& from) {
+  inline AS_LOGIN& operator=(const AS_LOGIN& from) {
     CopyFrom(from);
     return *this;
   }
-  inline S_LOGIN& operator=(S_LOGIN&& from) noexcept {
+  inline AS_LOGIN& operator=(AS_LOGIN&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1384,20 +1384,20 @@ class S_LOGIN final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const S_LOGIN& default_instance() {
+  static const AS_LOGIN& default_instance() {
     return *internal_default_instance();
   }
-  static inline const S_LOGIN* internal_default_instance() {
-    return reinterpret_cast<const S_LOGIN*>(
-               &_S_LOGIN_default_instance_);
+  static inline const AS_LOGIN* internal_default_instance() {
+    return reinterpret_cast<const AS_LOGIN*>(
+               &_AS_LOGIN_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     7;
 
-  friend void swap(S_LOGIN& a, S_LOGIN& b) {
+  friend void swap(AS_LOGIN& a, AS_LOGIN& b) {
     a.Swap(&b);
   }
-  inline void Swap(S_LOGIN* other) {
+  inline void Swap(AS_LOGIN* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -1410,7 +1410,7 @@ class S_LOGIN final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(S_LOGIN* other) {
+  void UnsafeArenaSwap(AS_LOGIN* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -1418,14 +1418,14 @@ class S_LOGIN final :
 
   // implements Message ----------------------------------------------
 
-  S_LOGIN* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<S_LOGIN>(arena);
+  AS_LOGIN* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AS_LOGIN>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const S_LOGIN& from);
+  void CopyFrom(const AS_LOGIN& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const S_LOGIN& from) {
-    S_LOGIN::MergeImpl(*this, from);
+  void MergeFrom( const AS_LOGIN& from) {
+    AS_LOGIN::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -1443,15 +1443,15 @@ class S_LOGIN final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(S_LOGIN* other);
+  void InternalSwap(AS_LOGIN* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Protocol.S_LOGIN";
+    return "Protocol.AS_LOGIN";
   }
   protected:
-  explicit S_LOGIN(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit AS_LOGIN(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -1526,7 +1526,7 @@ class S_LOGIN final :
   void _internal_set_fail_count(int32_t value);
   public:
 
-  // @@protoc_insertion_point(class_scope:Protocol.S_LOGIN)
+  // @@protoc_insertion_point(class_scope:Protocol.AS_LOGIN)
  private:
   class _Internal;
 
@@ -1553,44 +1553,44 @@ class S_LOGIN final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// C_SIGNUP
+// AC_SIGNUP
 
 // string nickname = 1;
-inline void C_SIGNUP::clear_nickname() {
+inline void AC_SIGNUP::clear_nickname() {
   _impl_.nickname_.ClearToEmpty();
 }
-inline const std::string& C_SIGNUP::nickname() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_SIGNUP.nickname)
+inline const std::string& AC_SIGNUP::nickname() const {
+  // @@protoc_insertion_point(field_get:Protocol.AC_SIGNUP.nickname)
   return _internal_nickname();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void C_SIGNUP::set_nickname(ArgT0&& arg0, ArgT... args) {
+void AC_SIGNUP::set_nickname(ArgT0&& arg0, ArgT... args) {
  
  _impl_.nickname_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.C_SIGNUP.nickname)
+  // @@protoc_insertion_point(field_set:Protocol.AC_SIGNUP.nickname)
 }
-inline std::string* C_SIGNUP::mutable_nickname() {
+inline std::string* AC_SIGNUP::mutable_nickname() {
   std::string* _s = _internal_mutable_nickname();
-  // @@protoc_insertion_point(field_mutable:Protocol.C_SIGNUP.nickname)
+  // @@protoc_insertion_point(field_mutable:Protocol.AC_SIGNUP.nickname)
   return _s;
 }
-inline const std::string& C_SIGNUP::_internal_nickname() const {
+inline const std::string& AC_SIGNUP::_internal_nickname() const {
   return _impl_.nickname_.Get();
 }
-inline void C_SIGNUP::_internal_set_nickname(const std::string& value) {
+inline void AC_SIGNUP::_internal_set_nickname(const std::string& value) {
   
   _impl_.nickname_.Set(value, GetArenaForAllocation());
 }
-inline std::string* C_SIGNUP::_internal_mutable_nickname() {
+inline std::string* AC_SIGNUP::_internal_mutable_nickname() {
   
   return _impl_.nickname_.Mutable(GetArenaForAllocation());
 }
-inline std::string* C_SIGNUP::release_nickname() {
-  // @@protoc_insertion_point(field_release:Protocol.C_SIGNUP.nickname)
+inline std::string* AC_SIGNUP::release_nickname() {
+  // @@protoc_insertion_point(field_release:Protocol.AC_SIGNUP.nickname)
   return _impl_.nickname_.Release();
 }
-inline void C_SIGNUP::set_allocated_nickname(std::string* nickname) {
+inline void AC_SIGNUP::set_allocated_nickname(std::string* nickname) {
   if (nickname != nullptr) {
     
   } else {
@@ -1602,45 +1602,45 @@ inline void C_SIGNUP::set_allocated_nickname(std::string* nickname) {
     _impl_.nickname_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.C_SIGNUP.nickname)
+  // @@protoc_insertion_point(field_set_allocated:Protocol.AC_SIGNUP.nickname)
 }
 
 // string password = 2;
-inline void C_SIGNUP::clear_password() {
+inline void AC_SIGNUP::clear_password() {
   _impl_.password_.ClearToEmpty();
 }
-inline const std::string& C_SIGNUP::password() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_SIGNUP.password)
+inline const std::string& AC_SIGNUP::password() const {
+  // @@protoc_insertion_point(field_get:Protocol.AC_SIGNUP.password)
   return _internal_password();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void C_SIGNUP::set_password(ArgT0&& arg0, ArgT... args) {
+void AC_SIGNUP::set_password(ArgT0&& arg0, ArgT... args) {
  
  _impl_.password_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.C_SIGNUP.password)
+  // @@protoc_insertion_point(field_set:Protocol.AC_SIGNUP.password)
 }
-inline std::string* C_SIGNUP::mutable_password() {
+inline std::string* AC_SIGNUP::mutable_password() {
   std::string* _s = _internal_mutable_password();
-  // @@protoc_insertion_point(field_mutable:Protocol.C_SIGNUP.password)
+  // @@protoc_insertion_point(field_mutable:Protocol.AC_SIGNUP.password)
   return _s;
 }
-inline const std::string& C_SIGNUP::_internal_password() const {
+inline const std::string& AC_SIGNUP::_internal_password() const {
   return _impl_.password_.Get();
 }
-inline void C_SIGNUP::_internal_set_password(const std::string& value) {
+inline void AC_SIGNUP::_internal_set_password(const std::string& value) {
   
   _impl_.password_.Set(value, GetArenaForAllocation());
 }
-inline std::string* C_SIGNUP::_internal_mutable_password() {
+inline std::string* AC_SIGNUP::_internal_mutable_password() {
   
   return _impl_.password_.Mutable(GetArenaForAllocation());
 }
-inline std::string* C_SIGNUP::release_password() {
-  // @@protoc_insertion_point(field_release:Protocol.C_SIGNUP.password)
+inline std::string* AC_SIGNUP::release_password() {
+  // @@protoc_insertion_point(field_release:Protocol.AC_SIGNUP.password)
   return _impl_.password_.Release();
 }
-inline void C_SIGNUP::set_allocated_password(std::string* password) {
+inline void AC_SIGNUP::set_allocated_password(std::string* password) {
   if (password != nullptr) {
     
   } else {
@@ -1652,45 +1652,45 @@ inline void C_SIGNUP::set_allocated_password(std::string* password) {
     _impl_.password_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.C_SIGNUP.password)
+  // @@protoc_insertion_point(field_set_allocated:Protocol.AC_SIGNUP.password)
 }
 
 // string email = 3;
-inline void C_SIGNUP::clear_email() {
+inline void AC_SIGNUP::clear_email() {
   _impl_.email_.ClearToEmpty();
 }
-inline const std::string& C_SIGNUP::email() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_SIGNUP.email)
+inline const std::string& AC_SIGNUP::email() const {
+  // @@protoc_insertion_point(field_get:Protocol.AC_SIGNUP.email)
   return _internal_email();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void C_SIGNUP::set_email(ArgT0&& arg0, ArgT... args) {
+void AC_SIGNUP::set_email(ArgT0&& arg0, ArgT... args) {
  
  _impl_.email_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.C_SIGNUP.email)
+  // @@protoc_insertion_point(field_set:Protocol.AC_SIGNUP.email)
 }
-inline std::string* C_SIGNUP::mutable_email() {
+inline std::string* AC_SIGNUP::mutable_email() {
   std::string* _s = _internal_mutable_email();
-  // @@protoc_insertion_point(field_mutable:Protocol.C_SIGNUP.email)
+  // @@protoc_insertion_point(field_mutable:Protocol.AC_SIGNUP.email)
   return _s;
 }
-inline const std::string& C_SIGNUP::_internal_email() const {
+inline const std::string& AC_SIGNUP::_internal_email() const {
   return _impl_.email_.Get();
 }
-inline void C_SIGNUP::_internal_set_email(const std::string& value) {
+inline void AC_SIGNUP::_internal_set_email(const std::string& value) {
   
   _impl_.email_.Set(value, GetArenaForAllocation());
 }
-inline std::string* C_SIGNUP::_internal_mutable_email() {
+inline std::string* AC_SIGNUP::_internal_mutable_email() {
   
   return _impl_.email_.Mutable(GetArenaForAllocation());
 }
-inline std::string* C_SIGNUP::release_email() {
-  // @@protoc_insertion_point(field_release:Protocol.C_SIGNUP.email)
+inline std::string* AC_SIGNUP::release_email() {
+  // @@protoc_insertion_point(field_release:Protocol.AC_SIGNUP.email)
   return _impl_.email_.Release();
 }
-inline void C_SIGNUP::set_allocated_email(std::string* email) {
+inline void AC_SIGNUP::set_allocated_email(std::string* email) {
   if (email != nullptr) {
     
   } else {
@@ -1702,109 +1702,109 @@ inline void C_SIGNUP::set_allocated_email(std::string* email) {
     _impl_.email_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.C_SIGNUP.email)
+  // @@protoc_insertion_point(field_set_allocated:Protocol.AC_SIGNUP.email)
 }
 
 // bool skip_email = 4;
-inline void C_SIGNUP::clear_skip_email() {
+inline void AC_SIGNUP::clear_skip_email() {
   _impl_.skip_email_ = false;
 }
-inline bool C_SIGNUP::_internal_skip_email() const {
+inline bool AC_SIGNUP::_internal_skip_email() const {
   return _impl_.skip_email_;
 }
-inline bool C_SIGNUP::skip_email() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_SIGNUP.skip_email)
+inline bool AC_SIGNUP::skip_email() const {
+  // @@protoc_insertion_point(field_get:Protocol.AC_SIGNUP.skip_email)
   return _internal_skip_email();
 }
-inline void C_SIGNUP::_internal_set_skip_email(bool value) {
+inline void AC_SIGNUP::_internal_set_skip_email(bool value) {
   
   _impl_.skip_email_ = value;
 }
-inline void C_SIGNUP::set_skip_email(bool value) {
+inline void AC_SIGNUP::set_skip_email(bool value) {
   _internal_set_skip_email(value);
-  // @@protoc_insertion_point(field_set:Protocol.C_SIGNUP.skip_email)
+  // @@protoc_insertion_point(field_set:Protocol.AC_SIGNUP.skip_email)
 }
 
 // -------------------------------------------------------------------
 
-// S_SIGNUP
+// AS_SIGNUP
 
 // bool success = 1;
-inline void S_SIGNUP::clear_success() {
+inline void AS_SIGNUP::clear_success() {
   _impl_.success_ = false;
 }
-inline bool S_SIGNUP::_internal_success() const {
+inline bool AS_SIGNUP::_internal_success() const {
   return _impl_.success_;
 }
-inline bool S_SIGNUP::success() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_SIGNUP.success)
+inline bool AS_SIGNUP::success() const {
+  // @@protoc_insertion_point(field_get:Protocol.AS_SIGNUP.success)
   return _internal_success();
 }
-inline void S_SIGNUP::_internal_set_success(bool value) {
+inline void AS_SIGNUP::_internal_set_success(bool value) {
   
   _impl_.success_ = value;
 }
-inline void S_SIGNUP::set_success(bool value) {
+inline void AS_SIGNUP::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:Protocol.S_SIGNUP.success)
+  // @@protoc_insertion_point(field_set:Protocol.AS_SIGNUP.success)
 }
 
 // bool skip_email = 2;
-inline void S_SIGNUP::clear_skip_email() {
+inline void AS_SIGNUP::clear_skip_email() {
   _impl_.skip_email_ = false;
 }
-inline bool S_SIGNUP::_internal_skip_email() const {
+inline bool AS_SIGNUP::_internal_skip_email() const {
   return _impl_.skip_email_;
 }
-inline bool S_SIGNUP::skip_email() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_SIGNUP.skip_email)
+inline bool AS_SIGNUP::skip_email() const {
+  // @@protoc_insertion_point(field_get:Protocol.AS_SIGNUP.skip_email)
   return _internal_skip_email();
 }
-inline void S_SIGNUP::_internal_set_skip_email(bool value) {
+inline void AS_SIGNUP::_internal_set_skip_email(bool value) {
   
   _impl_.skip_email_ = value;
 }
-inline void S_SIGNUP::set_skip_email(bool value) {
+inline void AS_SIGNUP::set_skip_email(bool value) {
   _internal_set_skip_email(value);
-  // @@protoc_insertion_point(field_set:Protocol.S_SIGNUP.skip_email)
+  // @@protoc_insertion_point(field_set:Protocol.AS_SIGNUP.skip_email)
 }
 
 // string temp_id = 3;
-inline void S_SIGNUP::clear_temp_id() {
+inline void AS_SIGNUP::clear_temp_id() {
   _impl_.temp_id_.ClearToEmpty();
 }
-inline const std::string& S_SIGNUP::temp_id() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_SIGNUP.temp_id)
+inline const std::string& AS_SIGNUP::temp_id() const {
+  // @@protoc_insertion_point(field_get:Protocol.AS_SIGNUP.temp_id)
   return _internal_temp_id();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S_SIGNUP::set_temp_id(ArgT0&& arg0, ArgT... args) {
+void AS_SIGNUP::set_temp_id(ArgT0&& arg0, ArgT... args) {
  
  _impl_.temp_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.S_SIGNUP.temp_id)
+  // @@protoc_insertion_point(field_set:Protocol.AS_SIGNUP.temp_id)
 }
-inline std::string* S_SIGNUP::mutable_temp_id() {
+inline std::string* AS_SIGNUP::mutable_temp_id() {
   std::string* _s = _internal_mutable_temp_id();
-  // @@protoc_insertion_point(field_mutable:Protocol.S_SIGNUP.temp_id)
+  // @@protoc_insertion_point(field_mutable:Protocol.AS_SIGNUP.temp_id)
   return _s;
 }
-inline const std::string& S_SIGNUP::_internal_temp_id() const {
+inline const std::string& AS_SIGNUP::_internal_temp_id() const {
   return _impl_.temp_id_.Get();
 }
-inline void S_SIGNUP::_internal_set_temp_id(const std::string& value) {
+inline void AS_SIGNUP::_internal_set_temp_id(const std::string& value) {
   
   _impl_.temp_id_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S_SIGNUP::_internal_mutable_temp_id() {
+inline std::string* AS_SIGNUP::_internal_mutable_temp_id() {
   
   return _impl_.temp_id_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S_SIGNUP::release_temp_id() {
-  // @@protoc_insertion_point(field_release:Protocol.S_SIGNUP.temp_id)
+inline std::string* AS_SIGNUP::release_temp_id() {
+  // @@protoc_insertion_point(field_release:Protocol.AS_SIGNUP.temp_id)
   return _impl_.temp_id_.Release();
 }
-inline void S_SIGNUP::set_allocated_temp_id(std::string* temp_id) {
+inline void AS_SIGNUP::set_allocated_temp_id(std::string* temp_id) {
   if (temp_id != nullptr) {
     
   } else {
@@ -1816,45 +1816,45 @@ inline void S_SIGNUP::set_allocated_temp_id(std::string* temp_id) {
     _impl_.temp_id_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.S_SIGNUP.temp_id)
+  // @@protoc_insertion_point(field_set_allocated:Protocol.AS_SIGNUP.temp_id)
 }
 
 // string reason = 4;
-inline void S_SIGNUP::clear_reason() {
+inline void AS_SIGNUP::clear_reason() {
   _impl_.reason_.ClearToEmpty();
 }
-inline const std::string& S_SIGNUP::reason() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_SIGNUP.reason)
+inline const std::string& AS_SIGNUP::reason() const {
+  // @@protoc_insertion_point(field_get:Protocol.AS_SIGNUP.reason)
   return _internal_reason();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S_SIGNUP::set_reason(ArgT0&& arg0, ArgT... args) {
+void AS_SIGNUP::set_reason(ArgT0&& arg0, ArgT... args) {
  
  _impl_.reason_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.S_SIGNUP.reason)
+  // @@protoc_insertion_point(field_set:Protocol.AS_SIGNUP.reason)
 }
-inline std::string* S_SIGNUP::mutable_reason() {
+inline std::string* AS_SIGNUP::mutable_reason() {
   std::string* _s = _internal_mutable_reason();
-  // @@protoc_insertion_point(field_mutable:Protocol.S_SIGNUP.reason)
+  // @@protoc_insertion_point(field_mutable:Protocol.AS_SIGNUP.reason)
   return _s;
 }
-inline const std::string& S_SIGNUP::_internal_reason() const {
+inline const std::string& AS_SIGNUP::_internal_reason() const {
   return _impl_.reason_.Get();
 }
-inline void S_SIGNUP::_internal_set_reason(const std::string& value) {
+inline void AS_SIGNUP::_internal_set_reason(const std::string& value) {
   
   _impl_.reason_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S_SIGNUP::_internal_mutable_reason() {
+inline std::string* AS_SIGNUP::_internal_mutable_reason() {
   
   return _impl_.reason_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S_SIGNUP::release_reason() {
-  // @@protoc_insertion_point(field_release:Protocol.S_SIGNUP.reason)
+inline std::string* AS_SIGNUP::release_reason() {
+  // @@protoc_insertion_point(field_release:Protocol.AS_SIGNUP.reason)
   return _impl_.reason_.Release();
 }
-inline void S_SIGNUP::set_allocated_reason(std::string* reason) {
+inline void AS_SIGNUP::set_allocated_reason(std::string* reason) {
   if (reason != nullptr) {
     
   } else {
@@ -1866,49 +1866,49 @@ inline void S_SIGNUP::set_allocated_reason(std::string* reason) {
     _impl_.reason_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.S_SIGNUP.reason)
+  // @@protoc_insertion_point(field_set_allocated:Protocol.AS_SIGNUP.reason)
 }
 
 // -------------------------------------------------------------------
 
-// C_VERIFY_MAIL_REQ
+// AC_VERIFY_MAIL_REQ
 
 // string temp_id = 1;
-inline void C_VERIFY_MAIL_REQ::clear_temp_id() {
+inline void AC_VERIFY_MAIL_REQ::clear_temp_id() {
   _impl_.temp_id_.ClearToEmpty();
 }
-inline const std::string& C_VERIFY_MAIL_REQ::temp_id() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_VERIFY_MAIL_REQ.temp_id)
+inline const std::string& AC_VERIFY_MAIL_REQ::temp_id() const {
+  // @@protoc_insertion_point(field_get:Protocol.AC_VERIFY_MAIL_REQ.temp_id)
   return _internal_temp_id();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void C_VERIFY_MAIL_REQ::set_temp_id(ArgT0&& arg0, ArgT... args) {
+void AC_VERIFY_MAIL_REQ::set_temp_id(ArgT0&& arg0, ArgT... args) {
  
  _impl_.temp_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.C_VERIFY_MAIL_REQ.temp_id)
+  // @@protoc_insertion_point(field_set:Protocol.AC_VERIFY_MAIL_REQ.temp_id)
 }
-inline std::string* C_VERIFY_MAIL_REQ::mutable_temp_id() {
+inline std::string* AC_VERIFY_MAIL_REQ::mutable_temp_id() {
   std::string* _s = _internal_mutable_temp_id();
-  // @@protoc_insertion_point(field_mutable:Protocol.C_VERIFY_MAIL_REQ.temp_id)
+  // @@protoc_insertion_point(field_mutable:Protocol.AC_VERIFY_MAIL_REQ.temp_id)
   return _s;
 }
-inline const std::string& C_VERIFY_MAIL_REQ::_internal_temp_id() const {
+inline const std::string& AC_VERIFY_MAIL_REQ::_internal_temp_id() const {
   return _impl_.temp_id_.Get();
 }
-inline void C_VERIFY_MAIL_REQ::_internal_set_temp_id(const std::string& value) {
+inline void AC_VERIFY_MAIL_REQ::_internal_set_temp_id(const std::string& value) {
   
   _impl_.temp_id_.Set(value, GetArenaForAllocation());
 }
-inline std::string* C_VERIFY_MAIL_REQ::_internal_mutable_temp_id() {
+inline std::string* AC_VERIFY_MAIL_REQ::_internal_mutable_temp_id() {
   
   return _impl_.temp_id_.Mutable(GetArenaForAllocation());
 }
-inline std::string* C_VERIFY_MAIL_REQ::release_temp_id() {
-  // @@protoc_insertion_point(field_release:Protocol.C_VERIFY_MAIL_REQ.temp_id)
+inline std::string* AC_VERIFY_MAIL_REQ::release_temp_id() {
+  // @@protoc_insertion_point(field_release:Protocol.AC_VERIFY_MAIL_REQ.temp_id)
   return _impl_.temp_id_.Release();
 }
-inline void C_VERIFY_MAIL_REQ::set_allocated_temp_id(std::string* temp_id) {
+inline void AC_VERIFY_MAIL_REQ::set_allocated_temp_id(std::string* temp_id) {
   if (temp_id != nullptr) {
     
   } else {
@@ -1920,69 +1920,69 @@ inline void C_VERIFY_MAIL_REQ::set_allocated_temp_id(std::string* temp_id) {
     _impl_.temp_id_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.C_VERIFY_MAIL_REQ.temp_id)
+  // @@protoc_insertion_point(field_set_allocated:Protocol.AC_VERIFY_MAIL_REQ.temp_id)
 }
 
 // -------------------------------------------------------------------
 
-// S_VERIFY_MAIL_REQ
+// AS_VERIFY_MAIL_REQ
 
 // bool success = 1;
-inline void S_VERIFY_MAIL_REQ::clear_success() {
+inline void AS_VERIFY_MAIL_REQ::clear_success() {
   _impl_.success_ = false;
 }
-inline bool S_VERIFY_MAIL_REQ::_internal_success() const {
+inline bool AS_VERIFY_MAIL_REQ::_internal_success() const {
   return _impl_.success_;
 }
-inline bool S_VERIFY_MAIL_REQ::success() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_VERIFY_MAIL_REQ.success)
+inline bool AS_VERIFY_MAIL_REQ::success() const {
+  // @@protoc_insertion_point(field_get:Protocol.AS_VERIFY_MAIL_REQ.success)
   return _internal_success();
 }
-inline void S_VERIFY_MAIL_REQ::_internal_set_success(bool value) {
+inline void AS_VERIFY_MAIL_REQ::_internal_set_success(bool value) {
   
   _impl_.success_ = value;
 }
-inline void S_VERIFY_MAIL_REQ::set_success(bool value) {
+inline void AS_VERIFY_MAIL_REQ::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:Protocol.S_VERIFY_MAIL_REQ.success)
+  // @@protoc_insertion_point(field_set:Protocol.AS_VERIFY_MAIL_REQ.success)
 }
 
 // string temp_id = 2;
-inline void S_VERIFY_MAIL_REQ::clear_temp_id() {
+inline void AS_VERIFY_MAIL_REQ::clear_temp_id() {
   _impl_.temp_id_.ClearToEmpty();
 }
-inline const std::string& S_VERIFY_MAIL_REQ::temp_id() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_VERIFY_MAIL_REQ.temp_id)
+inline const std::string& AS_VERIFY_MAIL_REQ::temp_id() const {
+  // @@protoc_insertion_point(field_get:Protocol.AS_VERIFY_MAIL_REQ.temp_id)
   return _internal_temp_id();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S_VERIFY_MAIL_REQ::set_temp_id(ArgT0&& arg0, ArgT... args) {
+void AS_VERIFY_MAIL_REQ::set_temp_id(ArgT0&& arg0, ArgT... args) {
  
  _impl_.temp_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.S_VERIFY_MAIL_REQ.temp_id)
+  // @@protoc_insertion_point(field_set:Protocol.AS_VERIFY_MAIL_REQ.temp_id)
 }
-inline std::string* S_VERIFY_MAIL_REQ::mutable_temp_id() {
+inline std::string* AS_VERIFY_MAIL_REQ::mutable_temp_id() {
   std::string* _s = _internal_mutable_temp_id();
-  // @@protoc_insertion_point(field_mutable:Protocol.S_VERIFY_MAIL_REQ.temp_id)
+  // @@protoc_insertion_point(field_mutable:Protocol.AS_VERIFY_MAIL_REQ.temp_id)
   return _s;
 }
-inline const std::string& S_VERIFY_MAIL_REQ::_internal_temp_id() const {
+inline const std::string& AS_VERIFY_MAIL_REQ::_internal_temp_id() const {
   return _impl_.temp_id_.Get();
 }
-inline void S_VERIFY_MAIL_REQ::_internal_set_temp_id(const std::string& value) {
+inline void AS_VERIFY_MAIL_REQ::_internal_set_temp_id(const std::string& value) {
   
   _impl_.temp_id_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S_VERIFY_MAIL_REQ::_internal_mutable_temp_id() {
+inline std::string* AS_VERIFY_MAIL_REQ::_internal_mutable_temp_id() {
   
   return _impl_.temp_id_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S_VERIFY_MAIL_REQ::release_temp_id() {
-  // @@protoc_insertion_point(field_release:Protocol.S_VERIFY_MAIL_REQ.temp_id)
+inline std::string* AS_VERIFY_MAIL_REQ::release_temp_id() {
+  // @@protoc_insertion_point(field_release:Protocol.AS_VERIFY_MAIL_REQ.temp_id)
   return _impl_.temp_id_.Release();
 }
-inline void S_VERIFY_MAIL_REQ::set_allocated_temp_id(std::string* temp_id) {
+inline void AS_VERIFY_MAIL_REQ::set_allocated_temp_id(std::string* temp_id) {
   if (temp_id != nullptr) {
     
   } else {
@@ -1994,65 +1994,65 @@ inline void S_VERIFY_MAIL_REQ::set_allocated_temp_id(std::string* temp_id) {
     _impl_.temp_id_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.S_VERIFY_MAIL_REQ.temp_id)
+  // @@protoc_insertion_point(field_set_allocated:Protocol.AS_VERIFY_MAIL_REQ.temp_id)
 }
 
 // bool expired = 3;
-inline void S_VERIFY_MAIL_REQ::clear_expired() {
+inline void AS_VERIFY_MAIL_REQ::clear_expired() {
   _impl_.expired_ = false;
 }
-inline bool S_VERIFY_MAIL_REQ::_internal_expired() const {
+inline bool AS_VERIFY_MAIL_REQ::_internal_expired() const {
   return _impl_.expired_;
 }
-inline bool S_VERIFY_MAIL_REQ::expired() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_VERIFY_MAIL_REQ.expired)
+inline bool AS_VERIFY_MAIL_REQ::expired() const {
+  // @@protoc_insertion_point(field_get:Protocol.AS_VERIFY_MAIL_REQ.expired)
   return _internal_expired();
 }
-inline void S_VERIFY_MAIL_REQ::_internal_set_expired(bool value) {
+inline void AS_VERIFY_MAIL_REQ::_internal_set_expired(bool value) {
   
   _impl_.expired_ = value;
 }
-inline void S_VERIFY_MAIL_REQ::set_expired(bool value) {
+inline void AS_VERIFY_MAIL_REQ::set_expired(bool value) {
   _internal_set_expired(value);
-  // @@protoc_insertion_point(field_set:Protocol.S_VERIFY_MAIL_REQ.expired)
+  // @@protoc_insertion_point(field_set:Protocol.AS_VERIFY_MAIL_REQ.expired)
 }
 
 // string reason = 4;
-inline void S_VERIFY_MAIL_REQ::clear_reason() {
+inline void AS_VERIFY_MAIL_REQ::clear_reason() {
   _impl_.reason_.ClearToEmpty();
 }
-inline const std::string& S_VERIFY_MAIL_REQ::reason() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_VERIFY_MAIL_REQ.reason)
+inline const std::string& AS_VERIFY_MAIL_REQ::reason() const {
+  // @@protoc_insertion_point(field_get:Protocol.AS_VERIFY_MAIL_REQ.reason)
   return _internal_reason();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S_VERIFY_MAIL_REQ::set_reason(ArgT0&& arg0, ArgT... args) {
+void AS_VERIFY_MAIL_REQ::set_reason(ArgT0&& arg0, ArgT... args) {
  
  _impl_.reason_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.S_VERIFY_MAIL_REQ.reason)
+  // @@protoc_insertion_point(field_set:Protocol.AS_VERIFY_MAIL_REQ.reason)
 }
-inline std::string* S_VERIFY_MAIL_REQ::mutable_reason() {
+inline std::string* AS_VERIFY_MAIL_REQ::mutable_reason() {
   std::string* _s = _internal_mutable_reason();
-  // @@protoc_insertion_point(field_mutable:Protocol.S_VERIFY_MAIL_REQ.reason)
+  // @@protoc_insertion_point(field_mutable:Protocol.AS_VERIFY_MAIL_REQ.reason)
   return _s;
 }
-inline const std::string& S_VERIFY_MAIL_REQ::_internal_reason() const {
+inline const std::string& AS_VERIFY_MAIL_REQ::_internal_reason() const {
   return _impl_.reason_.Get();
 }
-inline void S_VERIFY_MAIL_REQ::_internal_set_reason(const std::string& value) {
+inline void AS_VERIFY_MAIL_REQ::_internal_set_reason(const std::string& value) {
   
   _impl_.reason_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S_VERIFY_MAIL_REQ::_internal_mutable_reason() {
+inline std::string* AS_VERIFY_MAIL_REQ::_internal_mutable_reason() {
   
   return _impl_.reason_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S_VERIFY_MAIL_REQ::release_reason() {
-  // @@protoc_insertion_point(field_release:Protocol.S_VERIFY_MAIL_REQ.reason)
+inline std::string* AS_VERIFY_MAIL_REQ::release_reason() {
+  // @@protoc_insertion_point(field_release:Protocol.AS_VERIFY_MAIL_REQ.reason)
   return _impl_.reason_.Release();
 }
-inline void S_VERIFY_MAIL_REQ::set_allocated_reason(std::string* reason) {
+inline void AS_VERIFY_MAIL_REQ::set_allocated_reason(std::string* reason) {
   if (reason != nullptr) {
     
   } else {
@@ -2064,49 +2064,49 @@ inline void S_VERIFY_MAIL_REQ::set_allocated_reason(std::string* reason) {
     _impl_.reason_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.S_VERIFY_MAIL_REQ.reason)
+  // @@protoc_insertion_point(field_set_allocated:Protocol.AS_VERIFY_MAIL_REQ.reason)
 }
 
 // -------------------------------------------------------------------
 
-// C_VERIFY_EMAIL_CODE
+// AC_VERIFY_EMAIL_CODE
 
 // string temp_id = 1;
-inline void C_VERIFY_EMAIL_CODE::clear_temp_id() {
+inline void AC_VERIFY_EMAIL_CODE::clear_temp_id() {
   _impl_.temp_id_.ClearToEmpty();
 }
-inline const std::string& C_VERIFY_EMAIL_CODE::temp_id() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_VERIFY_EMAIL_CODE.temp_id)
+inline const std::string& AC_VERIFY_EMAIL_CODE::temp_id() const {
+  // @@protoc_insertion_point(field_get:Protocol.AC_VERIFY_EMAIL_CODE.temp_id)
   return _internal_temp_id();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void C_VERIFY_EMAIL_CODE::set_temp_id(ArgT0&& arg0, ArgT... args) {
+void AC_VERIFY_EMAIL_CODE::set_temp_id(ArgT0&& arg0, ArgT... args) {
  
  _impl_.temp_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.C_VERIFY_EMAIL_CODE.temp_id)
+  // @@protoc_insertion_point(field_set:Protocol.AC_VERIFY_EMAIL_CODE.temp_id)
 }
-inline std::string* C_VERIFY_EMAIL_CODE::mutable_temp_id() {
+inline std::string* AC_VERIFY_EMAIL_CODE::mutable_temp_id() {
   std::string* _s = _internal_mutable_temp_id();
-  // @@protoc_insertion_point(field_mutable:Protocol.C_VERIFY_EMAIL_CODE.temp_id)
+  // @@protoc_insertion_point(field_mutable:Protocol.AC_VERIFY_EMAIL_CODE.temp_id)
   return _s;
 }
-inline const std::string& C_VERIFY_EMAIL_CODE::_internal_temp_id() const {
+inline const std::string& AC_VERIFY_EMAIL_CODE::_internal_temp_id() const {
   return _impl_.temp_id_.Get();
 }
-inline void C_VERIFY_EMAIL_CODE::_internal_set_temp_id(const std::string& value) {
+inline void AC_VERIFY_EMAIL_CODE::_internal_set_temp_id(const std::string& value) {
   
   _impl_.temp_id_.Set(value, GetArenaForAllocation());
 }
-inline std::string* C_VERIFY_EMAIL_CODE::_internal_mutable_temp_id() {
+inline std::string* AC_VERIFY_EMAIL_CODE::_internal_mutable_temp_id() {
   
   return _impl_.temp_id_.Mutable(GetArenaForAllocation());
 }
-inline std::string* C_VERIFY_EMAIL_CODE::release_temp_id() {
-  // @@protoc_insertion_point(field_release:Protocol.C_VERIFY_EMAIL_CODE.temp_id)
+inline std::string* AC_VERIFY_EMAIL_CODE::release_temp_id() {
+  // @@protoc_insertion_point(field_release:Protocol.AC_VERIFY_EMAIL_CODE.temp_id)
   return _impl_.temp_id_.Release();
 }
-inline void C_VERIFY_EMAIL_CODE::set_allocated_temp_id(std::string* temp_id) {
+inline void AC_VERIFY_EMAIL_CODE::set_allocated_temp_id(std::string* temp_id) {
   if (temp_id != nullptr) {
     
   } else {
@@ -2118,45 +2118,45 @@ inline void C_VERIFY_EMAIL_CODE::set_allocated_temp_id(std::string* temp_id) {
     _impl_.temp_id_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.C_VERIFY_EMAIL_CODE.temp_id)
+  // @@protoc_insertion_point(field_set_allocated:Protocol.AC_VERIFY_EMAIL_CODE.temp_id)
 }
 
 // string verify_code = 2;
-inline void C_VERIFY_EMAIL_CODE::clear_verify_code() {
+inline void AC_VERIFY_EMAIL_CODE::clear_verify_code() {
   _impl_.verify_code_.ClearToEmpty();
 }
-inline const std::string& C_VERIFY_EMAIL_CODE::verify_code() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_VERIFY_EMAIL_CODE.verify_code)
+inline const std::string& AC_VERIFY_EMAIL_CODE::verify_code() const {
+  // @@protoc_insertion_point(field_get:Protocol.AC_VERIFY_EMAIL_CODE.verify_code)
   return _internal_verify_code();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void C_VERIFY_EMAIL_CODE::set_verify_code(ArgT0&& arg0, ArgT... args) {
+void AC_VERIFY_EMAIL_CODE::set_verify_code(ArgT0&& arg0, ArgT... args) {
  
  _impl_.verify_code_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.C_VERIFY_EMAIL_CODE.verify_code)
+  // @@protoc_insertion_point(field_set:Protocol.AC_VERIFY_EMAIL_CODE.verify_code)
 }
-inline std::string* C_VERIFY_EMAIL_CODE::mutable_verify_code() {
+inline std::string* AC_VERIFY_EMAIL_CODE::mutable_verify_code() {
   std::string* _s = _internal_mutable_verify_code();
-  // @@protoc_insertion_point(field_mutable:Protocol.C_VERIFY_EMAIL_CODE.verify_code)
+  // @@protoc_insertion_point(field_mutable:Protocol.AC_VERIFY_EMAIL_CODE.verify_code)
   return _s;
 }
-inline const std::string& C_VERIFY_EMAIL_CODE::_internal_verify_code() const {
+inline const std::string& AC_VERIFY_EMAIL_CODE::_internal_verify_code() const {
   return _impl_.verify_code_.Get();
 }
-inline void C_VERIFY_EMAIL_CODE::_internal_set_verify_code(const std::string& value) {
+inline void AC_VERIFY_EMAIL_CODE::_internal_set_verify_code(const std::string& value) {
   
   _impl_.verify_code_.Set(value, GetArenaForAllocation());
 }
-inline std::string* C_VERIFY_EMAIL_CODE::_internal_mutable_verify_code() {
+inline std::string* AC_VERIFY_EMAIL_CODE::_internal_mutable_verify_code() {
   
   return _impl_.verify_code_.Mutable(GetArenaForAllocation());
 }
-inline std::string* C_VERIFY_EMAIL_CODE::release_verify_code() {
-  // @@protoc_insertion_point(field_release:Protocol.C_VERIFY_EMAIL_CODE.verify_code)
+inline std::string* AC_VERIFY_EMAIL_CODE::release_verify_code() {
+  // @@protoc_insertion_point(field_release:Protocol.AC_VERIFY_EMAIL_CODE.verify_code)
   return _impl_.verify_code_.Release();
 }
-inline void C_VERIFY_EMAIL_CODE::set_allocated_verify_code(std::string* verify_code) {
+inline void AC_VERIFY_EMAIL_CODE::set_allocated_verify_code(std::string* verify_code) {
   if (verify_code != nullptr) {
     
   } else {
@@ -2168,89 +2168,89 @@ inline void C_VERIFY_EMAIL_CODE::set_allocated_verify_code(std::string* verify_c
     _impl_.verify_code_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.C_VERIFY_EMAIL_CODE.verify_code)
+  // @@protoc_insertion_point(field_set_allocated:Protocol.AC_VERIFY_EMAIL_CODE.verify_code)
 }
 
 // -------------------------------------------------------------------
 
-// S_VERIFY_EMAIL_CODE
+// AS_VERIFY_EMAIL_CODE
 
 // bool success = 1;
-inline void S_VERIFY_EMAIL_CODE::clear_success() {
+inline void AS_VERIFY_EMAIL_CODE::clear_success() {
   _impl_.success_ = false;
 }
-inline bool S_VERIFY_EMAIL_CODE::_internal_success() const {
+inline bool AS_VERIFY_EMAIL_CODE::_internal_success() const {
   return _impl_.success_;
 }
-inline bool S_VERIFY_EMAIL_CODE::success() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_VERIFY_EMAIL_CODE.success)
+inline bool AS_VERIFY_EMAIL_CODE::success() const {
+  // @@protoc_insertion_point(field_get:Protocol.AS_VERIFY_EMAIL_CODE.success)
   return _internal_success();
 }
-inline void S_VERIFY_EMAIL_CODE::_internal_set_success(bool value) {
+inline void AS_VERIFY_EMAIL_CODE::_internal_set_success(bool value) {
   
   _impl_.success_ = value;
 }
-inline void S_VERIFY_EMAIL_CODE::set_success(bool value) {
+inline void AS_VERIFY_EMAIL_CODE::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:Protocol.S_VERIFY_EMAIL_CODE.success)
+  // @@protoc_insertion_point(field_set:Protocol.AS_VERIFY_EMAIL_CODE.success)
 }
 
 // bool expired = 2;
-inline void S_VERIFY_EMAIL_CODE::clear_expired() {
+inline void AS_VERIFY_EMAIL_CODE::clear_expired() {
   _impl_.expired_ = false;
 }
-inline bool S_VERIFY_EMAIL_CODE::_internal_expired() const {
+inline bool AS_VERIFY_EMAIL_CODE::_internal_expired() const {
   return _impl_.expired_;
 }
-inline bool S_VERIFY_EMAIL_CODE::expired() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_VERIFY_EMAIL_CODE.expired)
+inline bool AS_VERIFY_EMAIL_CODE::expired() const {
+  // @@protoc_insertion_point(field_get:Protocol.AS_VERIFY_EMAIL_CODE.expired)
   return _internal_expired();
 }
-inline void S_VERIFY_EMAIL_CODE::_internal_set_expired(bool value) {
+inline void AS_VERIFY_EMAIL_CODE::_internal_set_expired(bool value) {
   
   _impl_.expired_ = value;
 }
-inline void S_VERIFY_EMAIL_CODE::set_expired(bool value) {
+inline void AS_VERIFY_EMAIL_CODE::set_expired(bool value) {
   _internal_set_expired(value);
-  // @@protoc_insertion_point(field_set:Protocol.S_VERIFY_EMAIL_CODE.expired)
+  // @@protoc_insertion_point(field_set:Protocol.AS_VERIFY_EMAIL_CODE.expired)
 }
 
 // string nickname = 3;
-inline void S_VERIFY_EMAIL_CODE::clear_nickname() {
+inline void AS_VERIFY_EMAIL_CODE::clear_nickname() {
   _impl_.nickname_.ClearToEmpty();
 }
-inline const std::string& S_VERIFY_EMAIL_CODE::nickname() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_VERIFY_EMAIL_CODE.nickname)
+inline const std::string& AS_VERIFY_EMAIL_CODE::nickname() const {
+  // @@protoc_insertion_point(field_get:Protocol.AS_VERIFY_EMAIL_CODE.nickname)
   return _internal_nickname();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S_VERIFY_EMAIL_CODE::set_nickname(ArgT0&& arg0, ArgT... args) {
+void AS_VERIFY_EMAIL_CODE::set_nickname(ArgT0&& arg0, ArgT... args) {
  
  _impl_.nickname_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.S_VERIFY_EMAIL_CODE.nickname)
+  // @@protoc_insertion_point(field_set:Protocol.AS_VERIFY_EMAIL_CODE.nickname)
 }
-inline std::string* S_VERIFY_EMAIL_CODE::mutable_nickname() {
+inline std::string* AS_VERIFY_EMAIL_CODE::mutable_nickname() {
   std::string* _s = _internal_mutable_nickname();
-  // @@protoc_insertion_point(field_mutable:Protocol.S_VERIFY_EMAIL_CODE.nickname)
+  // @@protoc_insertion_point(field_mutable:Protocol.AS_VERIFY_EMAIL_CODE.nickname)
   return _s;
 }
-inline const std::string& S_VERIFY_EMAIL_CODE::_internal_nickname() const {
+inline const std::string& AS_VERIFY_EMAIL_CODE::_internal_nickname() const {
   return _impl_.nickname_.Get();
 }
-inline void S_VERIFY_EMAIL_CODE::_internal_set_nickname(const std::string& value) {
+inline void AS_VERIFY_EMAIL_CODE::_internal_set_nickname(const std::string& value) {
   
   _impl_.nickname_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S_VERIFY_EMAIL_CODE::_internal_mutable_nickname() {
+inline std::string* AS_VERIFY_EMAIL_CODE::_internal_mutable_nickname() {
   
   return _impl_.nickname_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S_VERIFY_EMAIL_CODE::release_nickname() {
-  // @@protoc_insertion_point(field_release:Protocol.S_VERIFY_EMAIL_CODE.nickname)
+inline std::string* AS_VERIFY_EMAIL_CODE::release_nickname() {
+  // @@protoc_insertion_point(field_release:Protocol.AS_VERIFY_EMAIL_CODE.nickname)
   return _impl_.nickname_.Release();
 }
-inline void S_VERIFY_EMAIL_CODE::set_allocated_nickname(std::string* nickname) {
+inline void AS_VERIFY_EMAIL_CODE::set_allocated_nickname(std::string* nickname) {
   if (nickname != nullptr) {
     
   } else {
@@ -2262,45 +2262,45 @@ inline void S_VERIFY_EMAIL_CODE::set_allocated_nickname(std::string* nickname) {
     _impl_.nickname_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.S_VERIFY_EMAIL_CODE.nickname)
+  // @@protoc_insertion_point(field_set_allocated:Protocol.AS_VERIFY_EMAIL_CODE.nickname)
 }
 
 // string reason = 4;
-inline void S_VERIFY_EMAIL_CODE::clear_reason() {
+inline void AS_VERIFY_EMAIL_CODE::clear_reason() {
   _impl_.reason_.ClearToEmpty();
 }
-inline const std::string& S_VERIFY_EMAIL_CODE::reason() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_VERIFY_EMAIL_CODE.reason)
+inline const std::string& AS_VERIFY_EMAIL_CODE::reason() const {
+  // @@protoc_insertion_point(field_get:Protocol.AS_VERIFY_EMAIL_CODE.reason)
   return _internal_reason();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S_VERIFY_EMAIL_CODE::set_reason(ArgT0&& arg0, ArgT... args) {
+void AS_VERIFY_EMAIL_CODE::set_reason(ArgT0&& arg0, ArgT... args) {
  
  _impl_.reason_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.S_VERIFY_EMAIL_CODE.reason)
+  // @@protoc_insertion_point(field_set:Protocol.AS_VERIFY_EMAIL_CODE.reason)
 }
-inline std::string* S_VERIFY_EMAIL_CODE::mutable_reason() {
+inline std::string* AS_VERIFY_EMAIL_CODE::mutable_reason() {
   std::string* _s = _internal_mutable_reason();
-  // @@protoc_insertion_point(field_mutable:Protocol.S_VERIFY_EMAIL_CODE.reason)
+  // @@protoc_insertion_point(field_mutable:Protocol.AS_VERIFY_EMAIL_CODE.reason)
   return _s;
 }
-inline const std::string& S_VERIFY_EMAIL_CODE::_internal_reason() const {
+inline const std::string& AS_VERIFY_EMAIL_CODE::_internal_reason() const {
   return _impl_.reason_.Get();
 }
-inline void S_VERIFY_EMAIL_CODE::_internal_set_reason(const std::string& value) {
+inline void AS_VERIFY_EMAIL_CODE::_internal_set_reason(const std::string& value) {
   
   _impl_.reason_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S_VERIFY_EMAIL_CODE::_internal_mutable_reason() {
+inline std::string* AS_VERIFY_EMAIL_CODE::_internal_mutable_reason() {
   
   return _impl_.reason_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S_VERIFY_EMAIL_CODE::release_reason() {
-  // @@protoc_insertion_point(field_release:Protocol.S_VERIFY_EMAIL_CODE.reason)
+inline std::string* AS_VERIFY_EMAIL_CODE::release_reason() {
+  // @@protoc_insertion_point(field_release:Protocol.AS_VERIFY_EMAIL_CODE.reason)
   return _impl_.reason_.Release();
 }
-inline void S_VERIFY_EMAIL_CODE::set_allocated_reason(std::string* reason) {
+inline void AS_VERIFY_EMAIL_CODE::set_allocated_reason(std::string* reason) {
   if (reason != nullptr) {
     
   } else {
@@ -2312,49 +2312,49 @@ inline void S_VERIFY_EMAIL_CODE::set_allocated_reason(std::string* reason) {
     _impl_.reason_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.S_VERIFY_EMAIL_CODE.reason)
+  // @@protoc_insertion_point(field_set_allocated:Protocol.AS_VERIFY_EMAIL_CODE.reason)
 }
 
 // -------------------------------------------------------------------
 
-// C_LOGIN
+// AC_LOGIN
 
 // string nickname = 1;
-inline void C_LOGIN::clear_nickname() {
+inline void AC_LOGIN::clear_nickname() {
   _impl_.nickname_.ClearToEmpty();
 }
-inline const std::string& C_LOGIN::nickname() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_LOGIN.nickname)
+inline const std::string& AC_LOGIN::nickname() const {
+  // @@protoc_insertion_point(field_get:Protocol.AC_LOGIN.nickname)
   return _internal_nickname();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void C_LOGIN::set_nickname(ArgT0&& arg0, ArgT... args) {
+void AC_LOGIN::set_nickname(ArgT0&& arg0, ArgT... args) {
  
  _impl_.nickname_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.C_LOGIN.nickname)
+  // @@protoc_insertion_point(field_set:Protocol.AC_LOGIN.nickname)
 }
-inline std::string* C_LOGIN::mutable_nickname() {
+inline std::string* AC_LOGIN::mutable_nickname() {
   std::string* _s = _internal_mutable_nickname();
-  // @@protoc_insertion_point(field_mutable:Protocol.C_LOGIN.nickname)
+  // @@protoc_insertion_point(field_mutable:Protocol.AC_LOGIN.nickname)
   return _s;
 }
-inline const std::string& C_LOGIN::_internal_nickname() const {
+inline const std::string& AC_LOGIN::_internal_nickname() const {
   return _impl_.nickname_.Get();
 }
-inline void C_LOGIN::_internal_set_nickname(const std::string& value) {
+inline void AC_LOGIN::_internal_set_nickname(const std::string& value) {
   
   _impl_.nickname_.Set(value, GetArenaForAllocation());
 }
-inline std::string* C_LOGIN::_internal_mutable_nickname() {
+inline std::string* AC_LOGIN::_internal_mutable_nickname() {
   
   return _impl_.nickname_.Mutable(GetArenaForAllocation());
 }
-inline std::string* C_LOGIN::release_nickname() {
-  // @@protoc_insertion_point(field_release:Protocol.C_LOGIN.nickname)
+inline std::string* AC_LOGIN::release_nickname() {
+  // @@protoc_insertion_point(field_release:Protocol.AC_LOGIN.nickname)
   return _impl_.nickname_.Release();
 }
-inline void C_LOGIN::set_allocated_nickname(std::string* nickname) {
+inline void AC_LOGIN::set_allocated_nickname(std::string* nickname) {
   if (nickname != nullptr) {
     
   } else {
@@ -2366,45 +2366,45 @@ inline void C_LOGIN::set_allocated_nickname(std::string* nickname) {
     _impl_.nickname_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.C_LOGIN.nickname)
+  // @@protoc_insertion_point(field_set_allocated:Protocol.AC_LOGIN.nickname)
 }
 
 // string password = 2;
-inline void C_LOGIN::clear_password() {
+inline void AC_LOGIN::clear_password() {
   _impl_.password_.ClearToEmpty();
 }
-inline const std::string& C_LOGIN::password() const {
-  // @@protoc_insertion_point(field_get:Protocol.C_LOGIN.password)
+inline const std::string& AC_LOGIN::password() const {
+  // @@protoc_insertion_point(field_get:Protocol.AC_LOGIN.password)
   return _internal_password();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void C_LOGIN::set_password(ArgT0&& arg0, ArgT... args) {
+void AC_LOGIN::set_password(ArgT0&& arg0, ArgT... args) {
  
  _impl_.password_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.C_LOGIN.password)
+  // @@protoc_insertion_point(field_set:Protocol.AC_LOGIN.password)
 }
-inline std::string* C_LOGIN::mutable_password() {
+inline std::string* AC_LOGIN::mutable_password() {
   std::string* _s = _internal_mutable_password();
-  // @@protoc_insertion_point(field_mutable:Protocol.C_LOGIN.password)
+  // @@protoc_insertion_point(field_mutable:Protocol.AC_LOGIN.password)
   return _s;
 }
-inline const std::string& C_LOGIN::_internal_password() const {
+inline const std::string& AC_LOGIN::_internal_password() const {
   return _impl_.password_.Get();
 }
-inline void C_LOGIN::_internal_set_password(const std::string& value) {
+inline void AC_LOGIN::_internal_set_password(const std::string& value) {
   
   _impl_.password_.Set(value, GetArenaForAllocation());
 }
-inline std::string* C_LOGIN::_internal_mutable_password() {
+inline std::string* AC_LOGIN::_internal_mutable_password() {
   
   return _impl_.password_.Mutable(GetArenaForAllocation());
 }
-inline std::string* C_LOGIN::release_password() {
-  // @@protoc_insertion_point(field_release:Protocol.C_LOGIN.password)
+inline std::string* AC_LOGIN::release_password() {
+  // @@protoc_insertion_point(field_release:Protocol.AC_LOGIN.password)
   return _impl_.password_.Release();
 }
-inline void C_LOGIN::set_allocated_password(std::string* password) {
+inline void AC_LOGIN::set_allocated_password(std::string* password) {
   if (password != nullptr) {
     
   } else {
@@ -2416,109 +2416,109 @@ inline void C_LOGIN::set_allocated_password(std::string* password) {
     _impl_.password_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.C_LOGIN.password)
+  // @@protoc_insertion_point(field_set_allocated:Protocol.AC_LOGIN.password)
 }
 
 // -------------------------------------------------------------------
 
-// S_LOGIN
+// AS_LOGIN
 
 // bool success = 1;
-inline void S_LOGIN::clear_success() {
+inline void AS_LOGIN::clear_success() {
   _impl_.success_ = false;
 }
-inline bool S_LOGIN::_internal_success() const {
+inline bool AS_LOGIN::_internal_success() const {
   return _impl_.success_;
 }
-inline bool S_LOGIN::success() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_LOGIN.success)
+inline bool AS_LOGIN::success() const {
+  // @@protoc_insertion_point(field_get:Protocol.AS_LOGIN.success)
   return _internal_success();
 }
-inline void S_LOGIN::_internal_set_success(bool value) {
+inline void AS_LOGIN::_internal_set_success(bool value) {
   
   _impl_.success_ = value;
 }
-inline void S_LOGIN::set_success(bool value) {
+inline void AS_LOGIN::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:Protocol.S_LOGIN.success)
+  // @@protoc_insertion_point(field_set:Protocol.AS_LOGIN.success)
 }
 
 // bool is_block = 2;
-inline void S_LOGIN::clear_is_block() {
+inline void AS_LOGIN::clear_is_block() {
   _impl_.is_block_ = false;
 }
-inline bool S_LOGIN::_internal_is_block() const {
+inline bool AS_LOGIN::_internal_is_block() const {
   return _impl_.is_block_;
 }
-inline bool S_LOGIN::is_block() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_LOGIN.is_block)
+inline bool AS_LOGIN::is_block() const {
+  // @@protoc_insertion_point(field_get:Protocol.AS_LOGIN.is_block)
   return _internal_is_block();
 }
-inline void S_LOGIN::_internal_set_is_block(bool value) {
+inline void AS_LOGIN::_internal_set_is_block(bool value) {
   
   _impl_.is_block_ = value;
 }
-inline void S_LOGIN::set_is_block(bool value) {
+inline void AS_LOGIN::set_is_block(bool value) {
   _internal_set_is_block(value);
-  // @@protoc_insertion_point(field_set:Protocol.S_LOGIN.is_block)
+  // @@protoc_insertion_point(field_set:Protocol.AS_LOGIN.is_block)
 }
 
 // int32 fail_count = 3;
-inline void S_LOGIN::clear_fail_count() {
+inline void AS_LOGIN::clear_fail_count() {
   _impl_.fail_count_ = 0;
 }
-inline int32_t S_LOGIN::_internal_fail_count() const {
+inline int32_t AS_LOGIN::_internal_fail_count() const {
   return _impl_.fail_count_;
 }
-inline int32_t S_LOGIN::fail_count() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_LOGIN.fail_count)
+inline int32_t AS_LOGIN::fail_count() const {
+  // @@protoc_insertion_point(field_get:Protocol.AS_LOGIN.fail_count)
   return _internal_fail_count();
 }
-inline void S_LOGIN::_internal_set_fail_count(int32_t value) {
+inline void AS_LOGIN::_internal_set_fail_count(int32_t value) {
   
   _impl_.fail_count_ = value;
 }
-inline void S_LOGIN::set_fail_count(int32_t value) {
+inline void AS_LOGIN::set_fail_count(int32_t value) {
   _internal_set_fail_count(value);
-  // @@protoc_insertion_point(field_set:Protocol.S_LOGIN.fail_count)
+  // @@protoc_insertion_point(field_set:Protocol.AS_LOGIN.fail_count)
 }
 
 // string token = 4;
-inline void S_LOGIN::clear_token() {
+inline void AS_LOGIN::clear_token() {
   _impl_.token_.ClearToEmpty();
 }
-inline const std::string& S_LOGIN::token() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_LOGIN.token)
+inline const std::string& AS_LOGIN::token() const {
+  // @@protoc_insertion_point(field_get:Protocol.AS_LOGIN.token)
   return _internal_token();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S_LOGIN::set_token(ArgT0&& arg0, ArgT... args) {
+void AS_LOGIN::set_token(ArgT0&& arg0, ArgT... args) {
  
  _impl_.token_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.S_LOGIN.token)
+  // @@protoc_insertion_point(field_set:Protocol.AS_LOGIN.token)
 }
-inline std::string* S_LOGIN::mutable_token() {
+inline std::string* AS_LOGIN::mutable_token() {
   std::string* _s = _internal_mutable_token();
-  // @@protoc_insertion_point(field_mutable:Protocol.S_LOGIN.token)
+  // @@protoc_insertion_point(field_mutable:Protocol.AS_LOGIN.token)
   return _s;
 }
-inline const std::string& S_LOGIN::_internal_token() const {
+inline const std::string& AS_LOGIN::_internal_token() const {
   return _impl_.token_.Get();
 }
-inline void S_LOGIN::_internal_set_token(const std::string& value) {
+inline void AS_LOGIN::_internal_set_token(const std::string& value) {
   
   _impl_.token_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S_LOGIN::_internal_mutable_token() {
+inline std::string* AS_LOGIN::_internal_mutable_token() {
   
   return _impl_.token_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S_LOGIN::release_token() {
-  // @@protoc_insertion_point(field_release:Protocol.S_LOGIN.token)
+inline std::string* AS_LOGIN::release_token() {
+  // @@protoc_insertion_point(field_release:Protocol.AS_LOGIN.token)
   return _impl_.token_.Release();
 }
-inline void S_LOGIN::set_allocated_token(std::string* token) {
+inline void AS_LOGIN::set_allocated_token(std::string* token) {
   if (token != nullptr) {
     
   } else {
@@ -2530,45 +2530,45 @@ inline void S_LOGIN::set_allocated_token(std::string* token) {
     _impl_.token_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.S_LOGIN.token)
+  // @@protoc_insertion_point(field_set_allocated:Protocol.AS_LOGIN.token)
 }
 
 // string reason = 5;
-inline void S_LOGIN::clear_reason() {
+inline void AS_LOGIN::clear_reason() {
   _impl_.reason_.ClearToEmpty();
 }
-inline const std::string& S_LOGIN::reason() const {
-  // @@protoc_insertion_point(field_get:Protocol.S_LOGIN.reason)
+inline const std::string& AS_LOGIN::reason() const {
+  // @@protoc_insertion_point(field_get:Protocol.AS_LOGIN.reason)
   return _internal_reason();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S_LOGIN::set_reason(ArgT0&& arg0, ArgT... args) {
+void AS_LOGIN::set_reason(ArgT0&& arg0, ArgT... args) {
  
  _impl_.reason_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.S_LOGIN.reason)
+  // @@protoc_insertion_point(field_set:Protocol.AS_LOGIN.reason)
 }
-inline std::string* S_LOGIN::mutable_reason() {
+inline std::string* AS_LOGIN::mutable_reason() {
   std::string* _s = _internal_mutable_reason();
-  // @@protoc_insertion_point(field_mutable:Protocol.S_LOGIN.reason)
+  // @@protoc_insertion_point(field_mutable:Protocol.AS_LOGIN.reason)
   return _s;
 }
-inline const std::string& S_LOGIN::_internal_reason() const {
+inline const std::string& AS_LOGIN::_internal_reason() const {
   return _impl_.reason_.Get();
 }
-inline void S_LOGIN::_internal_set_reason(const std::string& value) {
+inline void AS_LOGIN::_internal_set_reason(const std::string& value) {
   
   _impl_.reason_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S_LOGIN::_internal_mutable_reason() {
+inline std::string* AS_LOGIN::_internal_mutable_reason() {
   
   return _impl_.reason_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S_LOGIN::release_reason() {
-  // @@protoc_insertion_point(field_release:Protocol.S_LOGIN.reason)
+inline std::string* AS_LOGIN::release_reason() {
+  // @@protoc_insertion_point(field_release:Protocol.AS_LOGIN.reason)
   return _impl_.reason_.Release();
 }
-inline void S_LOGIN::set_allocated_reason(std::string* reason) {
+inline void AS_LOGIN::set_allocated_reason(std::string* reason) {
   if (reason != nullptr) {
     
   } else {
@@ -2580,7 +2580,7 @@ inline void S_LOGIN::set_allocated_reason(std::string* reason) {
     _impl_.reason_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.S_LOGIN.reason)
+  // @@protoc_insertion_point(field_set_allocated:Protocol.AS_LOGIN.reason)
 }
 
 #ifdef __GNUC__

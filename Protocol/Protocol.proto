@@ -2,14 +2,14 @@ syntax = "proto3";
 package Protocol;
 
 // 1. 회원가입 요청
-message C_SIGNUP {
+message AC_SIGNUP {
 	string nickname = 1;
 	string password = 2;
 	string email = 3;
 	bool skip_email = 4; 
 }
 // 1. ID/Email중복 여부
-message S_SIGNUP {
+message AS_SIGNUP {
 	bool success = 1;
 	bool skip_email = 2;
 	string temp_id = 3;
@@ -17,11 +17,11 @@ message S_SIGNUP {
 }
 
 // 2. 이메일 인증 코드 요청
-message C_VERIFY_MAIL_REQ {
+message AC_VERIFY_MAIL_REQ {
 	string temp_id = 1;
 }
 // 2. 인증코드 발송 성공여부
-message S_VERIFY_MAIL_REQ {
+message AS_VERIFY_MAIL_REQ {
 	bool success = 1;
 	string temp_id = 2;
     bool expired = 3;
@@ -29,12 +29,12 @@ message S_VERIFY_MAIL_REQ {
 }
 
 // 3. 이메일 인증 확인 요청
-message C_VERIFY_EMAIL_CODE {
+message AC_VERIFY_EMAIL_CODE {
 	string temp_id = 1;
 	string verify_code = 2;
 }
 // 3. 이메일 인증 성공 여부
-message S_VERIFY_EMAIL_CODE {
+message AS_VERIFY_EMAIL_CODE {
 	bool success = 1;
 	bool expired = 2;
 	string nickname = 3;//더미클라 테스트용
@@ -42,12 +42,12 @@ message S_VERIFY_EMAIL_CODE {
 }
 
 // 4. 로그인 요청
-message C_LOGIN {
+message AC_LOGIN {
 	string nickname = 1;
 	string password = 2;
 }
 // 4. 로그인 성공 여부
-message S_LOGIN {
+message AS_LOGIN {
 	bool success = 1;
 	bool is_block = 2;
     int32 fail_count = 3;

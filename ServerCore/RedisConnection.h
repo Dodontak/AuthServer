@@ -2,6 +2,7 @@
 
 #include <hiredis.h>
 #include <string>
+#include <iostream>
 
 class RedisConnection
 {

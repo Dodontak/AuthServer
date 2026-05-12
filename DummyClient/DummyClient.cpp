@@ -16,7 +16,7 @@
 using namespace std;
 
 void SignUp(SessionRef session) {
-    Protocol::C_SIGNUP pkt;
+    Protocol::AC_SIGNUP pkt;
     string email, nickname, password;
     email = Utils::GetRandomStr(10) + '@' + Utils::GetRandomStr(3) + ".com";
     pkt.set_email(email);
